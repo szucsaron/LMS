@@ -44,7 +44,7 @@ public class LogInServlet extends HttpServlet {
         String password = req.getParameter("pwd");
 
 
-        resp.addCookie(new Cookie("name", password));
+        resp.addCookie(new Cookie("name", name));
         resp.addCookie(new Cookie("password", password));
 
         resp.sendRedirect("greeting.jsp");
