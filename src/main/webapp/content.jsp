@@ -1,4 +1,10 @@
 <!doctype html>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="com.codecool.web.model.Article" %>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -8,16 +14,19 @@
 </head>
 <body>
     <div class="leftbar">
-        <input tpye="text" placeholder="Search...">
-
-        <!--    java code maybe..    <% for (Material material : materials) { %>
-            <p>material.getName()</p>
+        <input type="text" placeholder="Search...">
+        <% Map<Integer, String> titles = (Map<Integer, String>) request.getAttribute("sidebar"); %>
+        <% for (Integer key : titles.keySet()) { %>
+            <a href="content?pageID=<%=key%>"><%= titles.get(key) %></a>
         <% } %>
-        -->
 
     </div>
     <div class="rightbar">
-
+        <%
+        Article article = (Article) request.getAttribute("article");
+        %>
+        <p> <%=article.getTitle()%> </p>
+        </p> <%=article.getText()%> </p>
     </div>
 
 

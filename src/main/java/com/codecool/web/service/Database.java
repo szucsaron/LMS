@@ -3,6 +3,8 @@ package com.codecool.web.service;
 import com.codecool.web.model.Article;
 import com.codecool.web.model.Content;
 
+import java.util.List;
+
 public class Database {
     private static Database database = new Database();
 
@@ -26,9 +28,16 @@ public class Database {
 
     }
 
-    public Content getContent() {
+    public Content getAllContent() {
         return content;
     }
+
+    public Article getArticle(int id) {
+        return content.getArticle(id);
+    }
+
+
+
 
 
 }
