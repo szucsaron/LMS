@@ -6,7 +6,7 @@ import com.codecool.web.service.Database;
 public class MyTest {
     public static void main(String[] args) {
         Database database = Database.getInstance();
-        Content content = database.getContent();
+        Content content = database.getAllContent();
 
 
         System.out.println(content);
