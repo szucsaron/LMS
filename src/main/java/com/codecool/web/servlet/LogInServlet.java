@@ -21,7 +21,7 @@ public class LogInServlet extends HttpServlet {
 
         for (User u : users) {
             if (u.getUsername().equals(req.getParameter("username"))) {
-                if (!u.getPassword().equals(req.getParameter("password"))) {
+                if (!u.getPassword().equals(req.getParameter("pwd"))) {
                     System.out.println("Wrong password!");
                     return;
                 }

@@ -26,6 +26,6 @@ public class RegistrationServlet extends HttpServlet {
                 return;
             }
         }
-        service.addUser(req.getParameter("username"), req.getParameter("password"));
+        service.addUser(req.getParameter("username"), req.getParameter("pwd"));
     }
 }
