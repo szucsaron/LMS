@@ -20,20 +20,19 @@ public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> users = service.getUsers();
         req.setAttribute("users", users);
+        resp.setContentType("text/html");
 
-        for (User u : users) {
-            if (u.getUsername().equals(req.getParameter("username"))) {
+        String un = req.getParameter("username");
+        String pw = req.getParameter("password");
+
+        if (!service.validateRegistration(un)) {
                 resp.sendRedirect("register.html");
             }
-        }
-        service.addUser(req.getParameter("username"), req.getParameter("password"));
-        doGet(req, resp);
+        service.addUser(un, pw);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<User> users = service.getUsers();
-        req.setAttribute("users", users);
-        req.getRequestDispatcher("greeting.jsp").forward(req, resp);
+        req.getRequestDispatcher("register.html").forward(req, resp);
     }
 }

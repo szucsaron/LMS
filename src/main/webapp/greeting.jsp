@@ -1,6 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.codecool.web.model.User" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,11 +8,6 @@
 </head>
 <body>
 <h1>Users!</h1>
-<% List<User> users = (List<User>) request.getAttribute("users"); %>
-    <% for (User u : users) { %>
-    <p><%= u.getUsername() %>: <%= u.getPassword() %></p>
-    <% } %>
-
 <a href="index.html">Go back to the <em>index</em> page.</a>
 <br>
 <a href="greeting?jstl=true">Click here to list the <em>greetings</em> using <strong>JSTL</strong>!</a>

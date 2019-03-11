@@ -16,29 +16,29 @@ public class LogInServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("index.html").forward(req, resp);
+    }
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> users = service.getUsers();
         req.setAttribute("users", users);
+        resp.setContentType("text/html");
+
+        String un = req.getParameter("username");
+        String pw = req.getParameter("password");
 
         HttpSession oldSession = req.getSession(false);
         if (oldSession != null) {
             oldSession.invalidate();
         }
-
         HttpSession newSession = req.getSession(true);
-
         newSession.setMaxInactiveInterval(5*60);
 
-        String name = req.getParameter("username");
-        String password = req.getParameter("password");
+        resp.addCookie(new Cookie("name", un));
+        resp.addCookie(new Cookie("password", pw));
 
-
-        resp.addCookie(new Cookie("name", name));
-        resp.addCookie(new Cookie("password", password));
-
-        for (User u : users) {
-            if (u.getUsername().equals(req.getParameter("username")) && u.getPassword().equals(req.getParameter("password"))) {
-                    resp.sendRedirect("greeting.jsp");
-                }
+        if (service.validateLogIn(un, pw)) {
+            resp.sendRedirect("content.jsp");
         }
         resp.sendRedirect("index.html");
     }
