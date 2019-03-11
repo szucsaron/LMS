@@ -5,6 +5,7 @@ import com.codecool.web.model.Content;
 import com.codecool.web.service.Database;
 import com.codecool.web.service.UserService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -26,19 +27,24 @@ public class ContentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Database database = Database.getInstance();
-        Article article = database.getArticle(0);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher(page);
+        int id;
+        try {
+            id = Integer.parseInt(req.getParameter("pageID"));
+        } catch (NumberFormatException e) {
+            id = 0;
+        }
 
-        Map<Integer, String> sidebar = new HashMap<>();
-        sidebar.put(1, "White goat");
-        sidebar.put(2, "Black goat");
-        sidebar.put(3, "Not a goat");
+        Database database = Database.getInstance();
+        Article article = database.getArticle(id);
+
+        Map<Integer, String> sidebar = database.getArticleIds();
 
 
         req.setAttribute("article", article);
         req.setAttribute("sidebar", sidebar);
 
-        req.getRequestDispatcher(page).forward(req, resp);
+        requestDispatcher.forward(req, resp);
 
 
 

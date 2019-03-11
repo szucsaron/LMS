@@ -60,7 +60,6 @@ body {
 }
 
 .rightbar {
-    width: 80%;
     height: 100vh;
     float: left;
     overflow: scroll;
