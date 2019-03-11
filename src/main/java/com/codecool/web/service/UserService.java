@@ -13,8 +13,8 @@ public final class UserService {
         return users;
     }
 
-    public void addUser(String username, String password) {
-        users.add(new User(username, password));
+    public void addUser(String username, String password, String email) {
+        users.add(new User(username, password, email));
     }
 
     public boolean validateLogIn(String username, String password) {
