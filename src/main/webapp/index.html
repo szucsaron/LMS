@@ -1,26 +1,27 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeCool LMS</title>
     <link rel="stylesheet" href="index.css">
+
 </head>
 <body>
-    <div class="leftbar">
-        <input tpye="text" placeholder="Search...">
 
-        <!--    java code maybe..    <% for (Material material : materials) { %>
-            <p>material.getName()</p>
-        <% } %>
-        -->
+<div class="login">
+    <h2>Please login to continue!</h2>
+    <form action="LogInServlet" method="POST">
 
-    </div>
-    <div class="rightbar">
-
-    </div>
-
-
+        <p>Username:<br>
+        <input type="text" name="username">
+        <br>
+        Password:<br>
+        <input type="password" name="password"></p>
+        <br><br>
+        <input type="submit" value="Login">
+    </form>
+</div>
 
 </body>
 </html>
