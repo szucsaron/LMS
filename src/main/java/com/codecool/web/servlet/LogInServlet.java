@@ -9,55 +9,37 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/greeting")
+@WebServlet("/login")
 public class LogInServlet extends HttpServlet {
 
     private final UserService service = new UserService();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /*
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> users = service.getUsers();
+        req.setAttribute("users", users);
 
-        for (User u : users) {
-            if (u.getUsername().equals(req.getParameter("username"))) {
-                if (!u.getPassword().equals(req.getParameter("pwd"))) {
-                    System.out.println("Wrong password!");
-                    return;
-                }
-            }
-        }
-        */
-        //get the old session and invalidate
-        //req.getRequestDispatcher("greeting.jsp").forward(req, resp);
         HttpSession oldSession = req.getSession(false);
         if (oldSession != null) {
             oldSession.invalidate();
         }
-        //generate a new session
+
         HttpSession newSession = req.getSession(true);
 
-        //setting session to expiry in 5 mins
         newSession.setMaxInactiveInterval(5*60);
 
         String name = req.getParameter("username");
-        String password = req.getParameter("pwd");
+        String password = req.getParameter("password");
 
 
         resp.addCookie(new Cookie("name", name));
         resp.addCookie(new Cookie("password", password));
 
-        resp.sendRedirect("greeting.jsp");
-
-
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("greeting.jsp");
-
-
-
-        //resp.sendRedirect("greeting.jsp");
+        for (User u : users) {
+            if (u.getUsername().equals(req.getParameter("username")) && u.getPassword().equals(req.getParameter("password"))) {
+                    resp.sendRedirect("greeting.jsp");
+                }
+        }
+        resp.sendRedirect("index.html");
     }
 }
