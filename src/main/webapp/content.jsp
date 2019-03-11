@@ -2,9 +2,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
 <%@ page import="com.codecool.web.model.Article" %>
-<%@ page import="com.codecool.web.model.Content" %>
-<%@ page import="com.codecool.web.model.Sidebar" %>
 
 <html lang="en">
 <head>
@@ -15,8 +14,8 @@
 </head>
 <body>
     <div class="leftbar">
-        <input tpye="text" placeholder="Search...">
-        <% HashMap<Integer, String> titles = request.getAttribute("sidebar"); %>
+        <input type="text" placeholder="Search...">
+        <% Map<Integer, String> titles = (Map<Integer, String>) request.getAttribute("sidebar"); %>
         <% for (Integer key : titles.keySet()) { %>
             <a href="content?pageID=<%=key%>"><%= titles.get(key) %></a>
         <% } %>
