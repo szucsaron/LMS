@@ -13,7 +13,7 @@ import java.io.IOException;
 public class IndexServlet extends HttpServlet {
 
     private final UserService service = new UserService();
-    private final String page = "index.jsp";
+    private final String page = "test.jsp";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,7 +26,7 @@ public class IndexServlet extends HttpServlet {
         Database database = Database.getInstance();
         Content content = database.getContent();
         req.setAttribute("content", content);
-        resp.sendRedirect("test.jsp");
+        req.getRequestDispatcher(page).forward(req, resp);
 
 
 
