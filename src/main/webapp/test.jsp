@@ -7,20 +7,13 @@
 
 
 <%
-Content content = (Content) request.getAttribute("content");
-for (Article article : content) {
-
+Article article = (Article) request.getAttribute("article");
 %>
-<p>
-<%=article.getTitle()%>
-<br>
-<%=article.getText()%>
-</p>
-
-<%
-}
+<p> <%=article.getTitle()%> </p>
+</p> <%=article.getText()%> </p>
 
 
-%>
+
+
 
 
