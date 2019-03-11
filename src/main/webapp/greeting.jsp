@@ -12,6 +12,7 @@
 <h1>Greeting!</h1>
 <% List<Greeting> greetings = (List<Greeting>) request.getAttribute("greetings"); %>
 <% for (Greeting g : greetings) { %>
+    <p><%out.println("padlizsán");%></p>
     <p><%= g.getLang() %>: <%= g.getText() %></p>
 <% } %>
 <a href="index.html">Go back to the <em>index</em> page.</a>

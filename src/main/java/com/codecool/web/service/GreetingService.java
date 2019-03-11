@@ -12,7 +12,7 @@ public final class GreetingService {
         greetings.add(new Greeting("en", "Hi!"));
         greetings.add(new Greeting("hu", "Szia!"));
         greetings.add(new Greeting("fr", "Bonjour!"));
-        greetings.add(new Greeting("pl", "Cześć!"));
+        greetings.add(new Greeting("pl", "dfsdfsdsf!"));
         return greetings;
     }
 }
