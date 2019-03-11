@@ -1,0 +1,38 @@
+body {
+    background-color: #FFFFF6;
+    height: 100%;
+    overflow: hidden;
+}
+
+.leftbar {
+    width: 20%;
+    height: 100vh;
+    float: left;
+    overflow: scroll;
+    border: none;
+    border-right-color: black;
+    border-right-style: solid;
+    border-width: 1px;
+    padding: none;
+    margin: none;
+
+}
+
+.leftbar input {
+    width: 100%;
+    margin: none;
+    padding: none;
+    border: none;
+    border-bottom-color: grey;
+    border-bottom-style: solid;
+    border-width: 1px;
+
+}
+
+.rightbar {
+    width: 80%;
+    height: 100vh;
+    float: left;
+    overflow: scroll;
+    margin: none;
+}
