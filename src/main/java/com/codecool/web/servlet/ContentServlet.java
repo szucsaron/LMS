@@ -45,8 +45,5 @@ public class ContentServlet extends HttpServlet {
         req.setAttribute("sidebar", sidebar);
 
         requestDispatcher.forward(req, resp);
-
-
-
     }
 }
