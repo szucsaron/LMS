@@ -2,6 +2,7 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.model.Article;
 import com.codecool.web.model.Content;
+import com.codecool.web.model.User;
 import com.codecool.web.service.Database;
 import com.codecool.web.service.UserService;
 
@@ -27,6 +28,10 @@ public class ContentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        // Mocking access control
+        User user = new User("Józsi", "12345", "lazybastard123@goatmail.com");
+        user.setProgress(4);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher(page);
         int id;
         try {
@@ -36,12 +41,17 @@ public class ContentServlet extends HttpServlet {
         }
 
         Database database = Database.getInstance();
-        Article article = database.getArticle(id);
+        Article article = database.getArticle(id);;
+        if (article.hasAccess(user)) {
+            req.setAttribute("article", article);
+        } else {
+            req.setAttribute("article", new Article("Restricted material", "Your progress is too low to view this article. Please, practice more \n" +
+                "or have a bigger wallet."));
+        }
 
         Map<Integer, String> sidebar = database.getArticleIds();
 
 
-        req.setAttribute("article", article);
         req.setAttribute("sidebar", sidebar);
 
         requestDispatcher.forward(req, resp);

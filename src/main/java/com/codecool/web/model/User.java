@@ -5,7 +5,7 @@ public final class User {
     private final String username;
     private final String password;
     private final String email;
-    private final int progress;
+    private int progress;
 
     public User(String username, String password, String email) {
         this.username = username;
@@ -20,5 +20,11 @@ public final class User {
 
     public String getPassword() {
         return this.password;
+    }
+
+    public int getProgress() { return progress;}
+
+    public void setProgress(int progress) {
+        this.progress = progress;
     }
 }
