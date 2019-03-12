@@ -30,6 +30,7 @@ public class RegistrationServlet extends HttpServlet {
                 resp.sendRedirect("register.html");
             }
         service.addUser(un, pw, em);
+        resp.sendRedirect("index.html");
     }
 
     @Override
