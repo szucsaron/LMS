@@ -4,7 +4,9 @@ import com.codecool.web.model.Article;
 import com.codecool.web.model.Content;
 import com.codecool.web.model.quiz.Quiz;
 import com.codecool.web.model.quiz.QuizGenerator;
+import com.codecool.web.model.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +17,8 @@ public class Database {
     public static Database getInstance() {
         return database;
     }
+
+    List<User> users = new ArrayList<>();
 
     private Content content;
 

@@ -18,15 +18,21 @@ public class MyTest {
 
         List<Quiz> quizes = quizGenerator.generate();
 
+        int score = 0;
         Quiz quiz = quizes.get(0);
         for (Question question : quiz) {
             System.out.println(question.getDescription());
             for (String answer : question) {
                 System.out.println("  " + answer);
             }
-            System.out.println(question.validateAnswer(scanner.nextInt()));
-            System.out.println();
+            boolean correct = question.validateAnswer(scanner.nextInt());
+            System.out.println(correct);
+            if (correct) {
+                score++;
+            }
         }
+        System.out.println("result:");
+        System.out.println(quiz.validateSuccess(score));
 
     }
 }

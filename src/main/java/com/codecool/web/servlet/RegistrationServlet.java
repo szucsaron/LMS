@@ -18,8 +18,6 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<User> users = service.getUsers();
-        req.setAttribute("users", users);
         resp.setContentType("text/html");
 
         String un = req.getParameter("username");
@@ -28,9 +26,10 @@ public class RegistrationServlet extends HttpServlet {
 
         if (!service.validateRegistration(un)) {
                 resp.sendRedirect("register.html");
-            }
-        service.addUser(un, pw, em);
-        resp.sendRedirect("index.html");
+            } else {
+            service.addUser(un, pw, em);
+            resp.sendRedirect("index.html");
+        }
     }
 
     @Override
