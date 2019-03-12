@@ -22,6 +22,8 @@
 
     </div>
     <div class="rightbar">
+        <a class="button" href="users">Users</a>
+        <a class="button" href="profile">Profile</a>
         <%
         Article article = (Article) request.getAttribute("article");
         %>

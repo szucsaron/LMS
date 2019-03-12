@@ -17,14 +17,6 @@ public class LogInServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("index.html").forward(req, resp);
-    }
-
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-
-        String un = req.getParameter("username");
-        String pw = req.getParameter("password");
 
         HttpSession oldSession = req.getSession(false);
         if (oldSession != null) {
@@ -33,10 +25,19 @@ public class LogInServlet extends HttpServlet {
         HttpSession newSession = req.getSession(true);
         newSession.setMaxInactiveInterval(5*60);
 
-        resp.addCookie(new Cookie("name", un));
-        resp.addCookie(new Cookie("password", pw));
+        req.getRequestDispatcher("index.html").forward(req, resp);
+
+    }
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+
+        String un = req.getParameter("username");
+        String pw = req.getParameter("password");
 
         if (service.validateLogIn(un, pw)) {
+            resp.addCookie(new Cookie("name", un));
+            resp.addCookie(new Cookie("password", pw));
             resp.sendRedirect("content");
         } else {
             resp.sendRedirect("index.html");
