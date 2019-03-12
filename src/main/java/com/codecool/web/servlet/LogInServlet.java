@@ -1,6 +1,7 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.User;
+import com.codecool.web.service.Database;
 import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;
@@ -20,8 +21,6 @@ public class LogInServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<User> users = service.getUsers();
-        req.setAttribute("users", users);
         resp.setContentType("text/html");
 
         String un = req.getParameter("username");
@@ -39,7 +38,8 @@ public class LogInServlet extends HttpServlet {
 
         if (service.validateLogIn(un, pw)) {
             resp.sendRedirect("content.jsp");
+        } else {
+            resp.sendRedirect("index.html");
         }
-        resp.sendRedirect("index.html");
     }
 }
