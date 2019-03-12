@@ -24,7 +24,7 @@ public class QuizServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //req.getParameter("articleId");
-        int articleId = 0; // Mock
+        int articleId = Integer.parseInt(req.getParameter("articleId")); // Mock
         Quiz quiz = database.getArticle(articleId).getQuiz();
         req.setAttribute("score", database.score);
 

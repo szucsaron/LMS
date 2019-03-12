@@ -42,8 +42,10 @@ public class ContentServlet extends HttpServlet {
         Database database = Database.getInstance();
         Article article = database.getArticle(id);;
         if (article.hasAccess(user)) {
+            req.setAttribute("articleId", id);
             req.setAttribute("article", article);
         } else {
+            req.setAttribute("articleId", id);
             req.setAttribute("article", new Article("Restricted material", "Your progress is too low to view this article. Please, practice more \n" +
                 "or have a bigger wallet."));
         }

@@ -23,13 +23,15 @@
             Question question = (Question) request.getAttribute("question");
             int questionId = (int) request.getAttribute("questionId");
             int score = (int) request.getAttribute("score");
+            int articleId = (int) request.getAttribute("articleId");
 
             int quizId = 0;
                 %>Score:<%=score%><%
                 %><ul class="question"><h3><%=question.getDescription()%></h2><%
                     int answerId = 0;
                     for (String answer : question) {
-                        String parameters = "questionId=" + Integer.toString(questionId) + "&answerId=" + Integer.toString(answerId);
+                        String parameters = "questionId=" + Integer.toString(questionId) + "&answerId=" + Integer.toString(answerId) +
+                                            "&articleId=" + articleId;
                         %>
                             <a class="answer" href="quiz?<%=parameters%>">
                                 <%=answer%>

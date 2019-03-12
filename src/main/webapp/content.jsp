@@ -15,7 +15,9 @@
 <body>
     <div class="leftbar">
         <input type="text" placeholder="Search...">
-        <% Map<Integer, String> titles = (Map<Integer, String>) request.getAttribute("sidebar"); %>
+        <%  Map<Integer, String> titles = (Map<Integer, String>) request.getAttribute("sidebar");
+            int articleId = (int) request.getAttribute("articleId");
+        %>
         <% for (Integer key : titles.keySet()) { %>
             <br><a href="content?pageID=<%=key%>"><%= titles.get(key) %></a>
         <% } %>
@@ -29,6 +31,9 @@
         %>
         <p> <%=article.getTitle()%> </p>
         <p> <%=article.getText()%> </p>
+        <a href="quiz?articleId=<%=articleId%>">
+            Quiz
+        </a>
     </div>
 
 
