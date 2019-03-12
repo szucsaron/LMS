@@ -38,4 +38,10 @@ public final class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public int getProgress() { return progress;}
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
 }

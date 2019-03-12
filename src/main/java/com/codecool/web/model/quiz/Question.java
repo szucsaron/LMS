@@ -1,0 +1,36 @@
+package com.codecool.web.model.quiz;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Question implements Iterable<String>{
+    private List<String> answers = new ArrayList<>();
+    private String description;
+    private int correctAnswer;
+
+    public Question(String description) {
+        this.description = description;
+    }
+
+    public void addAnswer(String answer) {
+        answers.add(answer);
+    }
+
+    public void setAsCorrect(int answerIndex) {
+        correctAnswer = answerIndex;
+    }
+
+    public boolean validateAnswer(int answerIndex) {
+        return answerIndex == correctAnswer;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Iterator<String> iterator() {
+        return new AnswerIterator(answers);
+    }
+
+}
