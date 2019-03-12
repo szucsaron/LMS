@@ -2,8 +2,12 @@ package com.codecool.web.service;
 
 import com.codecool.web.model.Article;
 import com.codecool.web.model.Content;
+import com.codecool.web.model.User;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Database {
     private static Database database = new Database();
@@ -11,6 +15,8 @@ public class Database {
     public static Database getInstance() {
         return database;
     }
+
+    List<User> users = new ArrayList<>();
 
     private Content content;
 
@@ -20,7 +26,7 @@ public class Database {
         content.addArticle(new Article("Goat breeding", "Try to raise your number of goats. \n " +
             "Hint: Add goats to make more goats"));
         content.addArticle(new Article("Teaching your goats moral nihilism", "You can teach your goats the base values of " +
-            "moral nihilism like this:" +
+            "moral nihilism like this: <br>" +
             "public class MyGoat() extends Goat {" +
             "   private Boolean goodOrBad = null;" +
             "}"));
@@ -34,6 +40,15 @@ public class Database {
 
     public Article getArticle(int id) {
         return content.getArticle(id);
+    }
+
+    public Map<Integer, String> getArticleIds() {
+        Map<Integer, String> ids = new HashMap<>();
+        int size = content.size();
+        for (int i = 0; i < size; i++) {
+            ids.put(i, content.getArticle(i).getTitle());
+        }
+        return ids;
     }
 
 

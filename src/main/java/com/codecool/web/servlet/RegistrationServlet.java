@@ -11,21 +11,29 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/registration")
+@WebServlet("/register")
 public class RegistrationServlet extends HttpServlet {
 
     private final UserService service = new UserService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<User> users = service.getUsers();
+        resp.setContentType("text/html");
 
-        for (User u : users) {
-            if (u.getUsername().equals(req.getParameter("username"))) {
-                System.out.println("Username is already taken.");
-                return;
-            }
+        String un = req.getParameter("username");
+        String pw = req.getParameter("password");
+        String em = req.getParameter("email");
+
+        if (!service.validateRegistration(un)) {
+                resp.sendRedirect("register.html");
+            } else {
+            service.addUser(un, pw, em);
+            resp.sendRedirect("index.html");
         }
-        service.addUser(req.getParameter("username"), req.getParameter("pwd"));
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("register.html").forward(req, resp);
     }
 }
