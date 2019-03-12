@@ -69,6 +69,10 @@ public class QuizGenerator {
         quiz2.addQuestion(q5);
         quiz2.addQuestion(q6);
 
+        quiz.addQuestion(q4);
+        quiz.addQuestion(q5);
+        quiz.addQuestion(q6);
+
         List<Quiz> quizes = new ArrayList<>();
         quizes.add(quiz);
         quizes.add(quiz2);

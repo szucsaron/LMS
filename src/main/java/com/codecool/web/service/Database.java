@@ -13,6 +13,7 @@ import java.util.Map;
 
 public class Database {
     private static Database database = new Database();
+    public int score = 0;
 
     public static Database getInstance() {
         return database;

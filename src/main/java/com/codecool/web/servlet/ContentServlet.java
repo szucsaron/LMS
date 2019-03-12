@@ -32,7 +32,6 @@ public class ContentServlet extends HttpServlet {
         // Mocking access control
         User user = new User("Józsi", "12345", "lazybastard123@goatmail.com");
         user.setProgress(4);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher(page);
         int id;
         try {
             id = Integer.parseInt(req.getParameter("pageID"));
@@ -54,7 +53,8 @@ public class ContentServlet extends HttpServlet {
 
         req.setAttribute("sidebar", sidebar);
 
-        requestDispatcher.forward(req, resp);
+        req.getRequestDispatcher(page).forward(req, resp);
+
 
 
 

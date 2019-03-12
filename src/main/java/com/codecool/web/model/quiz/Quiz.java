@@ -6,8 +6,13 @@ import java.util.List;
 
 public class Quiz implements Iterable<Question>{
     private List<Question> questions = new ArrayList<>();
+
     private String description;
     private int mistakeLimit = 1;
+
+    public String getDescription() {
+        return description;
+    }
 
     public Quiz(String description) {
         this.description = description;
@@ -25,6 +30,14 @@ public class Quiz implements Iterable<Question>{
 
     public boolean validateSuccess(int score) {
         return score >= questions.size() - mistakeLimit;
+    }
+
+    public Question getQuestion(int id) {
+            return questions.get(id);
+    }
+
+    public int size() {
+        return questions.size();
     }
 
 }
