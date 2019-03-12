@@ -37,7 +37,7 @@ public class LogInServlet extends HttpServlet {
         resp.addCookie(new Cookie("password", pw));
 
         if (service.validateLogIn(un, pw)) {
-            resp.sendRedirect("content.jsp");
+            resp.sendRedirect("content");
         } else {
             resp.sendRedirect("index.html");
         }
