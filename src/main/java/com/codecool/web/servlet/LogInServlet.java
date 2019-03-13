@@ -1,5 +1,6 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.model.NoSuchUserException;
 import com.codecool.web.model.User;
 import com.codecool.web.service.Database;
 import com.codecool.web.service.UserService;
@@ -35,11 +36,15 @@ public class LogInServlet extends HttpServlet {
         String un = req.getParameter("username");
         String pw = req.getParameter("password");
 
-        if (service.validateLogIn(un, pw)) {
-            resp.addCookie(new Cookie("name", un));
-            resp.addCookie(new Cookie("password", pw));
-            resp.sendRedirect("content");
-        } else {
+        try {
+            if (service.validateLogIn(un, pw)) {
+                resp.addCookie(new Cookie("name", un));
+                resp.addCookie(new Cookie("password", pw));
+                resp.sendRedirect("content");
+            } else {
+                resp.sendRedirect("index.html");
+            }
+        } catch (NoSuchUserException e) {
             resp.sendRedirect("index.html");
         }
 

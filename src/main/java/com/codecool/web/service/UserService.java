@@ -22,7 +22,7 @@ public final class UserService {
         database.addUser(new User(username, password, email));
     }
 
-    public boolean validateLogIn(String username, String password) {
+    public boolean validateLogIn(String username, String password) throws NoSuchUserException {
         User u = database.getUserByName(username);
         if (u.getPassword().equals(password)) {
             return true;
@@ -34,8 +34,8 @@ public final class UserService {
         return !database.getUserNames().contains(username);
     }
 
-    public User getCurrentUser(HttpServletRequest req) {
-
+    public void getCurrentUser(HttpServletRequest req) {
+/*
         Cookie[] cookies = req.getCookies();
 
         String debug = "";
@@ -62,5 +62,7 @@ public final class UserService {
 
 
         return new User("asds", "asasd", "adas");
+        */
     }
+
 }

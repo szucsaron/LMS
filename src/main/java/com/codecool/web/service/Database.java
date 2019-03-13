@@ -2,6 +2,7 @@ package com.codecool.web.service;
 
 import com.codecool.web.model.Article;
 import com.codecool.web.model.Content;
+import com.codecool.web.model.NoSuchUserException;
 import com.codecool.web.model.quiz.Quiz;
 import com.codecool.web.model.quiz.QuizGenerator;
 import com.codecool.web.model.User;
@@ -16,9 +17,6 @@ public class Database {
     public static Database getInstance() {
         return database;
     }
-
-    List<User> users_OLD = new ArrayList<>();
-
 
     private Content content;
 
@@ -59,8 +57,13 @@ public class Database {
         users.put(user.getUsername(), user);
     }
 
-    public User getUserByName(String userName) {
-        return users.get(userName);
+    public User getUserByName(String userName) throws NoSuchUserException {
+
+        User u = users.get(userName);
+        if (u == null) {
+            throw new NoSuchUserException();
+        }
+        return u;
     }
 
     public User[] getUsersArray() {
