@@ -42,13 +42,13 @@ public class DatabaseLoader {
             }
         }
 
-        List<Article> c = new ArrayList<>();
+        List<Article> articleList = new ArrayList<>();
         for (Article article : articles.values()) {
-            c.add(article);
+            articleList.add(article);
         }
 
 
-        Content content = new Content(c);
+        Content content = new Content(articleList);
 
 
         return content;

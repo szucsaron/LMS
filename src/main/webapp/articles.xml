@@ -1,0 +1,17 @@
+<articles>
+    <article id="0" title="What is a goat?">
+        A goat is a mammal with all the hooves and none of the decency.
+    </article>
+    <article id="1" title="Goat breeding">
+        Try to raise your number of goats. Hint: Add goats to make more goats
+    </article>
+    <article id="2" title="Teaching your goats moral nihilism">
+        You can teach your goats the base values of moral nihilism like this: public class MyGoat() extends Goat { private Boolean goodOrBad = null;}
+    </article>
+    <article id="3" title="Goat refactoring 101">
+        Goats are to be refactored constantly for the greater good of goatkind. It is good.
+    </article>
+    <article id="4" title="Putting your goat before your needs">
+        Die for your goat. No exception.
+    </article>
+</articles>

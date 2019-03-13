@@ -28,10 +28,9 @@ public class ContentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Database.getInstance().setLocation(req.getServletContext().getRealPath("/"));
         User user = new UserService().getCurrentUser(req);
-
         showContent(user, req, resp);
-
     }
 
     private void showContent(User user, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
@@ -44,7 +43,6 @@ public class ContentServlet extends HttpServlet {
 
         Database database = Database.getInstance();
         Article article = database.getArticle(id);
-
         if (article.hasAccess(user)) {
             req.setAttribute("articleId", id);
             req.setAttribute("article", article);

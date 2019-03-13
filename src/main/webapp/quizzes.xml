@@ -1,0 +1,97 @@
+<quizzes>
+    <quiz id="0" title="How to goat?">
+        <question title="Which on is the perfect name for a goat?" correct="3">
+            <answer>Billy</answer>
+            <answer>Beth</answer>
+            <answer>Hector Brown Jr.</answer>
+            <answer>Anyád</answer>
+        </question>
+        <question title="What's the most frequent illness among goats?" correct="2">
+            <answer>Fever</answer>
+            <answer>Cancer</answer>
+            <answer>Anyád</answer>
+            <answer>Parkinson's disease</answer>
+        </question>
+        <question title="How do you start a daily goat checkup?" correct="0">
+            <answer>By calling my goats.</answer>
+            <answer>By calling my goats by their names</answer>
+            <answer>By calling my goats names</answer>
+            <answer>No.</answer>
+        </question>
+        <question title="What is a goat" correct="3">
+            <answer>A mammal.</answer>
+            <answer>A duck</answer>
+            <answer>An infectious disease</answer>
+            <answer>A goat is a mammal with all the hooves and none of the decency.</answer>
+        </question>
+    </quiz>
+    <quiz id="1" title="1 goats + 1 goats equals?">
+        <question title="1 goats + 1 goats equals?" correct="2">
+            <answer>1 goat</answer>
+            <answer>2 goats</answer>
+            <answer>Goat[] goats = new Goat[] {new Goat(), new Goat()}</answer>
+            <answer>Goats don't exist.</answer>
+        </question>
+        <question title="Can you breed too many goats?" correct="1">
+            <answer>Yes</answer>
+            <answer>No</answer>
+        </question>
+        <question title="What to do, if your goats won't breed" correct="0">
+            <answer>Accept yourself as a failure.</answer>
+            <answer>Try to get goats that actually breed</answer>
+            <answer>Try to improve conditions in the barn</answer>
+            <answer>Switch to ducks.</answer>
+        </question>
+
+    </quiz>
+    <quiz id="2" title="Goats and moral nihilism">
+        <question title="Are goats great?" correct="0">
+            <answer>Hell yeah!</answer>
+            <answer>Nay!</answer>
+            <answer>Sort of</answer>
+            <answer>It cannot be determined, as goats have no intrinsic values assigned to them by nature</answer>
+        </question>
+        <question title="What is the correct representation of the world?" correct="4">
+            <answer>Goat goat = new Goat(Meaning.getNullInstance())</answer>
+            <answer>Goat goat = new Goat(Meaning.getObjectiveInstance())</answer>
+            <answer>Meaning meaning = (Meaning) NonsenseFactory.getInstance().createNonsense()</answer>
+            <answer>Meaning meaning = Meaning.parseNonsense(NonsenseFactory.getInstance().createNonsense())</answer>
+            <answer>; is missing</answer>
+
+        </question>
+        <question title="What is the difference between a painting and a goat?" correct="3">
+            <answer>Nothing. They live in the same physical reality.</answer>
+            <answer>Nothing. Their names have letters in common.</answer>
+            <answer>You can paint goats, but you can't goat paints</answer>
+            <answer>They are nice</answer>
+            <answer>They both lack things: The goat doesn't have wheels, as a bicycle doesn't have legs.</answer>
+            <answer>One is the ultimate expression of creativity, spirit and human nature; the exaltation of life force itself, the other one is a wall decoration.</answer>
+        </question>
+    </quiz>
+    <quiz id="3" title="Goats and refactoring">
+        <question title="Do you know the material?" correct="0">
+            <answer>Yes</answer>
+            <answer>No</answer>
+        </question>
+    </quiz>
+    <quiz id="4" title="Goats and needs">
+        <question title="How many foods can you feed a goat?" correct="1">
+            <answer>5</answer>
+            <answer>6</answer>
+            <answer>77</answer>
+            <answer>1</answer>
+        </question>
+        <question title="What can a goat eat?" correct="2">
+            <answer>Cucumber</answer>
+            <answer>Void</answer>
+            <answer>Bastards eat everything</answer>
+            <answer>Diesel fuel</answer>
+        </question>
+        <question title="What can eat a goat?" correct="0">
+            <answer>Animals that eat goats</answer>
+            <answer>Animals that don't eat goats</answer>
+            <answer>Both</answer>
+            <answer>None of the above</answer>
+        </question>
+    </quiz>
+</quizzes>
