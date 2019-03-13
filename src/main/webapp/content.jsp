@@ -24,10 +24,6 @@
 
     </div>
     <div class="rightbar">
-        <%
-            String debug = (String) request.getAttribute("debug");
-            out.println(debug);
-        %>
         <a class="button" href="users">Users</a>
         <a class="button" href="profile">Profile</a>
         <a class="button" href="add_article">Add Article</a>
