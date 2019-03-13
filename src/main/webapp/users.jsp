@@ -13,7 +13,7 @@
 <body>
     <div class="login">
         <h2>Users</h2>
-        <% List<User> users = (List<User>) request.getAttribute("users"); %>
+        <% User[] users = (User[]) request.getAttribute("users"); %>
         <% for (User u : users) { %>
             <p><%= u.getUsername() %></p>
         <% } %>
