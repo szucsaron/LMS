@@ -1,5 +1,7 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.model.Article;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,8 @@ public class ArticleServlet extends HttpServlet {
         resp.setContentType("text/html");
         String title = req.getParameter("article_title");
         String content = req.getParameter("content");
+
+        Article newArticle = new Article(title, content);
 
     }
 
