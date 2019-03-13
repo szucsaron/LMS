@@ -38,29 +38,31 @@ public final class UserService {
 
         Cookie[] cookies = req.getCookies();
 
-        String debug = "";
-        String userName;
-        String passwd;
+        String userName = "";
+        String passwd = "";
         for (Cookie cookie : cookies) {
             String name = cookie.getName() + " ";
             String value = cookie.getValue() + "\n";
-            if (name == "name") {
+            if (name.equals("name")) {
                 userName = value;
-            } else if (name=="password") {
+            } else if (name.equals("password")) {
                 passwd = value;
             }
-
         }
-
-        Database database = Database.getInstance();
-        User user = database.getUser(name);
-        try {
-        } catch (NoSuchUserException e) {
-            user = new User("guest", "", "");
-            user.setProgress(0);
+        User user = Database.getInstance().getUserByName(userName);
+        if (user.getPassword().equals(passwd)) {
+            return user;
+        } else {
+            return getGuest();
         }
 
 
-        return new User("asds", "asasd", "adas");
+
+    }
+
+    private User getGuest() {
+        User guest = new User("guest", "", "");
+        guest.setProgress(0);
+        return guest;
     }
 }
