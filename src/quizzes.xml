@@ -1,0 +1,23 @@
+<quizzes>
+    <quiz id="0" title="How to goat?">
+        <question title="Which on is the perfect name for a goat?" correct="4">
+            <answer>Billy</answer>
+            <answer>Beth</answer>
+            <answer>Hector Brown Jr.</answer>
+            <answer>Anyád</answer>
+        </question>
+        <question title="What's the most frequent illness among goats?" correct="4">
+            <answer>Fever</answer>
+            <answer>Cancer</answer>
+            <answer>Anyád</answer>
+            <answer>Parkinson's disease</answer>
+        </question>
+        <question title="How do you start a daily goat checkup?" correct="0">
+            <answer>By calling my goats.</answer>
+            <answer>By calling my goats by their names</answer>
+            <answer>By calling my goats names</answer>
+            <answer>No.</answer>
+        </question>
+
+    </quiz>
+</quizzes>

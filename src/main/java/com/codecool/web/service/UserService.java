@@ -5,7 +5,6 @@ import com.codecool.web.model.User;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.net.http.HttpRequest;
 import java.io.DataOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ public final class UserService {
         database.addUser(new User(username, password, email));
     }
 
-    public boolean validateLogIn(String username, String password) {
+    public boolean validateLogIn(String username, String password) throws NoSuchUserException {
         User u = database.getUserByName(username);
         if (u.getPassword().equals(password)) {
             return true;
@@ -34,8 +33,8 @@ public final class UserService {
         return !database.getUserNames().contains(username);
     }
 
-    public User getCurrentUser(HttpServletRequest req) {
-
+    public void getCurrentUser(HttpServletRequest req) {
+/*
         Cookie[] cookies = req.getCookies();
 
         String userName = "";
@@ -64,5 +63,9 @@ public final class UserService {
         User guest = new User("guest", "", "");
         guest.setProgress(0);
         return guest;
+        return new User("asds", "asasd", "adas");
+
+    */
     }
+
 }

@@ -12,7 +12,7 @@ public class Content implements Iterable<Article> {
     }
 
     public Content(List<Article> articles) {
-        articles = articles;
+        this.articles = articles;
     }
 
     public void addArticle(Article article) {

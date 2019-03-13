@@ -6,19 +6,29 @@ public final class User {
     private String password;
     private final String email;
     private int progress;
+    private Role role;
+    private int score;
 
     public User() {
-        this.username = "default";
-        this.password = "default";
-        this.email = "default";
-        this.progress = 1;
+        this.username = "Guest";
+        this.password = "passingby";
+        this.email = "guest@guest.com";
+        this.progress = 0;
+        this.role = Role.GUEST;
+        this.score = 0;
+    }
+
+    public enum Role {
+        GUEST, STUDENT, MENTOR, ADMIN
     }
 
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.progress = 0;
+        this.progress = 1;
+        this.role = Role.STUDENT;
+        this.score = 0;
     }
 
     public String getUsername() {
@@ -43,5 +53,13 @@ public final class User {
 
     public void setProgress(int progress) {
         this.progress = progress;
+    }
+
+    public void setScore(int value) {
+        this.score = value;
+    }
+
+    public void setRole(String type) {
+        this.role = Role.valueOf(type);
     }
 }
