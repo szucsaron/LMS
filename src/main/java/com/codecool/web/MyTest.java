@@ -6,10 +6,7 @@ import com.codecool.web.model.quiz.Quiz;
 import com.codecool.web.model.quiz.QuizGenerator;
 import com.codecool.web.service.Database;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class MyTest {
     public static void main(String[] args) {
@@ -33,6 +30,8 @@ public class MyTest {
         }
         System.out.println("result:");
         System.out.println(quiz.validateSuccess(score));
+
+
 
     }
 }

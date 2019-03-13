@@ -31,7 +31,7 @@ public class QuizGenerator {
         actual.addAnswer("You can paint goats, but you can't goat paints");
         actual.addAnswer("They are nice");
         actual.addAnswer("They both lack things: The goat doesn't have wheels, as a bicycle doesn't have legs.");
-        actual.addAnswer("One is the ultimate expression of creativity, spirit and human nature; the exaltation" +
+        actual.addAnswer("One is the ultimate expression of creativity, spirit and human nature; the exaltation " +
             "of life force itself, the other one is a wall decoration.");
         actual.setAsCorrect(3);
 

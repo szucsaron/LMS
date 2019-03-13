@@ -30,6 +30,8 @@ public class ContentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         // Mocking access control
+
+
         User user = new User("Józsi", "12345", "lazybastard123@goatmail.com");
         user.setProgress(4);
         int id;

@@ -42,5 +42,6 @@ public class LogInServlet extends HttpServlet {
         } else {
             resp.sendRedirect("index.html");
         }
+
     }
 }
