@@ -8,7 +8,24 @@ body {
 
 .login {
     background: linear-gradient(0deg, #20b2aa 80%, #0f5753 20%);
-    overflow: scroll;
+    overflow: none;
+    width: 25%;
+    height: 40%;
+    padding: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.875em;
+}
+
+.users {
+    background: linear-gradient(0deg, #20b2aa 80%, #0f5753 20%);
+    overflow-y: scroll;
     width: 25%;
     height: 40%;
     padding: 10px;
@@ -72,6 +89,20 @@ input[type = submit] {
 }
 
 .login form {
+    position: relative;
+    margin: auto;
+    padding-left: auto;
+    padding-right: auto;
+}
+
+.users p {
+    font-weight: 700;
+    margin: 0;
+    padding: 1%;
+    padding-left: 5%;
+}
+
+.users form {
     position: relative;
     margin: auto;
     padding-left: auto;
