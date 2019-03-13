@@ -53,6 +53,16 @@ public class Database {
         return ids;
     }
 
+    public Map<Integer, String> getFileteredArticleIds(String toFind) {
+        Map<Integer, String> filteredMap = getArticleIds();
+        for (int key : filteredMap.keySet()) {
+            if (!filteredMap.get(key).contains(toFind)) {
+                filteredMap.remove(key);
+            }
+        }
+        return filteredMap;
+    }
+
     public void addUser(User user) {
         users.put(user.getUsername(), user);
     }

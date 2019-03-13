@@ -14,7 +14,10 @@
 </head>
 <body>
     <div class="leftbar">
-        <input type="text" placeholder="Search...">
+    <form action="content" method="GET">
+        <input type="text" name="search">
+        <input type="submit" value="Search">
+    </form>
         <%  Map<Integer, String> titles = (Map<Integer, String>) request.getAttribute("sidebar");
             int articleId = (int) request.getAttribute("articleId");
         %>
