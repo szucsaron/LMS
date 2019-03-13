@@ -6,6 +6,7 @@ public final class User {
     private String password;
     private final String email;
     private int progress;
+    private Role role;
 
     public User() {
         this.username = "default";
@@ -14,11 +15,16 @@ public final class User {
         this.progress = 1;
     }
 
+    public enum Role {
+        STUDENT, MENTOR, ADMIN
+    }
+
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.progress = 0;
+        this.role = Role.valueOf("STUDENT");
     }
 
     public String getUsername() {
