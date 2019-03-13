@@ -56,11 +56,12 @@ public class ContentServlet extends HttpServlet {
 
         Map<Integer, String> sidebar;
 
-        String toFind = (String) req.getAttribute("search");
+        String toFind = req.getParameter("search");
         if (toFind == null) {
             sidebar = database.getArticleIds();
         } else {
-            sidebar = database.getFileteredArticleIds(toFind);
+
+            sidebar = database.getFilteredArticleIds(toFind);
         }
 
         req.setAttribute("sidebar", sidebar);
