@@ -1,5 +1,6 @@
 package com.codecool.web.service;
 
+import com.codecool.web.model.NoSuchUserException;
 import com.codecool.web.model.User;
 
 import javax.servlet.http.Cookie;
@@ -34,7 +35,7 @@ public final class UserService {
     }
 
     public User getCurrentUser(HttpServletRequest req) {
-        /*
+
         Cookie[] cookies = req.getCookies();
 
         String debug = "";
@@ -58,8 +59,8 @@ public final class UserService {
             user = new User("guest", "", "");
             user.setProgress(0);
         }
-    }
-    */
+
+
         return new User("asds", "asasd", "adas");
     }
 }
