@@ -31,9 +31,14 @@ public class ContentServlet extends HttpServlet {
 
         // Mocking access control
 
-
         User user = new User("Józsi", "12345", "lazybastard123@goatmail.com");
-        user.setProgress(4);
+        user.setProgress(0);
+
+        showContent(user, req, resp);
+
+    }
+
+    private void showContent(User user, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int id;
         try {
             id = Integer.parseInt(req.getParameter("pageID"));
@@ -42,7 +47,7 @@ public class ContentServlet extends HttpServlet {
         }
 
         Database database = Database.getInstance();
-        Article article = database.getArticle(id);;
+        Article article = database.getArticle(id);
         if (article.hasAccess(user)) {
             req.setAttribute("articleId", id);
             req.setAttribute("article", article);

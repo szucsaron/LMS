@@ -34,7 +34,7 @@ public final class UserService {
     }
 
     public void getCurrentUser(HttpServletRequest req) {
-/*
+        /*
         Cookie[] cookies = req.getCookies();
 
         String userName = "";
@@ -48,7 +48,12 @@ public final class UserService {
                 passwd = value;
             }
         }
-        User user = Database.getInstance().getUserByName(userName);
+        User user;
+        try {
+             user = Database.getInstance().getUserByName(userName);
+        } catch (NullPointerException e) {
+            return getGuest();
+        }
         if (user.getPassword().equals(passwd)) {
             return user;
         } else {
@@ -56,16 +61,16 @@ public final class UserService {
         }
 
 
-
+*/
     }
 
     private User getGuest() {
         User guest = new User("guest", "", "");
         guest.setProgress(0);
         return guest;
-        return new User("asds", "asasd", "adas");
 
-    */
+
+
     }
 
 }
