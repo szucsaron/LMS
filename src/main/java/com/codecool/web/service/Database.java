@@ -63,11 +63,12 @@ public class Database {
         return ids;
     }
 
-    public Map<Integer, String> getFileteredArticleIds(String toFind) {
-        Map<Integer, String> filteredMap = getArticleIds();
-        for (int key : filteredMap.keySet()) {
-            if (!filteredMap.get(key).contains(toFind)) {
-                filteredMap.remove(key);
+    public Map<Integer, String> getFilteredArticleIds(String toFind) {
+        Map<Integer, String> mapToFilter = getArticleIds();
+        Map<Integer, String> filteredMap = new HashMap<>();
+        for (int key : mapToFilter.keySet()) {
+            if (mapToFilter.get(key).contains(toFind)) {
+                filteredMap.put(key, mapToFilter.get(key));
             }
         }
         return filteredMap;
