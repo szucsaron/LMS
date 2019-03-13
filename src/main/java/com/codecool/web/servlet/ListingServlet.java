@@ -19,7 +19,7 @@ public class ListingServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("users.jsp");
-        List<User> users = service.getUsers();
+        User[] users = service.getUsers();
         req.setAttribute("users", users);
 
         requestDispatcher.forward(req, resp);

@@ -23,7 +23,7 @@ public class ProfileServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("profile.jsp");
         List<Cookie> cookies = Arrays.asList(req.getCookies());
-        List<User> users = service.getUsers();
+        User[] users = service.getUsers();
         String name = "";
 
         for (Cookie cookie : cookies) {

@@ -6,20 +6,19 @@ import com.codecool.web.model.quiz.Quiz;
 import com.codecool.web.model.quiz.QuizGenerator;
 import com.codecool.web.model.User;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Database {
     private static Database database = new Database();
     public int score = 0;
+    private HashMap<String, User> users = new HashMap<>();
 
     public static Database getInstance() {
         return database;
     }
 
-    List<User> users = new ArrayList<>();
+    List<User> users_OLD = new ArrayList<>();
+
 
     private Content content;
 
@@ -56,8 +55,20 @@ public class Database {
         return ids;
     }
 
+    public void addUser(User user) {
+        users.put(user.getUsername(), user);
+    }
 
+    public User getUserByName(String userName) {
+        return users.get(userName);
+    }
 
+    public User[] getUsersArray() {
+        return users.values().toArray(new User[users.size()]);
+    }
 
+    public Set<String> getUserNames() {
+        return users.keySet();
+    }
 
 }
