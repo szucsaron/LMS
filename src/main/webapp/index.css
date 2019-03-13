@@ -8,7 +8,24 @@ body {
 
 .login {
     background: linear-gradient(0deg, #20b2aa 80%, #0f5753 20%);
-    overflow: scroll;
+    overflow: none;
+    width: 25%;
+    height: 40%;
+    padding: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.875em;
+}
+
+.users {
+    background: linear-gradient(0deg, #20b2aa 80%, #0f5753 20%);
+    overflow-y: scroll;
     width: 25%;
     height: 40%;
     padding: 10px;
@@ -49,7 +66,7 @@ a:visited {
     color: black;
 }
 
-input[type = submit] {
+.login input[type = submit] {
     color: black;
     margin-left: 22px;
     text-decoration: none;
@@ -78,6 +95,20 @@ input[type = submit] {
     padding-right: auto;
 }
 
+.users p {
+    font-weight: 700;
+    margin: 0;
+    padding: 1%;
+    padding-left: 5%;
+}
+
+.users form {
+    position: relative;
+    margin: auto;
+    padding-left: auto;
+    padding-right: auto;
+}
+
 .leftbar {
     width: 20%;
     height: 100vh;
@@ -93,14 +124,17 @@ input[type = submit] {
 }
 
 .leftbar input {
-    width: 100%;
+    width: 68%;
     margin: none;
-    padding: none;
+    padding: 1px;
     border: none;
     border-bottom-color: grey;
     border-bottom-style: solid;
     border-width: 1px;
+}
 
+.leftbar input[type = "submit"] {
+    width: 29%; 
 }
 
 .rightbar {

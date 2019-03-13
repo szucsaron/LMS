@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div class="login">
+    <div class="users">
         <h2>Users</h2>
         <% User[] users = (User[]) request.getAttribute("users"); %>
         <% for (User u : users) { %>
-            <p><%= u.getUsername() %></p>
+            <p><%= u.getUsername() %> - <%= u.getEmail() %></p>
         <% } %>
     </div>
 </body>

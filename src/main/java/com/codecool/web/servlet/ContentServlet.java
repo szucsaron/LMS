@@ -44,6 +44,7 @@ public class ContentServlet extends HttpServlet {
 
         Database database = Database.getInstance();
         Article article = database.getArticle(id);
+
         if (article.hasAccess(user)) {
             req.setAttribute("articleId", id);
             req.setAttribute("article", article);
@@ -53,8 +54,14 @@ public class ContentServlet extends HttpServlet {
                 "or have a bigger wallet."));
         }
 
-        Map<Integer, String> sidebar = database.getArticleIds();
+        Map<Integer, String> sidebar;
 
+        String toFind = (String) req.getAttribute("search");
+        if (toFind == null) {
+            sidebar = database.getArticleIds();
+        } else {
+            sidebar = database.getFileteredArticleIds(toFind);
+        }
 
         req.setAttribute("sidebar", sidebar);
 
