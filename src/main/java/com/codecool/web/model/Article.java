@@ -34,14 +34,20 @@ public class Article {
     }
 
     public String toString() {
-        return title + "\n" + text + "\n\n";
+        String out = title + "\n" + text + "\n";
+        if (quiz != null) {
+            out += quiz.toString();
+        }
+        return out;
     }
 
     public boolean hasAccess(User user) {
         return user.getProgress() >= level;
     }
 
-
+    public void addQuiz(Quiz quiz) {
+        this.quiz = quiz;
+    }
 
 
 }

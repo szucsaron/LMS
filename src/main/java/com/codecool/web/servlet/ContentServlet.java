@@ -28,11 +28,7 @@ public class ContentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        // Mocking access control
-
-        User user = new User("Józsi", "12345", "lazybastard123@goatmail.com");
-        user.setProgress(0);
+        User user = new UserService().getCurrentUser(req);
 
         showContent(user, req, resp);
 

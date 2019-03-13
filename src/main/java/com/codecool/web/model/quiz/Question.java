@@ -33,4 +33,18 @@ public class Question implements Iterable<String>{
         return new AnswerIterator(answers);
     }
 
+    public String toString() {
+        String out = description + "\n";
+        int id = 0;
+        for (String answer : answers) {
+            if (id == correctAnswer) {
+                out += "--->" + answer + "\n";
+            } else {
+                out += "    " + answer + "\n";
+            }
+            id++;
+        }
+        return out;
+    }
+
 }

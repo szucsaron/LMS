@@ -1,12 +1,12 @@
 <quizzes>
     <quiz id="0" title="How to goat?">
-        <question title="Which on is the perfect name for a goat?" correct="4">
+        <question title="Which on is the perfect name for a goat?" correct="3">
             <answer>Billy</answer>
             <answer>Beth</answer>
             <answer>Hector Brown Jr.</answer>
             <answer>Anyád</answer>
         </question>
-        <question title="What's the most frequent illness among goats?" correct="4">
+        <question title="What's the most frequent illness among goats?" correct="2">
             <answer>Fever</answer>
             <answer>Cancer</answer>
             <answer>Anyád</answer>
@@ -17,6 +17,27 @@
             <answer>By calling my goats by their names</answer>
             <answer>By calling my goats names</answer>
             <answer>No.</answer>
+        </question>
+
+    </quiz>
+    <quiz id="1" title="How not to to goat?">
+        <question title="Goa44t goat goat ?" correct="3">
+            <answer>111</answer>
+            <answer>222</answer>
+            <answer>H232ector Brown Jr.</answer>
+            <answer>Any123213ád</answer>
+        </question>
+        <question title="G11oat goat goat " correct="2">
+            <answer>Fev523er</answer>
+            <answer>Ca12312ncer</answer>
+            <answer>Anyád</answer>
+            <answer>Pa1232rkinson's disease</answer>
+        </question>
+        <question title="Goat goat goat55 " correct="1">
+            <answer>By c1231alling my goats.</answer>
+            <answer>By calling my goats12312 by their names</answer>
+            <answer>By ca12312lling my goats names</answer>
+            <answer>N123123o.</answer>
         </question>
 
     </quiz>

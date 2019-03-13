@@ -40,4 +40,12 @@ public class Quiz implements Iterable<Question>{
         return questions.size();
     }
 
+    public String toString () {
+        String out = description + "\n";
+        for (Question question : this) {
+            out += question;
+        }
+        return out;
+    }
+
 }
