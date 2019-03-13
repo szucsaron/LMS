@@ -7,9 +7,11 @@ import com.codecool.web.model.quiz.Quiz;
 import com.codecool.web.model.quiz.QuizGenerator;
 import com.codecool.web.model.User;
 
+import java.io.IOException;
 import java.util.*;
 
 public class Database {
+    private String locationPrefix;
     private static Database database = new Database();
     public int score = 0;
     private HashMap<String, User> users = new HashMap<>();
@@ -21,19 +23,27 @@ public class Database {
     private Content content;
 
     public Database() {
-        content = new Content();
         List<Quiz> quizes = new QuizGenerator().generate();
+        content = new Content();
 
-        content.addArticle(new Article("What is a goat?", "A goat is a mammal with all the hooves and none of the decency.", quizes.get(0), 1));
-        content.addArticle(new Article("Goat breeding", "Try to raise your number of goats. \n " +
-            "Hint: Add goats to make more goats", quizes.get(1), 2));
-        content.addArticle(new Article("Teaching your goats moral nihilism", "You can teach your goats the base values of " +
-            "moral nihilism like this: <br>" +
-            "public class MyGoat() extends Goat {" +
-            "   private Boolean goodOrBad = null;" +
-            "}", quizes.get(0), 3));
+        DatabaseLoader databaseLoader = new DatabaseLoader();
 
 
+        try {
+            content = databaseLoader.loadContent(locationPrefix + "articles.xml", locationPrefix + "quizzes.xml");
+        } catch (IOException e) {
+            System.out.println("asfsd");
+        }
+    }
+
+    public void setLocation(String locationPrefix) {
+        this.locationPrefix = locationPrefix;
+        DatabaseLoader databaseLoader = new DatabaseLoader();
+        try {
+            content = databaseLoader.loadContent(locationPrefix + "articles.xml", locationPrefix + "quizzes.xml");
+        } catch (IOException e) {
+            System.out.println("asfsd");
+        }
     }
 
     public Content getAllContent() {

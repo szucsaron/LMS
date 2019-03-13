@@ -49,5 +49,9 @@ public class Article {
         this.quiz = quiz;
     }
 
+    public boolean hasQuiz() {
+        return quiz != null;
+    }
+
 
 }
