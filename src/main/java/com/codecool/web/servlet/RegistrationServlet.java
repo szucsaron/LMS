@@ -27,7 +27,7 @@ public class RegistrationServlet extends HttpServlet {
         if (!service.validateRegistration(un)) {
                 resp.sendRedirect("register.html");
             } else {
-            service.addUser(un, pw, em);
+            service.addUser(un, pw, em, 1);
             resp.sendRedirect("index.html");
         }
     }

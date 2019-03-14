@@ -15,8 +15,10 @@ public final class UserService {
         return database.getUsersArray();
     }
 
-    public void addUser(String username, String password, String email) {
-        database.addUser(new User(username, password, email));
+    public void addUser(String username, String password, String email, int progress) {
+        User user = new User(username, password, email);
+        user.setProgress(progress);
+        database.addUser(user);
     }
 
     public boolean validateLogIn(String username, String password) throws NoSuchUserException {
@@ -52,7 +54,6 @@ public final class UserService {
         try {
             User user;
             user = Database.getInstance().getUserByName(userName);
-            user.setProgress(5);
             if (user.getPassword().equals(passwd)) {
                 return user;
             } else {

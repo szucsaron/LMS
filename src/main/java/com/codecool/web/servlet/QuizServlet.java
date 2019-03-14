@@ -71,14 +71,14 @@ public class QuizServlet extends HttpServlet {
             req.setAttribute("questionId", questionId);
             req.setAttribute("articleId", articleId);
             req.setAttribute("question", question);
-            req.setAttribute("score", database.score);
+            req.setAttribute("score", user.getScore());
             req.getRequestDispatcher(page).forward(req, resp);
 
     }
 
     private void handleQuizEnd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("result", true);
-
+        user.endQuiz(1);
         req.getRequestDispatcher("quizresult.jsp").forward(req, resp);
 
     }
