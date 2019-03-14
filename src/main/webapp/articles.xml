@@ -1,17 +1,17 @@
 <articles>
-    <article id="0" title="What is a goat?">
+    <article id="0" title="What is a goat?" level="1">
         A goat is a mammal with all the hooves and none of the decency.
     </article>
-    <article id="1" title="Goat breeding">
+    <article id="1" title="Goat breeding" level="2">
         Try to raise your number of goats. Hint: Add goats to make more goats
     </article>
-    <article id="2" title="Teaching your goats moral nihilism">
+    <article id="2" title="Teaching your goats moral nihilism" level="3">
         You can teach your goats the base values of moral nihilism like this: public class MyGoat() extends Goat { private Boolean goodOrBad = null;}
     </article>
-    <article id="3" title="Goat refactoring 101">
+    <article id="3" title="Goat refactoring 101" level="4">
         Goats are to be refactored constantly for the greater good of goatkind. It is good.
     </article>
-    <article id="4" title="Putting your goat before your needs">
+    <article id="4" title="Putting your goat before your needs" level="5">
         Die for your goat. No exception.
     </article>
 </articles>

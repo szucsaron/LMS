@@ -1,5 +1,7 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.model.Article;
+import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
 import com.codecool.web.service.Database;
@@ -24,26 +26,35 @@ public class QuizServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //req.getParameter("articleId");
+        User user = new UserService().getCurrentUser(req);
         int articleId = Integer.parseInt(req.getParameter("articleId")); // Mock
-        Quiz quiz = database.getArticle(articleId).getQuiz();
-        req.setAttribute("score", database.score);
-
-        try {
-            int questionId = Integer.parseInt(req.getParameter("questionId"));
-            int answerId = Integer.parseInt(req.getParameter("answerId"));
-            QuizManager quizManager = new QuizManager(database, quiz);
-            quizManager.handleNext(questionId, answerId);
-            questionId++;
-            if (questionId < quiz.size()) {
-                handleRequest(req, resp, quiz, articleId, questionId);
-            } else {
-                handleQuizEnd(req, resp);
-            }
-        } catch (NumberFormatException e) {
-            handleRequest(req, resp, quiz, articleId, 0);
+        Article article = database.getArticle(articleId);
+        if (article.hasAccess(user)) {
+            Quiz quiz = article.getQuiz();
+            handleQuiz(articleId, req, resp, quiz);
         }
 
     }
+        private void handleQuiz(int articleId, HttpServletRequest req, HttpServletResponse resp, Quiz quiz) throws ServletException, IOException{
+            req.setAttribute("score", database.score);
+
+            try {
+                int questionId = Integer.parseInt(req.getParameter("questionId"));
+                int answerId = Integer.parseInt(req.getParameter("answerId"));
+                QuizManager quizManager = new QuizManager(database, quiz);
+                quizManager.handleNext(questionId, answerId);
+                questionId++;
+                if (questionId < quiz.size()) {
+                    handleRequest(req, resp, quiz, articleId, questionId);
+                } else {
+                    handleQuizEnd(req, resp);
+                }
+            } catch (NumberFormatException e) {
+                handleRequest(req, resp, quiz, articleId, 0);
+            }
+
+
+        }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
