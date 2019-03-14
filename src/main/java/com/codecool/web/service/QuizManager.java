@@ -1,15 +1,16 @@
 package com.codecool.web.service;
 
+import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
 
 public class QuizManager {
     private Quiz quiz;
-    private Database database;
+    private User user;
 
-    public QuizManager(Database database, Quiz quiz) {
+    public QuizManager(User user, Quiz quiz) {
         this.quiz = quiz;
-        this.database = database;
+        this.user = user;
     }
 
     public void handleNext(int questionId, int solution) {
@@ -19,7 +20,7 @@ public class QuizManager {
         question = quiz.getQuestion(questionId);
 
         if (question.validateAnswer(solution)) {
-            database.score++;
+            user.incrementScore();
         }
 
     }
