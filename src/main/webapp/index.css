@@ -248,12 +248,11 @@ a:hover {
 }
 
 .rightbar {
+    width:75%;
     padding: 8px;
     padding-left: 16px;
     height: 100vh;
-    float: left;
-    overflow: none;
-    margin: none;
+    float:left;
 }
 
 .rightbar a:link {
