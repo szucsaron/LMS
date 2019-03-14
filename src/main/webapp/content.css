@@ -5,7 +5,7 @@ body {
     overflow: hidden;
     font-family: 'Crimson Text', serif;
     font-size: 16px;
-    background: #3d3d37 url("kecske.png") no-repeat fixed center;
+    background: #3d3d37 url("kecske_content.png") no-repeat fixed center;
     background-size: 100%
 
 }
