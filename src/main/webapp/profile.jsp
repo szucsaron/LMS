@@ -13,7 +13,7 @@
 <body>
 <% User user = (User) request.getAttribute("user"); %>
     <div class="login">
-        <h2>Profile</h2>
+        <h2>PROFILE</h2>
         <form action="profile" method="POST">
             <p>Username:<br>
             <input type="text" name="username" value="<%= user.getUsername()%>">
@@ -24,7 +24,7 @@
             Your e-mail address:<br>
             <input readonly type="text" name="email" placeholder="<%= user.getEmail()%>"></p>
             <br>
-            <input type="submit" value="Save">
+            <input type="submit" value="SAVE">
         </form>
     </div>
 </body>

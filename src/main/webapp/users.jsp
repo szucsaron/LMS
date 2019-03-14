@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="users">
-        <h2>Users</h2>
+        <h2>USERS</h2>
         <% User[] users = (User[]) request.getAttribute("users"); %>
         <% for (User u : users) { %>
             <p><%= u.getUsername() %> - <%= u.getEmail() %></p>

@@ -20,7 +20,6 @@ public class ArticleServlet extends HttpServlet {
 
         Article newArticle = new Article(title, content);
 
-
     }
 
     @Override

@@ -16,27 +16,27 @@
     <div class="leftbar">
     <form action="content" method="GET">
         <input type="text" name="search">
-        <input type="submit" value="Search">
+        <input type="submit" value="SEARCH">
     </form>
         <%  Map<Integer, String> titles = (Map<Integer, String>) request.getAttribute("sidebar");
             int articleId = (int) request.getAttribute("articleId");
         %>
         <% for (Integer key : titles.keySet()) { %>
-            <br><a href="content?pageID=<%=key%>"><%= titles.get(key) %></a>
+            <br><a href="content?pageID=<%=key%>"><%= titles.get(key).toUpperCase() %><br></a>
         <% } %>
 
     </div>
     <div class="rightbar">
-        <a class="button" href="users">Users</a>
-        <a class="button" href="profile">Profile</a>
-        <a class="button" href="add_article">Add Article</a>
+        <a class="button" href="users">USERS</a>
+        <a class="button" href="profile">PROFILE</a>
+        <a class="button" href="add_article">ARTICLE</a>
         <%
         Article article = (Article) request.getAttribute("article");
         %>
         <p> <%=article.getTitle()%> </p>
         <p> <%=article.getText()%> </p>
         <a href="quiz?articleId=<%=articleId%>">
-            Quiz
+            TAKE A QUIZ
         </a>
     </div>
 
