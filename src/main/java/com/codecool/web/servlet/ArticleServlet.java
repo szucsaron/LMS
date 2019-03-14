@@ -1,6 +1,7 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.Article;
+import com.codecool.web.service.Database;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,11 +15,14 @@ public class ArticleServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Database database = Database.getInstance();
         resp.setContentType("text/html");
         String title = req.getParameter("article_title");
         String content = req.getParameter("content");
 
         Article newArticle = new Article(title, content);
+        database.addArticle(newArticle);
+        resp.sendRedirect("content");
 
     }
 

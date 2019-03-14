@@ -67,6 +67,10 @@ public class Database {
         return ids;
     }
 
+    public void addArticle(Article article) {
+        content.addArticle(article);
+    }
+
     public Map<Integer, String> getFilteredArticleIds(String toFind) {
         Map<Integer, String> mapToFilter = getArticleIds();
         Map<Integer, String> filteredMap = new HashMap<>();
