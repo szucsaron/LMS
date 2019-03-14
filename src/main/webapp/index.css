@@ -7,7 +7,7 @@ body {
 }
 
 .login {
-    background: linear-gradient(0deg, #20b2aa 80%, #0f5753 20%);
+    background: linear-gradient(0deg, #20b2aa 100%, #0f5753 4em);
     overflow: none;
     width: 25%;
     height: 40%;
