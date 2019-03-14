@@ -128,6 +128,7 @@ a:hover {
     border-style: solid;
     border-width: 1.5px;
     font-family: 'Crimson Text', serif;
+    font-weight: bold;
 }
 
 .users input[type = submit] {
@@ -142,6 +143,7 @@ a:hover {
     border-style: solid;
     border-width: 1.5px;
     font-family: 'Crimson Text', serif;
+    font-weight: bold;
 }
 
 .login p {
