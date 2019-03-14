@@ -37,6 +37,8 @@ public class QuizServlet extends HttpServlet {
             } else if (user.validateQuiz(quiz)) {
                 handleQuiz(articleId, req, resp, quiz);
             }
+        } else {
+            resp.sendRedirect("restricted.jsp");
         }
 
     }

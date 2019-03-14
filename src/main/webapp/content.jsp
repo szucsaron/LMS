@@ -35,9 +35,11 @@
         %>
         <p> <%=article.getTitle()%> </p>
         <p> <%=article.getText()%> </p>
-        <a href="quiz?articleId=<%=articleId%>">
-            TAKE A QUIZ
-        </a>
+        <% if (article.hasQuiz()) { %>
+            <a href="quiz?articleId=<%=articleId%>">
+                TAKE A QUIZ
+            </a>
+        <% } %>
     </div>
 
 
