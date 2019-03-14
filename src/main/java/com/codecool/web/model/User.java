@@ -1,5 +1,7 @@
 package com.codecool.web.model;
 
+import com.codecool.web.model.quiz.Quiz;
+
 public final class User {
 
     private String username;
@@ -7,7 +9,13 @@ public final class User {
     private final String email;
     private int progress;
     private Role role;
+
     private int score;
+    private Quiz actualQuiz;
+
+    public int getScore() {
+        return score;
+    }
 
     public User() {
         this.username = "Guest";
@@ -55,11 +63,29 @@ public final class User {
         this.progress = progress;
     }
 
-    public void setScore(int value) {
-        this.score = value;
+    public void incrementScore() {
+        score += 1;
     }
 
     public void setRole(String type) {
         this.role = Role.valueOf(type);
+    }
+
+    public void beginQuiz(Quiz quiz) {
+        actualQuiz = quiz;
+    }
+
+    public void endQuiz(int lvlIncrease) {
+        progress += lvlIncrease;
+        actualQuiz = null;
+        score = 0;
+    }
+
+    public boolean quizStarted() {
+        return actualQuiz != null;
+    }
+
+    public boolean validateQuiz(Quiz quiz) {
+        return actualQuiz.equals(quiz);
     }
 }

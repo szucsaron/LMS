@@ -64,6 +64,8 @@ public class DatabaseLoader {
             int id = Integer.parseInt(docArticle.getAttribute("id"));
             String title = docArticle.getAttribute("title");
             int level = Integer.parseInt(docArticle.getAttribute("level"));
+            int score = Integer.parseInt(docArticle.getAttribute("lvlIncrease"));
+
 
             System.out.println(level);
 
@@ -73,6 +75,7 @@ public class DatabaseLoader {
 
             Article article = new Article(title, text);
             article.setLevel(level);
+            article.setLvlIncrease(score);
             articles.put(id, article);
         }
         return articles;

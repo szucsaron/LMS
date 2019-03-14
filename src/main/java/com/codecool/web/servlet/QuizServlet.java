@@ -17,7 +17,7 @@ import java.io.IOException;
 public class QuizServlet extends HttpServlet {
     private final String page = "quiz.jsp";
 
-
+    private User user;
     private final UserService service = new UserService();
 
     private Database database = Database.getInstance();
@@ -26,22 +26,27 @@ public class QuizServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //req.getParameter("articleId");
-        User user = new UserService().getCurrentUser(req);
+        user = new UserService().getCurrentUser(req);
         int articleId = Integer.parseInt(req.getParameter("articleId")); // Mock
         Article article = database.getArticle(articleId);
         if (article.hasAccess(user)) {
             Quiz quiz = article.getQuiz();
-            handleQuiz(articleId, req, resp, quiz);
+            if (!user.quizStarted()) {
+                user.beginQuiz(quiz);
+                handleQuiz(articleId, req, resp, quiz);
+            } else if (user.validateQuiz(quiz)) {
+                handleQuiz(articleId, req, resp, quiz);
+            }
         }
 
     }
         private void handleQuiz(int articleId, HttpServletRequest req, HttpServletResponse resp, Quiz quiz) throws ServletException, IOException{
-            req.setAttribute("score", database.score);
+            req.setAttribute("score", user.getScore());
 
             try {
                 int questionId = Integer.parseInt(req.getParameter("questionId"));
                 int answerId = Integer.parseInt(req.getParameter("answerId"));
-                QuizManager quizManager = new QuizManager(database, quiz);
+                QuizManager quizManager = new QuizManager(user, quiz);
                 quizManager.handleNext(questionId, answerId);
                 questionId++;
                 if (questionId < quiz.size()) {
