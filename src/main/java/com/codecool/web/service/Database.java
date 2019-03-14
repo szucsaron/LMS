@@ -12,6 +12,7 @@ import java.util.*;
 
 public class Database {
     private String locationPrefix;
+    private boolean  locationLoaded = false;
     private static Database database = new Database();
     public int score = 0;
     private HashMap<String, User> users = new HashMap<>();
@@ -37,12 +38,15 @@ public class Database {
     }
 
     public void setLocation(String locationPrefix) {
-        this.locationPrefix = locationPrefix;
-        DatabaseLoader databaseLoader = new DatabaseLoader();
-        try {
-            content = databaseLoader.loadContent(locationPrefix + "articles.xml", locationPrefix + "quizzes.xml");
-        } catch (IOException e) {
-            System.out.println("asfsd");
+        if (!locationLoaded) {
+            this.locationPrefix = locationPrefix;
+            DatabaseLoader databaseLoader = new DatabaseLoader();
+            try {
+                content = databaseLoader.loadContent(locationPrefix + "articles.xml", locationPrefix + "quizzes.xml");
+            } catch (IOException e) {
+                System.out.println("asfsd");
+            }
+            locationLoaded = true;
         }
     }
 
@@ -61,6 +65,10 @@ public class Database {
             ids.put(i, content.getArticle(i).getTitle());
         }
         return ids;
+    }
+
+    public void addArticle(Article article) {
+        content.addArticle(article);
     }
 
     public Map<Integer, String> getFilteredArticleIds(String toFind) {

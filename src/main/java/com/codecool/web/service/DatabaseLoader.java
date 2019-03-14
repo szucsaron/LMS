@@ -63,11 +63,19 @@ public class DatabaseLoader {
             Element docArticle = (Element) docArticles.item(i);
             int id = Integer.parseInt(docArticle.getAttribute("id"));
             String title = docArticle.getAttribute("title");
+            int level = Integer.parseInt(docArticle.getAttribute("level"));
+            int score = Integer.parseInt(docArticle.getAttribute("lvlIncrease"));
+
+
+            System.out.println(level);
+
             String text = docArticle.getTextContent();
             text = text.replace("\n", " ");
             text = text.replace("    ", "");
 
             Article article = new Article(title, text);
+            article.setLevel(level);
+            article.setLvlIncrease(score);
             articles.put(id, article);
         }
         return articles;

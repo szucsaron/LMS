@@ -6,7 +6,22 @@ public class Article {
 
     private String title;
     private String text;
+
     private int level;
+
+    private int lvlIncrease;
+
+    public int getLvlIncrease() {
+        return lvlIncrease;
+    }
+
+    public void setLvlIncrease(int score) {
+        this.lvlIncrease = score;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 
     public Quiz getQuiz() {
         return quiz;

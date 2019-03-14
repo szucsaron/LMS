@@ -34,6 +34,9 @@ public final class UserService {
     public User getCurrentUser(HttpServletRequest req) {
 
         Cookie[] cookies = req.getCookies();
+        if (cookies == null) {
+            return getGuest();
+        }
 
         String userName = "";
         String passwd = "";
