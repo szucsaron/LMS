@@ -260,3 +260,8 @@ a:hover {
     color: #FAED26;
     text-decoration: none;
 }
+
+.rightbar a:visited {
+    color: #FAED26;
+    text-decoration: none;
+}
