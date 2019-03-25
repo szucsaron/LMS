@@ -10,13 +10,19 @@ public class Quiz implements Iterable<Question>{
     private String description;
     private int mistakeLimit = 1;
 
+    public int getId() {
+        return id;
+    }
+
+    private int id;
+
     public String getDescription() {
         return description;
     }
 
-    public Quiz(String description) {
+    public Quiz(int id, String description) {
         this.description = description;
-
+        this.id = id;
     }
 
     public void addQuestion(Question question) {

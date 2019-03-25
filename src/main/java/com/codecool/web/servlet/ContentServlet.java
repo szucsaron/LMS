@@ -1,19 +1,14 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.Article;
-import com.codecool.web.model.Content;
 import com.codecool.web.model.User;
 import com.codecool.web.service.Database;
 import com.codecool.web.service.UserService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @WebServlet("/content")
@@ -58,8 +53,7 @@ public class ContentServlet extends HttpServlet {
         if (toFind == null) {
             sidebar = database.getArticleIds();
         } else {
-
-            sidebar = database.getFilteredArticleIds(toFind);
+            sidebar = database.getArticleIdsBySearch(toFind);
         }
 
         req.setAttribute("sidebar", sidebar);

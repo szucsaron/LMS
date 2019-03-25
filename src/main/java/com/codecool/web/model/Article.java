@@ -11,6 +11,12 @@ public class Article {
 
     private int lvlIncrease;
 
+    public Integer getId() {
+        return id;
+    }
+
+    private Integer id;
+
     public int getLvlIncrease() {
         return lvlIncrease;
     }
@@ -29,15 +35,16 @@ public class Article {
 
     private Quiz quiz;
 
-    public Article(String title, String text, Quiz quiz, int level) {
+    public Article(Integer id, String title, String text, Quiz quiz, int level) {
         this.title = title;
         this.text = text;
         this.level = level;
         this.quiz = quiz;
+        this.id = id;
     }
 
     public Article(String title, String text) {
-        this(title, text, null, 0);
+        this(null, title, text, null, 0);
     }
 
     public String getTitle() {

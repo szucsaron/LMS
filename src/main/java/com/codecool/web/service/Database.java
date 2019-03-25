@@ -4,7 +4,7 @@ import com.codecool.web.model.Article;
 import com.codecool.web.model.Content;
 import com.codecool.web.model.NoSuchUserException;
 import com.codecool.web.model.quiz.Quiz;
-import com.codecool.web.model.quiz.QuizGenerator;
+
 import com.codecool.web.model.User;
 
 import java.io.IOException;
@@ -14,7 +14,6 @@ public class Database {
     private String locationPrefix;
     private boolean  locationLoaded = false;
     private static Database database = new Database();
-    public int score = 0;
     private HashMap<String, User> users = new HashMap<>();
 
     public static Database getInstance() {
@@ -24,7 +23,7 @@ public class Database {
     private Content content;
 
     public Database() {
-        List<Quiz> quizes = new QuizGenerator().generate();
+
         content = new Content();
 
         DatabaseLoader databaseLoader = new DatabaseLoader();
@@ -73,7 +72,7 @@ public class Database {
         content.addArticle(article);
     }
 
-    public Map<Integer, String> getFilteredArticleIds(String toFind) {
+    public Map<Integer, String> getArticleIdsBySearch(String toFind) {
         Map<Integer, String> mapToFilter = getArticleIds();
         Map<Integer, String> filteredMap = new HashMap<>();
         for (int key : mapToFilter.keySet()) {
