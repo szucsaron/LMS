@@ -73,8 +73,7 @@ public class DatabaseLoader {
             text = text.replace("\n", " ");
             text = text.replace("    ", "");
 
-            Article article = new Article(title, text);
-            article.setLevel(level);
+            Article article = new Article(id, title, text, null, level);
             article.setLvlIncrease(score);
             articles.put(id, article);
         }
@@ -91,7 +90,7 @@ public class DatabaseLoader {
             String quizTitle = docQuiz.getAttribute("title");
             NodeList questions = docQuiz.getElementsByTagName("question");
 
-            Quiz quiz = new Quiz(quizTitle);
+            Quiz quiz = new Quiz(quizId, quizTitle);
             for (int questI = 0; questI < questions.getLength(); questI++) {
                 Element docQuestion = (Element) questions.item(questI);
                 quiz.addQuestion(createQuestion(docQuestion));

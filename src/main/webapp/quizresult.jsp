@@ -4,6 +4,12 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="com.codecool.web.model.Article" %>
+
+<%
+    // Java init
+    boolean success = (boolean) request.getAttribute("result");
+%>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +17,7 @@
     <link rel="stylesheet" href="content.css" href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700">
 </head>
 
-<%
-boolean success = (boolean) request.getAttribute("result");
-%>
+
 
 
 <body>

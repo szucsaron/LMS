@@ -3,17 +3,7 @@
 <%@ page import="com.codecool.web.model.Article" %>
 <%@ page import="com.codecool.web.model.Content" %>
 
+<body>
 
-
-
-<%
-Article article = (Article) request.getAttribute("article");
-%>
-<p> <%=article.getTitle()%> </p>
-</p> <%=article.getText()%> </p>
-
-
-
-
-
+</body>
 
