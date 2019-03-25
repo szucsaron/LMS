@@ -51,10 +51,6 @@ public class Database {
         }
     }
 
-    public Content getAllContent() {
-        return content;
-    }
-
     public Article getArticle(int id) {
         return content.getArticle(id);
     }
