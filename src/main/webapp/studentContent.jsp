@@ -34,6 +34,7 @@
     <div class="rightbar">
         <a class="button" href="users">USERS</a>
         <a class="button" href="profile">PROFILE</a>
+        <a class="button" href="quizlist">QUIZ-LIST</a>
         <p> <%=article.getTitle()%> </p>
         <p> <%=article.getText()%> </p>
         <% if (article.hasQuiz()) { %>
