@@ -49,6 +49,10 @@ public final class User {
 
     public String getEmail() { return this.email; }
 
+    public String getRole() {
+        return String.valueOf(this.role);
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }

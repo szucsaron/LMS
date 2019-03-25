@@ -4,6 +4,8 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="com.codecool.web.model.Article" %>
+<%@ page import="com.codecool.web.model.User" %>
+<%@page import="java.util.*"%>
 
 <%
     // Java Init
@@ -22,6 +24,7 @@
     <link rel="stylesheet" href="content.css" href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700">
 </head>
 <body>
+    <% User user = (User) request.getAttribute("user"); %>
     <div class="leftbar">
     <form action="content" method="GET">
         <input type="text" name="search">
