@@ -15,7 +15,7 @@
         <h2>USERS</h2>
         <% User[] users = (User[]) request.getAttribute("users"); %>
         <% for (User u : users) { %>
-            <p><%= u.getUsername() %> - <%= u.getEmail() %></p>
+            <p><%= u.getRole() %> - <%= u.getUsername() %> - <%= u.getEmail() %></p>
         <% } %>
     </div>
 </body>

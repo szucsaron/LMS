@@ -30,12 +30,12 @@ public final class User {
         GUEST, STUDENT, MENTOR, ADMIN
     }
 
-    public User(String username, String password, String email) {
+    public User(String username, String password, String email, String role) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.progress = 1;
-        this.role = Role.STUDENT;
+        this.role = Role.valueOf(role);
         this.score = 0;
     }
 

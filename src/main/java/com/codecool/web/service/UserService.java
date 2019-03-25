@@ -15,8 +15,8 @@ public final class UserService {
         return database.getUsersArray();
     }
 
-    public void addUser(String username, String password, String email, int progress) {
-        User user = new User(username, password, email);
+    public void addUser(String username, String password, String email, String role, int progress) {
+        User user = new User(username, password, email, role);
         user.setProgress(progress);
         database.addUser(user);
     }
@@ -65,10 +65,8 @@ public final class UserService {
     }
 
     private User getGuest() {
-        User guest = new User("guest", "", "");
-        guest.setRole("GUEST");
+        User guest = new User("guest", "", "", "GUEST");
         guest.setProgress(0);
         return guest;
     }
-
 }
