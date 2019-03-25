@@ -4,6 +4,8 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="com.codecool.web.model.Article" %>
+<%@ page import="com.codecool.web.model.User" %>
+<%@page import="java.util.*"%>
 
 <%
     // Java Init

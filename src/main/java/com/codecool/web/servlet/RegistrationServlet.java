@@ -23,11 +23,12 @@ public class RegistrationServlet extends HttpServlet {
         String un = req.getParameter("username");
         String pw = req.getParameter("password");
         String em = req.getParameter("email");
+        String role = req.getParameter("role");
 
         if (!service.validateRegistration(un)) {
                 resp.sendRedirect("register.html");
-            } else {
-            service.addUser(un, pw, em, 1);
+        } else {
+            service.addUser(un, pw, em, role, 1);
             resp.sendRedirect("index.html");
         }
     }

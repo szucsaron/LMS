@@ -15,7 +15,7 @@ import java.util.Map;
 public class ContentServlet extends HttpServlet {
 
     private final UserService service = new UserService();
-    private final String page = "content.jsp";
+    private final String page = "studentContent.jsp";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,6 +30,7 @@ public class ContentServlet extends HttpServlet {
 
     private void showContent(User user, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         int id;
+
         try {
             id = Integer.parseInt(req.getParameter("pageID"));
         } catch (NumberFormatException e) {
@@ -58,6 +59,10 @@ public class ContentServlet extends HttpServlet {
 
         req.setAttribute("sidebar", sidebar);
 
-        req.getRequestDispatcher(page).forward(req, resp);
+        if (user.getRole().equals("MENTOR")) {
+            req.getRequestDispatcher("mentorContent.jsp").forward(req, resp);
+        } else {
+            req.getRequestDispatcher("studentContent.jsp").forward(req, resp);
+        }
     }
 }

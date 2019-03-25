@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.codecool.web.model.User" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="com.codecool.web.model.Article" %>
 
 <html lang="en">
 
 <%
     // Java init
-    User[] users = (User[]) request.getAttribute("users");
+    HashMap<Integer, String> quiz = (HashMap<Integer, String>) request.getAttribute("quizes");
 %>
 
 <head>
@@ -18,9 +19,9 @@
 </head>
 <body>
     <div class="users">
-        <h2>USERS</h2>
-        <% for (User u : users) { %>
-            <p><%= u.getRole() %> - <%= u.getUsername() %> - <%= u.getEmail() %></p>
+        <h2>Quizes</h2>
+        <% for (Integer id : quiz.keySet()) { %>
+            <a href="quiz?id=<%=id%>"><%= quiz.get(id) %></a>
         <% } %>
     </div>
 </body>

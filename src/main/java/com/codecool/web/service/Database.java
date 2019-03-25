@@ -27,7 +27,7 @@ public class Database {
         content = new Content();
 
         DatabaseLoader databaseLoader = new DatabaseLoader();
-        User user = new User("jancsi", "1234", "adda@adasd.hu");
+        User user = new User("jancsi", "1234", "adda@adasd.hu", "STUDENT");
         user.setProgress(1);
         addUser(user);
 
