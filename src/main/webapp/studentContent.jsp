@@ -5,7 +5,6 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="com.codecool.web.model.Article" %>
 <%@ page import="com.codecool.web.model.User" %>
-<%@page import="java.util.*"%>
 
 <%
     // Java Init
@@ -22,7 +21,6 @@
     <link rel="stylesheet" href="content.css" href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700">
 </head>
 <body>
-    <% User user = (User) request.getAttribute("user"); %>
     <div class="leftbar">
     <form action="content" method="GET">
         <input type="text" name="search">
@@ -36,7 +34,6 @@
     <div class="rightbar">
         <a class="button" href="users">USERS</a>
         <a class="button" href="profile">PROFILE</a>
-        <a class="button" href="add_article">ARTICLE</a>
         <p> <%=article.getTitle()%> </p>
         <p> <%=article.getText()%> </p>
         <% if (article.hasQuiz()) { %>
