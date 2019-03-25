@@ -3,6 +3,11 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.codecool.web.model.User" %>
 
+<%
+    // Java init
+    User user = (User) request.getAttribute("user");
+%>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -11,7 +16,7 @@
     <link rel="stylesheet" href="content.css" href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700">
 </head>
 <body>
-<% User user = (User) request.getAttribute("user"); %>
+
     <div class="login">
         <h2>PROFILE</h2>
         <form action="profile" method="POST">

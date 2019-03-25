@@ -169,6 +169,10 @@ a:hover {
     padding-left: 5%;
 }
 
+.login select {
+    margin-left: 15px;
+}
+
 .login form {
     color: white;
     position: relative;

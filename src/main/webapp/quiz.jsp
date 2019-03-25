@@ -7,7 +7,13 @@
 <%@ page import="com.codecool.web.model.quiz.Quiz" %>
 <%@ page import="com.codecool.web.model.quiz.Question" %>
 
-
+<%
+    // Java init
+    Question question = (Question) request.getAttribute("question");
+    int questionId = (int) request.getAttribute("questionId");
+    int score = (int) request.getAttribute("score");
+    int articleId = (int) request.getAttribute("articleId");
+%>
 
 <html lang="en">
 <head>
@@ -20,11 +26,6 @@
 
     <p>
         <%
-            Question question = (Question) request.getAttribute("question");
-            int questionId = (int) request.getAttribute("questionId");
-            int score = (int) request.getAttribute("score");
-            int articleId = (int) request.getAttribute("articleId");
-
             int quizId = 0;
                 %>Score:<%=score%><%
                 %><ul class="question"><h3><%=question.getDescription()%></h2><%

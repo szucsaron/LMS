@@ -14,8 +14,6 @@
     int articleId = (int) request.getAttribute("articleId");
 %>
 
-
-
 <html lang="en">
 <head>
     <meta charset="utf-8">

@@ -4,6 +4,6 @@
 <%@ page import="com.codecool.web.model.Content" %>
 
 <body>
-faszom
+
 </body>
 
