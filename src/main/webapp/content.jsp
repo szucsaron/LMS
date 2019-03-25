@@ -5,6 +5,15 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="com.codecool.web.model.Article" %>
 
+<%
+    // Java Init
+    Article article = (Article) request.getAttribute("article");
+    Map<Integer, String> titles = (Map<Integer, String>) request.getAttribute("sidebar");
+    int articleId = (int) request.getAttribute("articleId");
+%>
+
+
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -18,9 +27,6 @@
         <input type="text" name="search">
         <input type="submit" value=" ">
     </form>
-        <%  Map<Integer, String> titles = (Map<Integer, String>) request.getAttribute("sidebar");
-            int articleId = (int) request.getAttribute("articleId");
-        %>
         <% for (Integer key : titles.keySet()) { %>
             <br><a href="content?pageID=<%=key%>"><%= titles.get(key).toUpperCase() %><br></a>
         <% } %>
@@ -30,9 +36,6 @@
         <a class="button" href="users">USERS</a>
         <a class="button" href="profile">PROFILE</a>
         <a class="button" href="add_article">ARTICLE</a>
-        <%
-        Article article = (Article) request.getAttribute("article");
-        %>
         <p> <%=article.getTitle()%> </p>
         <p> <%=article.getText()%> </p>
         <% if (article.hasQuiz()) { %>
@@ -41,8 +44,5 @@
             </a>
         <% } %>
     </div>
-
-
-
 </body>
 </html>
