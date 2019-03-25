@@ -11,16 +11,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
 @WebServlet("/quizlist")
 public class QuizListingServlet extends HttpServlet {
 
-    private Database database = new Database();
+    private Database database = Database.getInstance();
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("quizlist.jsp");
-
-        req.setAttribute("quizes", database.getArticleIds());
+        Map<Integer, String> quizList = database.getArticleIds();
+        req.setAttribute("quizes", quizList);
 
         requestDispatcher.forward(req, resp);
     }

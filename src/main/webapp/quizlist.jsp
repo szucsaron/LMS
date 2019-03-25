@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
 <%@ page import="com.codecool.web.model.Article" %>
 
 <html lang="en">
-
-<%
-    // Java init
-    HashMap<Integer, String> quiz = (HashMap<Integer, String>) request.getAttribute("quizes");
-%>
 
 <head>
     <meta charset="utf-8">
@@ -18,11 +13,19 @@
     <link rel="stylesheet" href="content.css" href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700">
 </head>
 <body>
+    <%
+        // Java init
+        Map<Integer, String> quiz = (Map<Integer, String>) request.getAttribute("quizes");
+    %>
+
     <div class="users">
         <h2>Quizes</h2>
-        <% for (Integer id : quiz.keySet()) { %>
-            <a href="quiz?id=<%=id%>"><%= quiz.get(id) %></a>
-        <% } %>
+        <ul>
+            <% for (Integer id : quiz.keySet()) { %>
+
+                <li><a href="quiz?id=<%=id%>"><%= quiz.get(id) %></a></li>
+            <% } %>
+        </ul>
     </div>
 </body>
 </html>
