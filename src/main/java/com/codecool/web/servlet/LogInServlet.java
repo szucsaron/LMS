@@ -1,15 +1,12 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.NoSuchUserException;
-import com.codecool.web.model.User;
-import com.codecool.web.service.Database;
 import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/login")
 public class LogInServlet extends HttpServlet {

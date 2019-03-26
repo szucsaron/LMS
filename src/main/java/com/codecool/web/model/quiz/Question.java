@@ -1,50 +1,52 @@
 package com.codecool.web.model.quiz;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
-public class Question implements Iterable<String>{
-    private List<String> answers = new ArrayList<>();
+public class Question implements Iterable<Answer>{
+    private Map<Integer, Answer> answers = new HashMap<>();
     private String description;
-    private int correctAnswer;
+    private int id;
 
-    public Question(String description) {
+    public int getId() {
+        return id;
+    }
+
+    public Question(String description, int id) {
         this.description = description;
+        this.id = id;
     }
 
-    public void addAnswer(String answer) {
-        answers.add(answer);
+    public void addAnswer(Answer answer) {
+        answers.put(answer.getId(), answer);
     }
 
-    public void setAsCorrect(int answerIndex) {
-        correctAnswer = answerIndex;
-    }
 
     public boolean validateAnswer(int answerIndex) {
-        return answerIndex == correctAnswer;
+        return answers.get(answerIndex).validate();
     }
 
     public String getDescription() {
         return description;
     }
 
-    public Iterator<String> iterator() {
-        return new AnswerIterator(answers);
+    public Iterator<Answer> iterator() {
+        Answer[] ans = new Answer[answers.keySet().size()];
+        return new AnswerIterator(answers.values().toArray(ans));
     }
 
     public String toString() {
-        String out = description + "\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append(id).append(" ").append(description).append( "\n");
         int id = 0;
-        for (String answer : answers) {
-            if (id == correctAnswer) {
-                out += "--->" + answer + "\n";
-            } else {
-                out += "    " + answer + "\n";
-            }
+        for (int answerId : answers.keySet()) {
+            sb  .append("    ")
+                .append(answers.get(answerId).getId())
+                .append( " ")
+                .append(answers.get(answerId).getText())
+                .append("\n");
             id++;
         }
-        return out;
+        return sb.toString();
     }
 
 }
