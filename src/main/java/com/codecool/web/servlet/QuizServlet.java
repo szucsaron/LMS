@@ -5,6 +5,7 @@ import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
 import com.codecool.web.service.Database;
+import com.codecool.web.service.MockDatabase;
 import com.codecool.web.service.QuizManager;
 import com.codecool.web.service.UserService;
 
@@ -20,7 +21,7 @@ public class QuizServlet extends HttpServlet {
     private User user;
     private final UserService service = new UserService();
 
-    private Database database = Database.getInstance();
+    private Database database = MockDatabase.getInstance();
 
 
     @Override

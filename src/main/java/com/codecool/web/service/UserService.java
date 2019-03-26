@@ -5,11 +5,12 @@ import com.codecool.web.model.User;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import com.codecool.web.service.Database;
 
 
 public final class UserService {
 
-    Database database = Database.getInstance();
+    Database database = MockDatabase.getInstance();
 
     public User[] getUsers() {
         return database.getUsersArray();
@@ -53,7 +54,7 @@ public final class UserService {
         }
         try {
             User user;
-            user = Database.getInstance().getUserByName(userName);
+            user = MockDatabase.getInstance().getUserByName(userName);
             if (user.getPassword().equals(passwd)) {
                 return user;
             } else {

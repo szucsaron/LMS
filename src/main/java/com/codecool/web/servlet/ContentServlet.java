@@ -3,6 +3,7 @@ package com.codecool.web.servlet;
 import com.codecool.web.model.Article;
 import com.codecool.web.model.User;
 import com.codecool.web.service.Database;
+import com.codecool.web.service.MockDatabase;
 import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;
@@ -23,7 +24,7 @@ public class ContentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Database.getInstance().setLocation(req.getServletContext().getRealPath("/"));
+        MockDatabase.getInstance().setLocation(req.getServletContext().getRealPath("/"));
         User user = new UserService().getCurrentUser(req);
         showContent(user, req, resp);
     }
@@ -37,7 +38,7 @@ public class ContentServlet extends HttpServlet {
             id = 0;
         }
 
-        Database database = Database.getInstance();
+        Database database = MockDatabase.getInstance();
         Article article = database.getArticle(id);
         if (article.hasAccess(user)) {
             req.setAttribute("articleId", id);
