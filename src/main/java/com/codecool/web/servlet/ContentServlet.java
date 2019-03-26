@@ -14,9 +14,6 @@ import java.util.Map;
 @WebServlet("/content")
 public class ContentServlet extends HttpServlet {
 
-    private final UserService service = new UserService();
-    private final String page = "studentContent.jsp";
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     }
@@ -45,7 +42,7 @@ public class ContentServlet extends HttpServlet {
         } else {
             req.setAttribute("articleId", id);
             req.setAttribute("article", new Article("Restricted material", "Your progress is too low to view this article. Please, practice more \n" +
-                "or have a bigger wallet."));
+                "or have a bigger wallet/penis."));
         }
 
         Map<Integer, String> sidebar;
