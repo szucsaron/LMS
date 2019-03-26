@@ -2,6 +2,7 @@ package com.codecool.web.service;
 
 import com.codecool.web.model.Article;
 import com.codecool.web.model.Content;
+import com.codecool.web.model.quiz.Answer;
 import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
 import org.w3c.dom.Document;
@@ -20,6 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 public class DatabaseLoader {
+
+    private int dbQuestionId = 0;
+    private int dbAnswerId = 0;
 
     private Document getDocumentFromFile(String filepath) throws IOException {
         try {
@@ -67,7 +71,6 @@ public class DatabaseLoader {
             int score = Integer.parseInt(docArticle.getAttribute("lvlIncrease"));
 
 
-            System.out.println(level);
 
             String text = docArticle.getTextContent();
             text = text.replace("\n", " ");
@@ -84,9 +87,8 @@ public class DatabaseLoader {
         NodeList docArticles = doc.getElementsByTagName("quiz");
         int length = docArticles.getLength();
         Map<Integer, Quiz> quizzes = new HashMap<>();
-        int questionId = 0;
-        for (int quizI = 0; quizI < length; quizI++) {
-            Element docQuiz = (Element) docArticles.item(quizI);
+        for (int dbQuizId = 0; dbQuizId < length; dbQuizId++) {
+            Element docQuiz = (Element) docArticles.item(dbQuizId);
             int quizId = Integer.parseInt(docQuiz.getAttribute("id"));
             String quizTitle = docQuiz.getAttribute("title");
             NodeList questions = docQuiz.getElementsByTagName("question");
@@ -94,8 +96,8 @@ public class DatabaseLoader {
             Quiz quiz = new Quiz(quizId, quizTitle);
             for (int questI = 0; questI < questions.getLength(); questI++) {
                 Element docQuestion = (Element) questions.item(questI);
-                quiz.addQuestion(createQuestion(docQuestion, questionId));
-                questionId++;
+                quiz.addQuestion(createQuestion(docQuestion));
+                dbQuestionId++;
             }
 
             quizzes.put(quizId, quiz);
@@ -103,18 +105,19 @@ public class DatabaseLoader {
         return quizzes;
     }
 
-    private Question createQuestion(Element docQuestion, int id) {
+    private Question createQuestion(Element docQuestion) {
         String text = docQuestion.getAttribute("title");
         NodeList docAnswers = docQuestion.getElementsByTagName("answer");
-        int correct = Integer.parseInt(docQuestion.getAttribute("correct"));
+        int correct = Integer.parseInt(docQuestion.getAttribute("correct")) + dbAnswerId;
 
-        Question question = new Question(text, id);
-        question.setAsCorrect(correct);
+        Question question = new Question(text, dbQuestionId);
         int length = docAnswers.getLength();
         for (int i = 0; i < length; i++) {
             Element docAnswer = (Element) docAnswers.item(i);
             String answer = docAnswer.getTextContent();
-            question.addAnswer(answer);
+            boolean isCorrect = correct == dbAnswerId;
+            question.addAnswer(new Answer(dbAnswerId, answer, isCorrect));
+            dbAnswerId++;
         }
         return question;
     }

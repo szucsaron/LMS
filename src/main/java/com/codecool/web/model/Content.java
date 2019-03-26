@@ -36,11 +36,11 @@ public class Content implements Iterable<Article> {
     }
 
     public String toString() {
-        String out = "";
+        StringBuilder sb = new StringBuilder();
         for (Article article : this) {
-            out += article;
+            sb.append(article);
         }
-        return out;
+        return sb.toString();
     }
 
 }

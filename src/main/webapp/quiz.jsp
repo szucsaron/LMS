@@ -6,6 +6,8 @@
 <%@ page import="com.codecool.web.model.Article" %>
 <%@ page import="com.codecool.web.model.quiz.Quiz" %>
 <%@ page import="com.codecool.web.model.quiz.Question" %>
+<%@ page import="com.codecool.web.model.quiz.Answer" %>
+
 
 <%
     // Java init
@@ -30,12 +32,12 @@
                 %>Score:<%=score%><%
                 %><ul class="question"><h3><%=question.getDescription()%></h2><%
                     int answerId = 0;
-                    for (String answer : question) {
-                        String parameters = "questionId=" + Integer.toString(questionId) + "&answerId=" + Integer.toString(answerId) +
+                    for (Answer answer : question) {
+                        String parameters = "questionId=" + Integer.toString(questionId) + "&answerId=" + Integer.toString(answer.getId()) +
                                             "&articleId=" + articleId;
                         %>
                             <a class="answer" href="quiz?<%=parameters%>">
-                                <%=answer%>
+                                <%=answer.getText()%>
                             </a><br>
                         <%
                         answerId++;
