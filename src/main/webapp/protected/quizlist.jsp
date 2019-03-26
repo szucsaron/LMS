@@ -22,8 +22,7 @@
         <h2>Quizes</h2>
         <ul>
             <% for (Integer id : quiz.keySet()) { %>
-
-                <li><a href="quiz?id=<%=id%>"><%= quiz.get(id) %></a></li>
+                <li><a href="quiz?articleId=<%=id%>"><%= quiz.get(id) %></a></li>
             <% } %>
         </ul>
     </div>

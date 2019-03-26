@@ -65,7 +65,7 @@
             <answer>You can paint goats, but you can't goat paints</answer>
             <answer>They are nice</answer>
             <answer>They both lack things: The goat doesn't have wheels, as a bicycle doesn't have legs.</answer>
-            <answer>One is the ultimate expression of creativity, spirit and human nature; the exaltation of life force itself, the other one is a wall decoration.</answer>
+            <answer>One is the ultimate expression of creativity, spirit and human nature; the exaltation of life force itself, the other is a wall decoration.</answer>
         </question>
     </quiz>
     <quiz id="3" title="Goats and refactoring">

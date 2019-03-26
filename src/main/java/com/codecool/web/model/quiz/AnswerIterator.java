@@ -1,23 +1,22 @@
 package com.codecool.web.model.quiz;
 
 import java.util.Iterator;
-import java.util.List;
 
-public class AnswerIterator implements Iterator<String> {
-    private List<String> answers;
+public class AnswerIterator implements Iterator<Answer> {
+    private Answer[]  answers;
     private int index = 0;
 
-    public AnswerIterator(List<String> answers) {
+    public AnswerIterator(Answer[] answers) {
         this.answers = answers;
     }
 
-    public String next() {
-        String out = answers.get(index);
+    public Answer next() {
+        Answer out = answers[index];
         index++;
         return out;
     }
 
     public boolean hasNext() {
-        return answers.size() > index;
+        return answers.length > index;
     }
 }

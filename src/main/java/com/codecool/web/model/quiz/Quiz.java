@@ -38,8 +38,8 @@ public class Quiz implements Iterable<Question>{
         return score >= questions.size() - mistakeLimit;
     }
 
-    public Question getQuestion(int id) {
-            return questions.get(id);
+    public Question getQuestion(int index) {
+            return questions.get(index);
     }
 
     public int size() {
