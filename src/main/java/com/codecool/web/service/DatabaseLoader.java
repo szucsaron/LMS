@@ -84,6 +84,7 @@ public class DatabaseLoader {
         NodeList docArticles = doc.getElementsByTagName("quiz");
         int length = docArticles.getLength();
         Map<Integer, Quiz> quizzes = new HashMap<>();
+        int questionId = 0;
         for (int quizI = 0; quizI < length; quizI++) {
             Element docQuiz = (Element) docArticles.item(quizI);
             int quizId = Integer.parseInt(docQuiz.getAttribute("id"));
@@ -93,7 +94,8 @@ public class DatabaseLoader {
             Quiz quiz = new Quiz(quizId, quizTitle);
             for (int questI = 0; questI < questions.getLength(); questI++) {
                 Element docQuestion = (Element) questions.item(questI);
-                quiz.addQuestion(createQuestion(docQuestion));
+                quiz.addQuestion(createQuestion(docQuestion, questionId));
+                questionId++;
             }
 
             quizzes.put(quizId, quiz);
@@ -101,12 +103,12 @@ public class DatabaseLoader {
         return quizzes;
     }
 
-    private Question createQuestion(Element docQuestion) {
+    private Question createQuestion(Element docQuestion, int id) {
         String text = docQuestion.getAttribute("title");
         NodeList docAnswers = docQuestion.getElementsByTagName("answer");
         int correct = Integer.parseInt(docQuestion.getAttribute("correct"));
 
-        Question question = new Question(text);
+        Question question = new Question(text, id);
         question.setAsCorrect(correct);
         int length = docAnswers.getLength();
         for (int i = 0; i < length; i++) {

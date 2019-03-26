@@ -8,9 +8,15 @@ public class Question implements Iterable<String>{
     private List<String> answers = new ArrayList<>();
     private String description;
     private int correctAnswer;
+    private int id;
 
-    public Question(String description) {
+    public int getId() {
+        return id;
+    }
+
+    public Question(String description, int id) {
         this.description = description;
+        this.id = id;
     }
 
     public void addAnswer(String answer) {
