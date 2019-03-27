@@ -6,6 +6,7 @@ public class Article {
 
     private String title;
     private String text;
+    private Integer quizId;
 
     private int level;
 
@@ -40,6 +41,11 @@ public class Article {
         this.text = text;
         this.level = level;
         this.quiz = quiz;
+        if (quiz != null) {
+            this.quizId = quiz.getId();
+        } else {
+            this.quizId = null;
+        }
         this.id = id;
     }
 
@@ -75,5 +81,8 @@ public class Article {
         return quiz != null;
     }
 
+    public Integer getQuizId() {
+        return quizId;
+    }
 
 }
