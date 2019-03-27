@@ -13,7 +13,7 @@ import java.util.*;
 
 public class MockDatabase implements Database {
     private String locationPrefix;
-    private boolean  locationLoaded = false;
+    private boolean locationLoaded = false;
     private static MockDatabase database = new MockDatabase();
     private HashMap<String, User> users = new HashMap<>();
 
@@ -110,7 +110,7 @@ public class MockDatabase implements Database {
         List<Article> articles = content.getAllArticles();
         for (Article article : content.getAllArticles()) {
             Quiz currQuiz = article.getQuiz();
-            if (currQuiz!= null && currQuiz.getId() == quizId) {
+            if (currQuiz != null && currQuiz.getId() == quizId) {
                 return currQuiz.getQuestion(index);
             }
         }
@@ -121,7 +121,7 @@ public class MockDatabase implements Database {
         List<Article> articles = content.getAllArticles();
         for (Article article : articles) {
             Quiz currQuiz = article.getQuiz();
-            if (currQuiz!= null && currQuiz.getId() == quizId) {
+            if (currQuiz != null && currQuiz.getId() == quizId) {
                 return currQuiz;
             }
         }
@@ -133,7 +133,7 @@ public class MockDatabase implements Database {
         List<Quiz> quizes = new ArrayList<>();
         for (Article article : articles) {
             Quiz currQuiz = article.getQuiz();
-            if (currQuiz!= null) {
+            if (currQuiz != null) {
                 quizes.add(currQuiz);
             }
         }

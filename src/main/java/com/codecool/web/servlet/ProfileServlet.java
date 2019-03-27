@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @WebServlet("/profile")
-public class ProfileServlet extends HttpServlet{
+public class ProfileServlet extends HttpServlet {
 
     private UserService service = new UserService();
     private User actualUser = new User();

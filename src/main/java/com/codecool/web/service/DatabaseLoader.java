@@ -39,7 +39,7 @@ public class DatabaseLoader {
         Map<Integer, Article> articles = getArticles(getDocumentFromFile(articleFilePath));
         Map<Integer, Quiz> quizzes = getQuizzes(getDocumentFromFile(quizFilePath));
 
-        for (int quizId: quizzes.keySet()) {
+        for (int quizId : quizzes.keySet()) {
             Article article = articles.get(quizId);
             if (article != null) {
                 article.addQuiz(quizzes.get(quizId));
@@ -69,7 +69,6 @@ public class DatabaseLoader {
             String title = docArticle.getAttribute("title");
             int level = Integer.parseInt(docArticle.getAttribute("level"));
             int score = Integer.parseInt(docArticle.getAttribute("lvlIncrease"));
-
 
 
             String text = docArticle.getTextContent();

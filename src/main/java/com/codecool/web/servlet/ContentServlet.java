@@ -26,7 +26,7 @@ public class ContentServlet extends HttpServlet {
         showContent(user, req, resp);
     }
 
-    private void showContent(User user, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+    private void showContent(User user, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id;
 
         try {

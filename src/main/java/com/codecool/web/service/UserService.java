@@ -5,8 +5,6 @@ import com.codecool.web.model.User;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import com.codecool.web.service.Database;
-
 
 public final class UserService {
 

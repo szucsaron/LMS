@@ -22,7 +22,7 @@ public class LogInServlet extends HttpServlet {
             oldSession.invalidate();
         }
         HttpSession newSession = req.getSession(true);
-        newSession.setMaxInactiveInterval(5*60);
+        newSession.setMaxInactiveInterval(5 * 60);
         req.getRequestDispatcher("index.html").forward(req, resp);
     }
 

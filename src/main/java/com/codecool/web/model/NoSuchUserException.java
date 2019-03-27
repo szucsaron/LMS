@@ -1,5 +1,5 @@
 package com.codecool.web.model;
 
-public class NoSuchUserException extends Exception{
+public class NoSuchUserException extends Exception {
 
 }
