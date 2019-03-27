@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @WebFilter("/*")
-public final class LoginFilter implements Filter {
+public final class SessionFilter implements Filter {
 
     private final UserService us = new UserService();
 

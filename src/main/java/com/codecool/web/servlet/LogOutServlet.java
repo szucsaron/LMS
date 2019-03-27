@@ -1,7 +1,5 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.model.User;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -12,7 +10,7 @@ public class LogOutServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        HttpSession session=req.getSession();
+        HttpSession session = req.getSession();
         session.invalidate();
 
         resp.sendRedirect("login");

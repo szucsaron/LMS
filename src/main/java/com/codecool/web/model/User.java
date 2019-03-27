@@ -47,7 +47,8 @@ public final class User {
     }
 
     public String getEmail() {
-        return this.email; }
+        return this.email;
+    }
 
     public String getRole() {
         return String.valueOf(this.role);
@@ -66,7 +67,8 @@ public final class User {
     }
 
     int getProgress() {
-        return progress;}
+        return progress;
+    }
 
     public void setProgress(int progress) {
         this.progress = progress;
