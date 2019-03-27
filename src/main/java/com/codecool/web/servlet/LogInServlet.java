@@ -1,6 +1,7 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.NoSuchUserException;
+import com.codecool.web.model.User;
 import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;
@@ -39,11 +40,9 @@ public class LogInServlet extends HttpServlet {
                 resp.addCookie(new Cookie("password", pw));
                 resp.sendRedirect("content");
             } else {
-                req.setAttribute("errorMsg", "Wrong username or password.");
                 req.getRequestDispatcher("index.html").forward(req, resp);
             }
         } catch (NoSuchUserException e) {
-            req.setAttribute("errorMsg", "Wrong username or password.");
             resp.sendRedirect("index.html");
         }
 

@@ -1,6 +1,5 @@
 package com.codecool.web.filter;
 
-import com.codecool.web.model.NoSuchUserException;
 import com.codecool.web.model.User;
 import com.codecool.web.service.UserService;
 
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Map;
 
 @WebFilter("/protected/*")
 public final class LoginFilter implements Filter {
@@ -25,15 +23,17 @@ public final class LoginFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-        try {
-            if (us.validateLogIn(req.getParameter("username"), req.getParameter("username"))) {
-                chain.doFilter(req, resp);
-            } else {
-                req.setAttribute("errorMsg", "Wrong username or password.");
+        String path = ((HttpServletRequest) request).getRequestURI();
+        HttpSession session = req.getSession();
+        if (path.endsWith(".css") || path.endsWith("index.html")) {
+            chain.doFilter(req, resp);
+        } else {
+            User user = (User) session.getAttribute("user");
+            if (user == null) {
                 resp.sendRedirect("../index.html");
+            } else {
+                chain.doFilter(req, resp);
             }
-        } catch (NoSuchUserException e) {
-            e.printStackTrace();
         }
     }
 
