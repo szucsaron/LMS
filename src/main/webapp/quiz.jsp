@@ -12,9 +12,9 @@
 <%
     // Java init
     Question question = (Question) request.getAttribute("question");
-    int questionId = (int) request.getAttribute("questionId");
+    int questionIndex = (int) request.getAttribute("questionIndex");
     int score = (int) request.getAttribute("score");
-    int articleId = (int) request.getAttribute("articleId");
+    int quizId = (int) request.getAttribute("quizId");
 %>
 
 <html lang="en">
@@ -28,23 +28,18 @@
 
     <p>
         <%
-            int quizId = 0;
                 %>Score:<%=score%><%
                 %><ul class="question"><h3><%=question.getDescription()%></h2><%
-                    int answerId = 0;
                     for (Answer answer : question) {
-                        String parameters = "questionId=" + Integer.toString(questionId) + "&answerId=" + Integer.toString(answer.getId()) +
-                                            "&articleId=" + articleId;
+                        String parameters = "questionIndex=" + Integer.toString(questionIndex) + "&answerId=" + Integer.toString(answer.getId()) +
+                                            "&quizId=" + quizId;
                         %>
                             <a class="answer" href="quiz?<%=parameters%>">
                                 <%=answer.getText()%>
                             </a><br>
                         <%
-                        answerId++;
                     }
-                    quizId++;
                 %></ul><%
-
         %>
     </p>
 

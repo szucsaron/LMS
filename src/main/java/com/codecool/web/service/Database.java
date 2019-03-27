@@ -6,29 +6,33 @@ import com.codecool.web.model.NoSuchUserException;
 
 import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.Question;
+import com.codecool.web.model.quiz.Quiz;
 
 import java.io.IOException;
 import java.util.*;
 
 public interface Database {
-    public void setLocation(String locationPrefix);
+    void setLocation(String locationPrefix);
 
-    public Article getArticle(int id);
+    Article getArticle(int id);
 
-    public Map<Integer, String> getArticleIds();
+    Map<Integer, String> getArticleIds();
 
-    public void addArticle(Article article);
+    void addArticle(Article article);
 
-    public Map<Integer, String> getArticleIdsBySearch(String toFind) ;
+    Map<Integer, String> getArticleIdsBySearch(String toFind);
 
-    public void addUser(User user) ;
+    void addUser(User user);
 
-    public User getUserByName(String userName) throws NoSuchUserException ;
+    User getUserByName(String userName) throws NoSuchUserException;
 
-    public User[] getUsersArray() ;
+    User[] getUsersArray();
 
-    public Set<String> getUserNames() ;
+    Set<String> getUserNames();
 
-    public Question getQuestionByQuizAndIndex(int quizId, int index);
+    Question getQuestionByQuizAndIndex(int quizId, int index);
+
+
+    Quiz getQuizById(int quizId);
 
 }

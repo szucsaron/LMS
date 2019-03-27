@@ -11,6 +11,7 @@
     Article article = (Article) request.getAttribute("article");
     Map<Integer, String> titles = (Map<Integer, String>) request.getAttribute("sidebar");
     int articleId = (int) request.getAttribute("articleId");
+    Integer quizId = (Integer) article.getQuizId();
 %>
 
 <html lang="en">
@@ -38,8 +39,8 @@
         <a class="button" href="logout">LOGOUT</a>
         <p> <%=article.getTitle()%> </p>
         <p> <%=article.getText()%> </p>
-        <% if (article.hasQuiz()) { %>
-            <a href="quiz?articleId=<%=articleId%>">
+        <% if (quizId != null) { %>
+            <a href="quiz?quizId=<%=articleId%>">
                 TAKE A QUIZ
             </a>
         <% } %>

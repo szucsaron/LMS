@@ -10,6 +10,7 @@ import com.codecool.web.model.quiz.Quiz;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -110,10 +111,22 @@ public class MockDatabase implements Database {
     }
 
     public Question getQuestionByQuizAndIndex(int quizId, int index) {
+        List<Article> articles = content.getAllArticles();
         for (Article article : content.getAllArticles()) {
             Quiz currQuiz = article.getQuiz();
             if (currQuiz!= null && currQuiz.getId() == quizId) {
                 return currQuiz.getQuestion(index);
+            }
+        }
+        return null;
+    }
+
+    public Quiz getQuizById(int quizId) {
+        List<Article> articles = content.getAllArticles();
+        for (Article article : articles) {
+            Quiz currQuiz = article.getQuiz();
+            if (currQuiz!= null && currQuiz.getId() == quizId) {
+                return currQuiz;
             }
         }
         return null;

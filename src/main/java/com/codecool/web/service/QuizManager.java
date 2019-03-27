@@ -13,7 +13,8 @@ public class QuizManager {
         this.user = user;
     }
 
-    public void handleNext(int questionId, int solution) {
+    public void handleNext(Question question, int solution) {
+        /*
         Question question;
 
 
@@ -22,8 +23,8 @@ public class QuizManager {
         if (question.validateAnswer(solution)) {
             user.incrementScore();
         }
+        */
 
     }
-
 
 }

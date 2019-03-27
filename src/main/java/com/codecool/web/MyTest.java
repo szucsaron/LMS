@@ -1,6 +1,7 @@
 package com.codecool.web;
 
 
+import com.codecool.web.model.Article;
 import com.codecool.web.model.Content;
 import com.codecool.web.model.quiz.Answer;
 import com.codecool.web.model.quiz.Question;
@@ -17,7 +18,7 @@ public class MyTest {
 
         Content content = databaseLoader.loadContent("src/main/webapp/articles.xml", "src/main/webapp/quizzes.xml");
         Database db = new MockDatabase(content);
-        Question question = db.getQuestionByQuizAndIndex(1, 1);
+        Question question = db.getQuestionByQuizAndIndex(0, 0);
         System.out.println(question);
 
     }

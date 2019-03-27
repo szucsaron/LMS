@@ -74,11 +74,12 @@ public class Article {
     }
 
     public void addQuiz(Quiz quiz) {
+        this.quizId = quiz.getId();
         this.quiz = quiz;
     }
 
     public boolean hasQuiz() {
-        return quiz != null;
+        return quizId != null;
     }
 
     public Integer getQuizId() {
