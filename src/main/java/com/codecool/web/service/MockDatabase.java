@@ -31,8 +31,10 @@ public class MockDatabase implements Database {
 
         DatabaseLoader databaseLoader = new DatabaseLoader();
         User user = new User("jancsi", "1234", "adda@adasd.hu", "STUDENT");
+        User mentor = new User("pali", "1234", "mentor@asd.hu", "MENTOR");
         user.setProgress(1);
         addUser(user);
+        addUser(mentor);
 
         try {
             content = databaseLoader.loadContent(locationPrefix + "articles.xml", locationPrefix + "quizzes.xml");

@@ -57,7 +57,7 @@ public class ContentServlet extends HttpServlet {
 
         req.setAttribute("sidebar", sidebar);
 
-        if (user.getRole().equals("MENTOR")) {
+        if (user.getRole().toUpperCase().equals("MENTOR")) {
             req.getRequestDispatcher("mentorContent.jsp").forward(req, resp);
         } else {
             req.getRequestDispatcher("studentContent.jsp").forward(req, resp);
