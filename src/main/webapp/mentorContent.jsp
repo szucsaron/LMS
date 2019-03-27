@@ -41,11 +41,6 @@
         <a class="button" href="logout">LOGOUT</a>
         <p> <%=article.getTitle()%> </p>
         <p> <%=article.getText()%> </p>
-        <% if (article.hasQuiz()) { %>
-            <a href="quiz?articleId=<%=articleId%>">
-                TAKE A QUIZ
-            </a>
-        <% } %>
     </div>
 </body>
 </html>

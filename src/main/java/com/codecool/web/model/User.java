@@ -33,8 +33,12 @@ public final class User {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.progress = 1;
         this.role = Role.valueOf(role);
+        if (role.equals("MENTOR")) {
+            progress = 666;
+        } else {
+            progress = 1;
+        }
         this.score = 0;
     }
 
