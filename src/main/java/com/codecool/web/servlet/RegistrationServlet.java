@@ -1,5 +1,6 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.model.User;
 import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;
@@ -26,7 +27,8 @@ public class RegistrationServlet extends HttpServlet {
         if (!service.validateRegistration(un)) {
             resp.sendRedirect("register.html");
         } else {
-            service.addUser(un, pw, em, role, 1);
+            User user = new User(un, pw, em, role);
+            service.addUser(user);
             resp.sendRedirect("index.html");
         }
     }
