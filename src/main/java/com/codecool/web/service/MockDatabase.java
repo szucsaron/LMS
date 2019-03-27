@@ -13,7 +13,7 @@ import java.util.*;
 
 public class MockDatabase implements Database {
     private String locationPrefix;
-    private boolean locationLoaded = false;
+    private boolean  locationLoaded = false;
     private static MockDatabase database = new MockDatabase();
     private HashMap<String, User> users = new HashMap<>();
 
@@ -106,8 +106,7 @@ public class MockDatabase implements Database {
     }
 
     public Question getQuestionByQuizAndIndex(int quizId, int index) {
-
-       return content.getQuestionsByQuizIndex(quizId, index);
+        return content.getQuestionsByQuizIndex(quizId, index);
     }
 
     public Quiz getQuizById(int quizId) {
@@ -119,39 +118,8 @@ public class MockDatabase implements Database {
         List<Quiz> quizlist = new ArrayList<>();
         for (Quiz quiz : content.getQuizzes().values()) {
             quizlist.add(quiz);
-
-        List<Article> articles = content.getAllArticles();
-        for (Article article : content.getAllArticles()) {
-            Quiz currQuiz = article.getQuiz();
-            if (currQuiz != null && currQuiz.getId() == quizId) {
-                return currQuiz.getQuestion(index);
-            }
         }
-        return null;
-    }
-
-    public Quiz getQuizById(int quizId) {
-        List<Article> articles = content.getAllArticles();
-        for (Article article : articles) {
-            Quiz currQuiz = article.getQuiz();
-            if (currQuiz != null && currQuiz.getId() == quizId) {
-                return currQuiz;
-            }
-        }
-        return null;
-    }
-
-    public List<Quiz> getAllQuizzes() {
-        List<Article> articles = content.getAllArticles();
-        List<Quiz> quizes = new ArrayList<>();
-        for (Article article : articles) {
-            Quiz currQuiz = article.getQuiz();
-            if (currQuiz != null) {
-                quizes.add(currQuiz);
-            }
-
-        }
-       return quizlist;
+        return quizlist;
     }
 
 
