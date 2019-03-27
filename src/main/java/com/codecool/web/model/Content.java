@@ -20,6 +20,7 @@ public class Content implements Iterable<Article> {
     }
 
     public List<Article> getAllArticles() {
+        int h = articles.size();
         return articles;
     }
 
