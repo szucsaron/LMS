@@ -38,6 +38,7 @@
         <a class="button" href="add_article">ARTICLE</a>
         <a class="button" href="quizlist">QUIZ-LIST</a>
         <a class="button" href="attendance">ATTENDANCE</a>
+        <a class="button" href="logout">LOGOUT</a>
         <p> <%=article.getTitle()%> </p>
         <p> <%=article.getText()%> </p>
         <% if (article.hasQuiz()) { %>
