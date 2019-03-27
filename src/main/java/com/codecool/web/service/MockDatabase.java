@@ -4,6 +4,9 @@ import com.codecool.web.model.Article;
 import com.codecool.web.model.Content;
 import com.codecool.web.model.NoSuchUserException;
 import com.codecool.web.model.User;
+import com.codecool.web.model.quiz.Answer;
+import com.codecool.web.model.quiz.Question;
+import com.codecool.web.model.quiz.Quiz;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -99,4 +102,15 @@ public class MockDatabase implements Database {
     public Set<String> getUserNames() {
         return users.keySet();
     }
+
+    public Question getQuestionByQuizAndIndex(int quizId, int index) {
+        Question question = new Question("What is a bird?", 0);
+        question.addAnswer(new Answer(0, "Anyád", false));
+        question.addAnswer(new Answer(1, "A kitchen appliance", false));
+        question.addAnswer(new Answer(1, "A breed of dog", false));
+        question.addAnswer(new Answer(1, "An animal", true));
+        return question;
+    }
+
+
 }

@@ -5,6 +5,7 @@ import com.codecool.web.model.Content;
 import com.codecool.web.model.NoSuchUserException;
 
 import com.codecool.web.model.User;
+import com.codecool.web.model.quiz.Question;
 
 import java.io.IOException;
 import java.util.*;
@@ -28,5 +29,6 @@ public interface Database {
 
     public Set<String> getUserNames() ;
 
+    public Question getQuestionByQuizAndIndex(int quizId, int index);
 
 }
