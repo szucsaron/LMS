@@ -32,7 +32,7 @@ public interface Database {
 
     Question getQuestionByQuizAndIndex(int quizId, int index);
 
-
     Quiz getQuizById(int quizId);
 
+    List<Quiz> getAllQuizzes();
 }

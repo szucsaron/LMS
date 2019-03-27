@@ -9,10 +9,7 @@ import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class MockDatabase implements Database {
     private String locationPrefix;
@@ -40,7 +37,6 @@ public class MockDatabase implements Database {
         try {
             content = databaseLoader.loadContent(locationPrefix + "articles.xml", locationPrefix + "quizzes.xml");
         } catch (IOException e) {
-            System.out.println("asfsd");
         }
     }
 
@@ -55,7 +51,6 @@ public class MockDatabase implements Database {
             try {
                 content = databaseLoader.loadContent(locationPrefix + "articles.xml", locationPrefix + "quizzes.xml");
             } catch (IOException e) {
-                System.out.println("asfsd");
             }
             locationLoaded = true;
         }
@@ -90,6 +85,7 @@ public class MockDatabase implements Database {
     }
 
     public void addUser(User user) {
+        User f = user;
         users.put(user.getUsername(), user);
     }
 
@@ -130,6 +126,18 @@ public class MockDatabase implements Database {
             }
         }
         return null;
+    }
+
+    public List<Quiz> getAllQuizzes() {
+        List<Article> articles = content.getAllArticles();
+        List<Quiz> quizes = new ArrayList<>();
+        for (Article article : articles) {
+            Quiz currQuiz = article.getQuiz();
+            if (currQuiz!= null) {
+                quizes.add(currQuiz);
+            }
+        }
+        return quizes;
     }
 
 
