@@ -62,7 +62,7 @@ public class Article {
     }
 
     public String toString() {
-        String out =   id + " " + title + "\n" + text + "\n";
+        String out = id + " " + title + "\n" + text + "\n";
         if (quiz != null) {
             out += quiz.toString();
         }

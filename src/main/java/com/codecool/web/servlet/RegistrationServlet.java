@@ -1,6 +1,5 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.model.User;
 import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/register")
 public class RegistrationServlet extends HttpServlet {
@@ -26,7 +24,7 @@ public class RegistrationServlet extends HttpServlet {
         String role = req.getParameter("role");
 
         if (!service.validateRegistration(un)) {
-                resp.sendRedirect("register.html");
+            resp.sendRedirect("register.html");
         } else {
             service.addUser(un, pw, em, role, 1);
             resp.sendRedirect("index.html");
