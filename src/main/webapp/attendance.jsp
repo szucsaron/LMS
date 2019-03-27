@@ -35,11 +35,11 @@
         <h2>Attendance</h2>
 
         <form action="attendance" method="POST">
-            <input id="datefield" type='date' min='1899-01-01' max='2000-13-13'></input><br>
+            <input name="date" id="datefield" type='date' min='1899-01-01' max='2000-13-13'></input><br>
             <% for (User u : users) { %>
                 <% if (u.getRole().equals("STUDENT")) { %>
                 <td>
-                <tr><%= u.getUsername() %></tr><tr><input type="checkbox" name="cucc" value="TRUE"></tr>
+                <tr><%= u.getUsername() %></tr><tr><input type="checkbox" name="attend" value="TRUE"></tr>
                 <% } %>
             <% } %>
                 </td>
