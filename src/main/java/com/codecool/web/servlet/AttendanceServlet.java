@@ -17,7 +17,7 @@ import java.util.Date;
 
 @WebServlet("/attendance")
 public class AttendanceServlet extends HttpServlet {
-    
+
     private Database database = MockDatabase.getInstance();
     private User[] users = database.getUsersArray();
 

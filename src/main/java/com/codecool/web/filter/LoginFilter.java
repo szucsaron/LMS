@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter("/protected/*")
+@WebFilter("/*")
 public final class LoginFilter implements Filter {
 
     private final UserService us = new UserService();
@@ -25,12 +25,12 @@ public final class LoginFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) response;
         String path = ((HttpServletRequest) request).getRequestURI();
         HttpSession session = req.getSession();
-        if (path.endsWith(".css") || path.endsWith("index.html")) {
+        if (path.endsWith(".css") || path.endsWith("login") || path.endsWith(".png") || path.endsWith("index.html")) {
             chain.doFilter(req, resp);
         } else {
             User user = (User) session.getAttribute("user");
             if (user == null) {
-                resp.sendRedirect("../index.html");
+                resp.sendRedirect("index.html");
             } else {
                 chain.doFilter(req, resp);
             }
