@@ -34,8 +34,8 @@
     </div>
     <div class="rightbar">
         <a class="button" href="users">USERS</a>
-        <a class="button" href="profile">PROFILE</a>
-        <a class="button" href="quizlist">QUIZ-LIST</a>
+        <a class="button" href="profile">EDIT PROFILE</a>
+        <a class="button" href="quizlist">MY ASSIGNMENTS</a>
         <a class="button" href="logout">LOGOUT</a>
         <p> <%=article.getTitle()%> </p>
         <p> <%=article.getText()%> </p>

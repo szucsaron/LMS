@@ -59,7 +59,7 @@ public class ContentServlet extends HttpServlet {
 
         if (user.getRole().toUpperCase().equals("MENTOR")) {
             req.getRequestDispatcher("mentorContent.jsp").forward(req, resp);
-        } else {
+        } else if (user.getRole().toUpperCase().equals("STUDENT")) {
             req.getRequestDispatcher("studentContent.jsp").forward(req, resp);
         }
     }
