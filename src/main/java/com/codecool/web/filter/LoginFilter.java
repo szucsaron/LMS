@@ -25,7 +25,7 @@ public final class LoginFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) response;
         String path = ((HttpServletRequest) request).getRequestURI();
         HttpSession session = req.getSession();
-        if (path.endsWith(".css") || path.endsWith("login") || path.endsWith(".png") || path.endsWith("index.html")) {
+        if (path.endsWith(".css") || path.endsWith("login") || path.endsWith("register.html") || path.endsWith(".png") || path.endsWith("index.html")) {
             chain.doFilter(req, resp);
         } else {
             User user = (User) session.getAttribute("user");
