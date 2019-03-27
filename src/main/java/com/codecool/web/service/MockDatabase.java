@@ -41,6 +41,10 @@ public class MockDatabase implements Database {
         }
     }
 
+    public MockDatabase(Content content) {
+        this.content = content;
+    }
+
     public void setLocation(String locationPrefix) {
         if (!locationLoaded) {
             this.locationPrefix = locationPrefix;
@@ -104,12 +108,13 @@ public class MockDatabase implements Database {
     }
 
     public Question getQuestionByQuizAndIndex(int quizId, int index) {
-        Question question = new Question("What is a bird?", 0);
-        question.addAnswer(new Answer(0, "Anyád", false));
-        question.addAnswer(new Answer(1, "A kitchen appliance", false));
-        question.addAnswer(new Answer(1, "A breed of dog", false));
-        question.addAnswer(new Answer(1, "An animal", true));
-        return question;
+        for (Article article : content.getAllArticles()) {
+            Quiz currQuiz = article.getQuiz();
+            if (currQuiz!= null && currQuiz.getId() == quizId) {
+                return currQuiz.getQuestion(index);
+            }
+        }
+        return null;
     }
 
 
