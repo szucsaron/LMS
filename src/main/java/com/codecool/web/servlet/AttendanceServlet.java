@@ -2,6 +2,7 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.service.Database;
 import com.codecool.web.model.User;
+import com.codecool.web.service.MockDatabase;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +13,8 @@ import java.io.IOException;
 
 @WebServlet("/attendance")
 public class AttendanceServlet extends HttpServlet {
-    
-    private Database database = Database.getInstance();
+
+    private Database database = MockDatabase.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
