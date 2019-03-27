@@ -52,7 +52,8 @@ public class DatabaseLoader {
         }
 
 
-        Content content = new Content(articleList);
+
+        Content content = new Content(quizzes, articleList);
 
 
         return content;

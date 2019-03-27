@@ -70,6 +70,7 @@ public class Article {
     }
 
     public boolean hasAccess(User user) {
+        int k = user.getProgress();
         return user.getProgress() >= level;
     }
 

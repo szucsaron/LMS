@@ -9,6 +9,7 @@ public class Quiz implements Iterable<Question>{
 
     private String description;
     private int mistakeLimit = 1;
+    private int size = 0;
 
     public int getId() {
         return id;
@@ -27,6 +28,7 @@ public class Quiz implements Iterable<Question>{
 
     public void addQuestion(Question question) {
         this.questions.add(question);
+        size++;
     }
 
     public Iterator<Question> iterator () {
@@ -43,7 +45,7 @@ public class Quiz implements Iterable<Question>{
     }
 
     public int size() {
-        return questions.size();
+        return size;
     }
 
     public String toString () {
@@ -52,6 +54,10 @@ public class Quiz implements Iterable<Question>{
             out += question;
         }
         return out;
+    }
+
+    public void removeQuestions() {
+        questions = null;
     }
 
 }
