@@ -40,9 +40,11 @@ public class LogInServlet extends HttpServlet {
                 resp.addCookie(new Cookie("password", pw));
                 resp.sendRedirect("content");
             } else {
+                req.setAttribute("errMsg", "Wrong username or password!");
                 req.getRequestDispatcher("index.html").forward(req, resp);
             }
         } catch (NoSuchUserException e) {
+            req.setAttribute("errMsg", "Wrong username!");
             resp.sendRedirect("index.html");
         }
 
