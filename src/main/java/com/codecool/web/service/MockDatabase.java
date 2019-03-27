@@ -25,7 +25,6 @@ public class MockDatabase implements Database {
 
     public MockDatabase() {
 
-        content = new Content();
 
         DatabaseLoader databaseLoader = new DatabaseLoader();
         User user = new User("jancsi", "1234", "adda@adasd.hu", "STUDENT");
@@ -57,20 +56,20 @@ public class MockDatabase implements Database {
     }
 
     public Article getArticle(int id) {
-        return content.getArticle(id);
+        return content.getArticles().get(id);
     }
 
     public Map<Integer, String> getArticleIds() {
         Map<Integer, String> ids = new HashMap<>();
-        int size = content.size();
-        for (int i = 0; i < size; i++) {
-            ids.put(i, content.getArticle(i).getTitle());
+        Set<Integer> keys = content.getArticles().keySet();
+        for (int key : keys) {
+            ids.put(key, content.getArticles().get(key).getTitle());
         }
         return ids;
     }
 
     public void addArticle(Article article) {
-        content.addArticle(article);
+        content.getArticles().put(article.getId(), article);
     }
 
     public Map<Integer, String> getArticleIdsBySearch(String toFind) {
@@ -107,37 +106,20 @@ public class MockDatabase implements Database {
     }
 
     public Question getQuestionByQuizAndIndex(int quizId, int index) {
-        List<Article> articles = content.getAllArticles();
-        for (Article article : content.getAllArticles()) {
-            Quiz currQuiz = article.getQuiz();
-            if (currQuiz!= null && currQuiz.getId() == quizId) {
-                return currQuiz.getQuestion(index);
-            }
-        }
-        return null;
+       return content.getQuestionsByQuizIndex(quizId, index);
     }
 
     public Quiz getQuizById(int quizId) {
-        List<Article> articles = content.getAllArticles();
-        for (Article article : articles) {
-            Quiz currQuiz = article.getQuiz();
-            if (currQuiz!= null && currQuiz.getId() == quizId) {
-                return currQuiz;
-            }
-        }
-        return null;
+
+        return content.getQuizzes().get(quizId);
     }
 
     public List<Quiz> getAllQuizzes() {
-        List<Article> articles = content.getAllArticles();
-        List<Quiz> quizes = new ArrayList<>();
-        for (Article article : articles) {
-            Quiz currQuiz = article.getQuiz();
-            if (currQuiz!= null) {
-                quizes.add(currQuiz);
-            }
+        List<Quiz> quizlist = new ArrayList<>();
+        for (Quiz quiz : content.getQuizzes().values()) {
+            quizlist.add(quiz);
         }
-        return quizes;
+       return quizlist;
     }
 
 

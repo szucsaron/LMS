@@ -1,47 +1,51 @@
 package com.codecool.web.model;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import com.codecool.web.model.quiz.Question;
+import com.codecool.web.model.quiz.Quiz;
 
-public class Content implements Iterable<Article> {
-    private List<Article> articles;
+import java.util.*;
 
-    public Content() {
-        articles = new ArrayList<>();
+public class Content {
+    private Map<Integer, Quiz> quizzes;
+    private Map<Integer, Quiz> questionContainerQuiz = new HashMap<>();
+    private Map<Integer, Question> questions;
+    private Map<Integer, Article> articles;
+
+
+    public Content(Map<Integer, Quiz> quizzes, List<Article> articles) {
+        this.quizzes = quizzes;
+
+        for (Integer quizId : quizzes.keySet()) {
+            Quiz old = quizzes.get(quizId);
+            Quiz container = new Quiz(old.getId(), null);
+            for (Question question : old) {
+                container.addQuestion(question);
+            }
+            questionContainerQuiz.put(quizId, container);
+            old.removeQuestions();
+        }
+
+        this.articles = new HashMap<>();
+        for (Article article : articles) {
+            this.articles.put(article.getId(), article);
+        }
+
     }
 
-    public Content(List<Article> articles) {
-        this.articles = articles;
+    public Map<Integer, Quiz> getQuizzes() {
+        return quizzes;
     }
 
-    public void addArticle(Article article) {
-        articles.add(article);
+    public Map<Integer, Question> getQuestions() {
+        return questions;
     }
 
-    public List<Article> getAllArticles() {
-        int h = articles.size();
+    public Map<Integer, Article> getArticles() {
         return articles;
     }
 
-    public Article getArticle(int id) {
-        return articles.get(id);
-    }
-
-    public int size() {
-        return articles.size();
-    }
-
-    public Iterator<Article> iterator() {
-        return new ContentsIterator(this);
-    }
-
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Article article : this) {
-            sb.append(article);
-        }
-        return sb.toString();
+    public Question getQuestionsByQuizIndex(int quizId, int index) {
+        return questionContainerQuiz.get(quizId).getQuestion(index);
     }
 
 }
