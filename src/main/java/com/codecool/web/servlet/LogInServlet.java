@@ -1,6 +1,7 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.NoSuchUserException;
+import com.codecool.web.model.User;
 import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;
@@ -22,9 +23,7 @@ public class LogInServlet extends HttpServlet {
         }
         HttpSession newSession = req.getSession(true);
         newSession.setMaxInactiveInterval(5*60);
-
         req.getRequestDispatcher("index.html").forward(req, resp);
-
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,11 +34,13 @@ public class LogInServlet extends HttpServlet {
 
         try {
             if (service.validateLogIn(un, pw)) {
+                User user = service.getCurrentUser(req);
+                req.getSession().setAttribute("user", user);
                 resp.addCookie(new Cookie("name", un));
                 resp.addCookie(new Cookie("password", pw));
                 resp.sendRedirect("content");
             } else {
-                resp.sendRedirect("index.html");
+                req.getRequestDispatcher("index.html").forward(req, resp);
             }
         } catch (NoSuchUserException e) {
             resp.sendRedirect("index.html");

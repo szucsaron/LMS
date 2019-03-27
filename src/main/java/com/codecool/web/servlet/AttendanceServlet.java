@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet("/attendance")
 public class AttendanceServlet extends HttpServlet {
-
+    
     private Database database = MockDatabase.getInstance();
 
     @Override
