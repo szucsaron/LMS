@@ -2,6 +2,9 @@ package com.codecool.web.model;
 
 import com.codecool.web.model.quiz.Quiz;
 
+import java.util.Date;
+import java.util.HashMap;
+
 public final class User {
 
     private String username;
@@ -9,12 +12,12 @@ public final class User {
     private final String email;
     private int progress;
     private Role role;
-
     private int score;
     private Quiz actualQuiz;
+    private HashMap<Date, Boolean> attendance = new HashMap<>();
 
-    public int getScore() {
-        return score;
+    public enum Role {
+        GUEST, STUDENT, MENTOR, ADMIN
     }
 
     public User() {
@@ -24,10 +27,6 @@ public final class User {
         this.progress = 0;
         this.role = Role.GUEST;
         this.score = 0;
-    }
-
-    public enum Role {
-        GUEST, STUDENT, MENTOR, ADMIN
     }
 
     public User(String username, String password, String email, String role) {
@@ -47,10 +46,15 @@ public final class User {
         return this.password;
     }
 
-    public String getEmail() { return this.email; }
+    public String getEmail() {
+        return this.email; }
 
     public String getRole() {
         return String.valueOf(this.role);
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public void setUsername(String username) {
@@ -61,7 +65,8 @@ public final class User {
         this.password = password;
     }
 
-    public int getProgress() { return progress;}
+    int getProgress() {
+        return progress;}
 
     public void setProgress(int progress) {
         this.progress = progress;
@@ -69,6 +74,14 @@ public final class User {
 
     public void incrementScore() {
         score += 1;
+    }
+
+    public void setAttendance(Date date, Boolean wasHere) {
+        attendance.put(date, wasHere);
+    }
+
+    public Boolean getAttendance(Date date) {
+        return attendance.containsKey(date) ? attendance.get(date) : Boolean.FALSE;
     }
 
     public void setRole(String type) {

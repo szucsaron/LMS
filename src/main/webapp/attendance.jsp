@@ -39,7 +39,7 @@
             <% for (User u : users) { %>
                 <% if (u.getRole().equals("STUDENT")) { %>
                 <td>
-                <tr><%= u.getUsername() %></tr><tr><input type="checkbox" name="attend" value="TRUE"></tr>
+                <tr><%= u.getUsername() %></tr><tr><input type="checkbox" name="<%= u.getUsername() %>" value="TRUE"></tr>
                 <% } %>
             <% } %>
                 </td>
