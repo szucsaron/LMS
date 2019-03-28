@@ -10,15 +10,6 @@ body {
 
 }
 
-h2 {
-    text-align: center;
-    margin-top: 2%;
-    margin-left: 2%;
-    color: white;
-    font-weight: bold;
-    font-family: 'Comfortaa';
-}
-
 .login {
     text-align: center;
     opacity: 1;
@@ -26,6 +17,29 @@ h2 {
     overflow: none;
     width: 25%;
     height: 55%;
+
+.login {
+    opacity:0.8;
+    background-color: #3d3d37;
+    width: 485px;
+    height: 485px;
+    padding: 15px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    border: 2px solid #FAED26;
+    border-radius: 5px;
+    font-family: 'Crimson Text', serif;
+    font-size: 0.875em;
+}
+
+.users {
+    background-color: #3d3d37;
+    width: 485px;
+    height: 485px;
     padding: 15px;
     position: absolute;
     left: 450px;
@@ -115,12 +129,40 @@ h2 {
     color: #996633;
 }
 
+.login p {
+    color: white;
+    font-weight: 300;
+    margin: 10px;
+    padding: 2%;
+}
+
+.login form select {
+    color: white;
+    margin-left: 0px;
+    background-color: #3d3d37;
+    padding: 8px;
+    padding-right: 14px;
+    padding-left: 14px;
+    border: 2px #FAED26;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1.5px;
+    font-family: 'Crimson Text', serif;
+}
+
+.login form {
+    color: white;
+    position: relative;
+    margin: auto;
+    padding-left: auto;
+    padding-right: auto;
+}
+
 .users p {
     color: white;
     font-weight: 300;
     margin: 10px;
     padding: 5%;
-    padding-left: 5%;
 }
 
 .users form {
