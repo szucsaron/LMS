@@ -42,5 +42,6 @@ public class AttendanceServlet extends HttpServlet {
             req.setAttribute("errorMessage", "Invalid date!");
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
+        resp.sendRedirect("content");
     }
 }
