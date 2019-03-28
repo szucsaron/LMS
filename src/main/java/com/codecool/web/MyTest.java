@@ -11,6 +11,7 @@ import com.codecool.web.service.DatabaseLoader;
 import com.codecool.web.service.MockDatabase;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MyTest {
     public static void main(String[] args) throws IOException{
@@ -18,8 +19,11 @@ public class MyTest {
 
         Content content = databaseLoader.loadContent("src/main/webapp/articles.xml", "src/main/webapp/quizzes.xml");
         Database db = new MockDatabase(content);
-        Question question = db.getQuestionByQuizAndIndex(0, 0);
-        System.out.println(question);
+        List<Integer> kecske = db.getQuizIdsByLevel(4);
+
+        for (int n : kecske) {
+            System.out.println(n);
+        }
 
     }
 }

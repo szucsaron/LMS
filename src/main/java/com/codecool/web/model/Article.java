@@ -48,6 +48,10 @@ public class Article {
         this.level = level;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
