@@ -2,8 +2,10 @@ package com.codecool.web.model;
 
 import com.codecool.web.model.quiz.Quiz;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 public final class User {
 
@@ -14,6 +16,8 @@ public final class User {
     private Role role;
     private int score;
     private Quiz actualQuiz;
+    private List<Integer> filledTests = new ArrayList<>();
+    private List<Integer> okTests = new ArrayList<>();
     private HashMap<Date, Boolean> attendance = new HashMap<>();
 
     public enum Role {
@@ -70,7 +74,7 @@ public final class User {
         this.password = password;
     }
 
-    int getProgress() {
+    public int getProgress() {
         return progress;
     }
 
@@ -99,9 +103,18 @@ public final class User {
     }
 
     public void endQuiz(int lvlIncrease) {
+        filledTests.add(actualQuiz.getId());
         progress += lvlIncrease;
         actualQuiz = null;
         score = 0;
+    }
+
+    public List<Integer> getFilledTests() {
+        return filledTests;
+    }
+
+    public List<Integer> getOkTests() {
+        return okTests;
     }
 
     public boolean quizStarted() {

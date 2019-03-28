@@ -68,7 +68,16 @@ public class MockDatabase implements Database {
     }
 
     public void addArticle(Article article) {
-        content.getArticles().put(article.getId(), article);
+        int maxId = 0;
+        Map<Integer, Article> articles = content.getArticles();
+        for (int id : articles.keySet()) {
+            if (id > maxId) {
+                maxId = id;
+            }
+        }
+        maxId++;
+        article.setId(maxId);
+        content.getArticles().put(maxId, article);
     }
 
     public Map<Integer, String> getArticleIdsBySearch(String toFind) {
@@ -119,6 +128,16 @@ public class MockDatabase implements Database {
             quizlist.add(quiz);
         }
         return quizlist;
+    }
+
+    public List<Integer> getQuizIdsByLevel(int lvl) {
+        List<Integer> quizIds = new ArrayList<>();
+        for (Article article : content.getArticles().values()) {
+            if (article.getLevel() <= lvl) {
+                quizIds.add(article.getQuizId());
+            }
+        }
+        return quizIds;
     }
 
 

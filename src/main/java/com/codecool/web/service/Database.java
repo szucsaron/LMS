@@ -35,4 +35,7 @@ public interface Database {
     Quiz getQuizById(int quizId);
 
     List<Quiz> getAllQuizzes();
+
+    public List<Integer> getQuizIdsByLevel(int lvl);
+
 }
