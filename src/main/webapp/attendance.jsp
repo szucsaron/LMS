@@ -8,34 +8,28 @@
     <meta charset="iso-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeCool LMS</title>
-    <link rel="stylesheet" href="content.css" href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700">
+    <link rel="stylesheet" href="index.css" href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 <body>
-    <script>
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //January is 0!
-        var yyyy = today.getFullYear();
-        if(dd<10){
-              dd='0'+dd
-          }
-          if(mm<10){
-              mm='0'+mm
-          }
-        today = yyyy+'-'+mm+'-'+dd;
-        document.getElementById("datefield").setAttribute("max", today);
-    </script>
-
     <%
         // Java init
         User[] users = (User[]) request.getAttribute("users");
     %>
+    <script>
+         $(function() {
+            $('#datepicker').datepicker().datepicker('setDate', new Date());
+            $("#datepicker").attr("autocomplete", "off");
+         });
+    </script>
 
     <div class="users">
         <h2>Attendance</h2>
 
-        <form action="attendance" method="POST">
-            <input name="date" id="datefield" type='date' min='1899-01-01' max='2000-13-13'></input><br>
+        <form class="attendance" action="attendance" method="POST">
+            <input type="text" id="datepicker" name="date" ></input><br><br>
             <% for (User u : users) { %>
                 <% if (u.getRole().equals("STUDENT")) { %>
                 <td>
@@ -43,7 +37,8 @@
                 <% } %>
             <% } %>
                 </td>
-            <br><input type="submit" value="Submit">
+            <br><br>
+            <input type="submit" value="Submit">
         </form>
 
     </div>

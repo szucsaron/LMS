@@ -27,8 +27,8 @@ public class MockDatabase implements Database {
 
 
         DatabaseLoader databaseLoader = new DatabaseLoader();
-        User user = new User("jancsi", "1234", "adda@adasd.hu", "STUDENT");
-        User mentor = new User("pali", "1234", "mentor@asd.hu", "MENTOR");
+        User user = new User("Jancsi", "1234", "student@codecool.com", "STUDENT");
+        User mentor = new User("Pali", "1234", "mentor@codecool.com", "MENTOR");
         addUser(user);
         addUser(mentor);
 
