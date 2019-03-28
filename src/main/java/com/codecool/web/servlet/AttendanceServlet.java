@@ -31,7 +31,7 @@ public class AttendanceServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String dateString = req.getParameter("date");
 
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 
         try {
             Date date = df.parse(dateString);

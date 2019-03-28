@@ -283,3 +283,7 @@ a:hover {
     color: #FAED26;
     text-decoration: none;
 }
+
+.attendance {
+    position: center;
+}
