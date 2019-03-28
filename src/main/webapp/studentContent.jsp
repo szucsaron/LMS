@@ -38,10 +38,10 @@
         <a class="button" href="profile">EDIT PROFILE</a>
         <a class="button" href="quizlist">MY ASSIGNMENTS</a>
         <a class="button" href="logout">LOGOUT</a>
-        <h2><p> <%=article.getTitle()%> </p>
-        <p> <%=article.getText()%> </p>
+        <h2><p> <%=article.getTitle()%> <br><br>
+        <%=article.getText()%> </p>
         <% if (quizId != null) { %>
-            <a href="quiz?quizId=<%=articleId%>">
+            <a href="quiz?quizId=<%=articleId%>"><br>
                 TAKE A QUIZ
             </a>
         <% } %></h2>

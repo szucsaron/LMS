@@ -41,8 +41,8 @@
         <a class="button" href="quizlist">ASSIGNMENTS</a>
         <a class="button" href="attendance">ATTENDANCE</a>
         <a class="button" href="logout">LOGOUT</a>
-        <h2><p> <%=article.getTitle()%> </p>
-        <p> <%=article.getText()%> </p><h2>
+        <h2><p> <%=article.getTitle()%><br><br>
+        <%=article.getText()%> </p><h2>
     </div>
 </body>
 </html>
