@@ -17,13 +17,13 @@
         // Java init
         String role = (String) request.getAttribute("role");
         Map<Integer, String> allQuiz = (Map<Integer, String>) request.getAttribute("quizes");
-        if (role.equals("STUDENT")) {
-          List<Integer> avaiableQuiz = (List<Integer>) request.getAttribute("avaiable");
+
+          List<Integer> availableQuiz = (List<Integer>) request.getAttribute("available");
           List<Integer> committed = (List<Integer>) request.getAttribute("committed");
           List<Integer> passed = (List<Integer>) request.getAttribute("passed");
-        } else if (role.equals("MENTOR")) {
-          Map<Stirng, List<Integer>> toCheck = (Map<String, List<Integer>>) request.getAttribute("check");
-        }
+
+          Map<String, List<Integer>> toCheck = (Map<String, List<Integer>>) request.getAttribute("check");
+
 
     %>
 
@@ -33,8 +33,8 @@
             <p>To do: </p>
               <ul>
                   <% for (Integer id : allQuiz.keySet()) { %>
-                      <% if (avaiableQuiz.contains(id)) { %>
-                          <li><a href="quiz?articleId=<%=id%>"><%= allQuiz.get(id) %></a></li>
+                      <% if (availableQuiz.contains(id)) { %>
+                          <li><a href="quiz?quizId=<%=id%>"><%= allQuiz.get(id) %></a></li>
                       <% } %>
                   <% } %>
               </ul>
@@ -54,13 +54,13 @@
                       <% } %>
                   <% } %>
               </ul>
-        <% } else if (role.equals("MENTOR") { %>
+        <% } else if (role.equals("MENTOR")) { %>
             <p>To check:</p>
             <ul>
                 <% for (String student : toCheck.keySet()) { %>
                     <li><u><%= student %></u></li>
                     <% for (Integer id : toCheck.get(student)) { %>
-                        <li><a href="quiz?articleId=<%=id%>"><%= allQuiz.get(id) %></a></li>
+                        <li><a href="quiz?quizId=<%=id%>"><%= allQuiz.get(id) %></a></li>
                     <% } %>
                 <% } %>
             </ul>

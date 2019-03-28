@@ -35,11 +35,11 @@ public class QuizListingServlet extends HttpServlet {
             req.setAttribute("check", toCheck);
 
         } else if (role.equals("STUDENT")) {
-            List<Integer> avaiableQuiz = database.getQuizIdsByLevel(currentUser.getProgress());
+            List<Integer> availableQuiz = database.getQuizIdsByLevel(currentUser.getProgress());
             List<Integer> committed = currentUser.getFilledTests();
             List<Integer> passed = currentUser.getOkTests();
 
-            req.setAttribute("avaiable", avaiableQuiz);
+            req.setAttribute("available", availableQuiz);
             req.setAttribute("committed", committed);
             req.setAttribute("passed", passed);
         }
