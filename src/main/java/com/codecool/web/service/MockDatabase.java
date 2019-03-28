@@ -129,5 +129,15 @@ public class MockDatabase implements Database {
         return quizlist;
     }
 
+    public List<Integer> getQuizIdsByLevel(int lvl) {
+        List<Integer> quizIds = new ArrayList<>();
+        for (Article article : content.getArticles().values()) {
+            if (article.getLevel() <= lvl) {
+                quizIds.add(article.getQuizId());
+            }
+        }
+        return quizIds;
+    }
+
 
 }
