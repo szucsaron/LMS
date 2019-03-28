@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="content.css" href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700">
 </head>
 <body>
-value=<%=title%>
 <form action="edit_article" method="POST">
         <p><br>
             <input type="text" name="title" placeholder="title" value="<%=title%>">
