@@ -16,8 +16,8 @@ public final class User {
     private Role role;
     private int score;
     private Quiz actualQuiz;
-    private List<Quiz> filledTests = new ArrayList<>();
-    private List<Quiz> okTests = new ArrayList<>();
+    private List<Integer> filledTests = new ArrayList<>();
+    private List<Integer> okTests = new ArrayList<>();
     private HashMap<Date, Boolean> attendance = new HashMap<>();
 
     public enum Role {
@@ -103,14 +103,18 @@ public final class User {
     }
 
     public void endQuiz(int lvlIncrease) {
-        filledTests.add(actualQuiz);
+        filledTests.add(actualQuiz.getId());
         progress += lvlIncrease;
         actualQuiz = null;
         score = 0;
     }
 
-    public List<Quiz> getFilledTests() {
+    public List<Integer> getFilledTests() {
         return filledTests;
+    }
+
+    public List<Integer> getOkTests() {
+        return okTests;
     }
 
     public boolean quizStarted() {
