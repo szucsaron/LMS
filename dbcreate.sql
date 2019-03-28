@@ -20,8 +20,7 @@ create table quizes (
 create table questions (
 	id INT primary key,
 	quiz_id INT references quizes(id),
-	title VARCHAR(50),
-	correct_answer INT
+	title VARCHAR(50)
 );
 
 create table articles (
@@ -35,13 +34,13 @@ create table answers (
 	id INT,
 	question_id INT references questions(id),
 	answer VARCHAR(50),
-	primary key (id, question_id)
+	correct bit,
+	primary key (id)
 );
 
 create table solutions (
 	user_id INT references users(id),
-	question_id INT references questions(id),
-	answer VARCHAR(50),
-	primary key(user_id, question_id)
+	answer_id INT references answers(id),
+	primary key(user_id, answer_id)
 );
 
