@@ -74,7 +74,7 @@ public final class User {
         this.password = password;
     }
 
-    int getProgress() {
+    public int getProgress() {
         return progress;
     }
 

@@ -1,5 +1,6 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.model.User;
 import com.codecool.web.service.Database;
 import com.codecool.web.service.MockDatabase;
 import com.codecool.web.service.UserService;
@@ -22,10 +23,13 @@ public class QuizListingServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("quizlist.jsp");
+
+        User currentUser = us.getCurrentUser(req);
+
         Map<Integer, String> quizList = database.getArticleIds();
-        List<Integer> avaiableQuiz = database.getQuizIdsByLevel();
-        List<Integer> committed = us.getCurrentUser(req).getFilledTests();
-        List<Integer> passed = us.getCurrentUser(req).getOkTests();
+        List<Integer> avaiableQuiz = database.getQuizIdsByLevel(currentUser.getProgress());
+        List<Integer> committed = currentUser.getFilledTests();
+        List<Integer> passed = currentUser.getOkTests();
 
         req.setAttribute("quizes", quizList);
         req.setAttribute("avaiable", avaiableQuiz);
