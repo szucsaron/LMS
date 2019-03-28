@@ -75,6 +75,7 @@ public class MockDatabase implements Database {
                 maxId = id;
             }
         }
+        maxId++;
         article.setId(maxId);
         content.getArticles().put(maxId, article);
     }
