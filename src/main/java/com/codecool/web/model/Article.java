@@ -96,4 +96,12 @@ public class Article {
         return quizId;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
 }

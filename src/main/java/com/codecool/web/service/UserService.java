@@ -5,6 +5,9 @@ import com.codecool.web.model.User;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public final class UserService {
 
@@ -12,6 +15,14 @@ public final class UserService {
 
     public User[] getUsers() {
         return database.getUsersArray();
+    }
+
+    public Map<String, List<Integer>> getCommittedTests() {
+        Map<String, List<Integer>> committedTests = new HashMap<>();
+        for (User u : getUsers()) {
+            committedTests.put(u.getUsername(), u.getFilledTests());
+        }
+        return committedTests;
     }
 
     public void addUser(User user) {

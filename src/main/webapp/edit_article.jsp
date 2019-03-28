@@ -6,6 +6,9 @@
 <html lang="en">
 
 <%
+    String title = (String) request.getAttribute("title");
+    String content = (String) request.getAttribute("content");
+    String articleId = (String) request.getAttribute("articleId");
 
 %>
 
@@ -18,10 +21,12 @@
 <body>
 <form action="edit_article" method="POST">
         <p><br>
-        <input type="text" name="article_title" placeholder="title">
-        <br>
-        <br>
-        <input type="text" name="content" placeholder="content"></p>
+            <input type="text" name="title" placeholder="title" value="<%=title%>">
+            <br>
+            <br>
+            <input type="text" name="content" placeholder="content" value="<%=content%>">
+        </p>
+        <input type="hidden" name="articleId" value=<%=articleId%>>
         <br><br>
         <input type="submit" value="SAVE">
         <br>

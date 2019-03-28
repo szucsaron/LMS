@@ -26,15 +26,26 @@ public class QuizListingServlet extends HttpServlet {
 
         User currentUser = us.getCurrentUser(req);
 
+        String role = currentUser.getRole();
         Map<Integer, String> quizList = database.getArticleIds();
-        List<Integer> avaiableQuiz = database.getQuizIdsByLevel(currentUser.getProgress());
-        List<Integer> committed = currentUser.getFilledTests();
-        List<Integer> passed = currentUser.getOkTests();
 
+        if (role.equals("MENTOR")) {
+            Map<String, List<Integer>> toCheck = us.getCommittedTests();
+
+            req.setAttribute("check", toCheck);
+
+        } else if (role.equals("STUDENT")) {
+            List<Integer> availableQuiz = database.getQuizIdsByLevel(currentUser.getProgress());
+            List<Integer> committed = currentUser.getFilledTests();
+            List<Integer> passed = currentUser.getOkTests();
+
+            req.setAttribute("available", availableQuiz);
+            req.setAttribute("committed", committed);
+            req.setAttribute("passed", passed);
+        }
+
+        req.setAttribute("role", role);
         req.setAttribute("quizes", quizList);
-        req.setAttribute("avaiable", avaiableQuiz);
-        req.setAttribute("committed", committed);
-        req.setAttribute("passed", passed);
 
         requestDispatcher.forward(req, resp);
     }
