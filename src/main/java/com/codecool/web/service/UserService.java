@@ -14,8 +14,7 @@ public final class UserService {
         return database.getUsersArray();
     }
 
-    public void addUser(String username, String password, String email, String role) {
-        User user = new User(username, password, email, role);
+    public void addUser(User user) {
         database.addUser(user);
     }
 
