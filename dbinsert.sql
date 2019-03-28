@@ -13,59 +13,51 @@ insert into users (id, user_name) values
 
 -- Quiz 0
 
-insert into quizes values (0, 'Test Quiz 0');
+/*
+insert into questions (id, quiz_id, title) values 
+(, , '');
+insert into answers(question_id, id, answer, correct) values
+(, , '', '0'),
+(, , '', '0'),
+(, , '', '0'),
+(, , '', '0');
+ */
+
+insert into quizes values (0, 'How to goat?');
 
 insert into questions (id, quiz_id, title) values 
-(0, 0, 'What colour is the sky?');
-insert into answers(id, question_id, answer, correct) values
-(0, 0, 'Blue', '1'),
-(1, 0, 'Red', '0'),
-(2, 0, 'Yellow', '0'),
-(3, 0, 'Green', '0');
+(0, 0, 'Which on is the perfect name for a goat?');
+insert into answers(question_id, id, answer, correct) values
+(0, 0, 'Billy', '0'),
+(0, 1, 'Beth', '0'),
+(0, 2, 'Hector Brown Jr.', '0'),
+(0, 3, 'Anyád', '1');
 
 insert into questions (id, quiz_id, title) values 
-(1, 0, 'How many legs do you have?');
-insert into answers(id, question_id, answer, correct) values
-(4, 1, '1', '0'),
-(5, 1, '3', '0'),
-(6, 1, '2', '1'),
-(7, 1, '6', '0');
+(1, 0, 'What is the most frequent illness among goats?');
+insert into answers(question_id, id, answer, correct) values
+(1, 4, 'Fever', '0'),
+(1, 5, 'Cancer', '0'),
+(1, 6, 'Anyád', '1'),
+(1, 7, 'Parkinsons disease', '0');
 
 insert into questions (id, quiz_id, title) values 
-(2, 0, 'Do birds fly?');
-insert into answers(id, question_id, answer, correct) values
-(8, 2, 'Yes', '0'),
-(9, 2, 'No', '0'),
-(10, 2, 'Some birds dont', '1'),
-(11, 2, 'Cucumber', '0');
-
--- Quiz 1
-
-insert into quizes values (1, 'Test Quiz 1');
+(2, 0, 'How do you start a daily goat checkup?');
+insert into answers(question_id, id, answer, correct) values
+(2, 8, 'By calling my goats.', '1'),
+(2, 9, 'By calling my goats by their names', '0'),
+(2, 10, 'By calling my goats names', '0'),
+(2, 11, 'No.', '0');
 
 insert into questions (id, quiz_id, title) values 
-(3, 1, 'What is the capital of Ireland?');
-insert into answers(id, question_id, answer, correct) values
-(12, 3, 'Budapest', '0'),
-(13, 3, 'Dublin', '1'),
-(14, 3, 'Your mom', '0'),
-(15, 3, 'Texas', '0');
+(3, 0, 'What is a goat?');
+insert into answers(question_id, id, answer, correct) values
+(3, 12, 'A mammal.', '0'),
+(3, 13, 'A duck', '0'),
+(3, 14, 'An infectious disease', '0'),
+(3, 15, 'A goat is a mammal with all the hooves and none of the decency.', '1');
 
-insert into questions (id, quiz_id, title) values 
-(4, 1, 'How many hours are there in a day?');
-insert into answers(id, question_id, answer, correct) values
-(16, 4, '24', '1'),
-(17, 4, '33', '0'),
-(18, 4, '61', '0'),
-(19, 4, '42', '0');
 
-insert into questions (id, quiz_id, title) values 
-(5, 1, 'What is a cat?');
-insert into answers(id, question_id, answer, correct) values
-(20, 5, 'a dog', '0'),
-(21, 5, 'a mouse', '0'),
-(22, 5, 'a cat', '1'),
-(23, 5, 'not a mammal', '0');
 
 --**** Inserting Solutions
 

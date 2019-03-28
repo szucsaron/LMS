@@ -18,7 +18,7 @@
             <answer>By calling my goats names</answer>
             <answer>No.</answer>
         </question>
-        <question title="What is a goat" correct="3">
+        <question title="What is a goat?" correct="3">
             <answer>A mammal.</answer>
             <answer>A duck</answer>
             <answer>An infectious disease</answer>

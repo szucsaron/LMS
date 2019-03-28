@@ -27,9 +27,16 @@ public class MockDatabase implements Database {
 
 
         DatabaseLoader databaseLoader = new DatabaseLoader();
-        User user = new User("Jancsi", "1234", "student@codecool.com", "STUDENT");
+        User jancsi = new User("Jancsi", "1234", "student@codecool.com", "STUDENT");
+        User ludovikusz = new User("Ludovikusz", "1234", "student@codecool.com", "STUDENT");
+        ludovikusz.setProgress(3);
+
+        User erzsi = new User("Erzsi", "1234", "student@codecool.com", "STUDENT");
+        erzsi.setProgress(6);
         User mentor = new User("Pali", "1234", "mentor@codecool.com", "MENTOR");
-        addUser(user);
+        addUser(jancsi);
+        addUser(ludovikusz);
+        addUser(erzsi);
         addUser(mentor);
 
         try {

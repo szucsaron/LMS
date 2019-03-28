@@ -1,6 +1,6 @@
 package com.codecool.web.filter;
 
-/*
+
 import com.codecool.web.model.User;
 import com.codecool.web.service.UserService;
 
@@ -49,4 +49,4 @@ public final class SessionFilter implements Filter {
     public void destroy() {
     }
 }
-*/
+
