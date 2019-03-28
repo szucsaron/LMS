@@ -15,14 +15,17 @@
 <body>
     <%
         // Java init
-        Map<Integer, String> quiz = (Map<Integer, String>) request.getAttribute("quizes");
+        Map<Integer, String> allQuiz = (Map<Integer, String>) request.getAttribute("quizes");
+        List<Integer> avaiableQuiz = (List<Integer>) request.getAttribute("avaiable");
     %>
 
     <div class="users">
         <h2>Quizes</h2>
         <ul>
-            <% for (Integer id : quiz.keySet()) { %>
-                <li><a href="quiz?articleId=<%=id%>"><%= quiz.get(id) %></a></li>
+            <% for (Integer id : allQuiz.keySet()) { %>
+                <% if (avaiableQuiz.contains(id)) { %>
+                    <li><a href="quiz?articleId=<%=id%>"><%= allQuiz.get(id) %></a></li>
+                <% } %>
             <% } %>
         </ul>
     </div>
