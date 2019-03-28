@@ -33,23 +33,6 @@ h2 {
     bottom: 0;
     top: 0;
     margin: auto;
-    border: 2px solid #FAED26;
-    border-radius: 5px;
-    font-family: 'Crimson Text', serif;
-    font-size: 0.875em;
-}
-
-.users {
-    overflow: none;
-    width: 485px;
-    height: 485px;
-    padding: 15px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    margin: auto;
     border: 2px solid #996633;
     border-radius: 5px;
     font-family: Comfortaa;
@@ -74,20 +57,6 @@ h2 {
     width: 381px;
 }
 
-.login textarea {
-    color: white;
-    margin-left: 0px;
-    background-color: #3d3d37;
-    padding: 8px;
-    padding-right: 14px;
-    padding-left: 14px;
-    border: 2px #FAED26;
-    border-radius: 4px;
-    border-style: solid;
-    border-width: 1.5px;
-    font-family: 'Crimson Text', serif;
-}
-
 .login input[type = password] {
     color: white;
     margin-left: 0px;
@@ -104,6 +73,7 @@ h2 {
 
 .login input[type = submit] {
     color: white;
+<<<<<<< HEAD
     margin-left: 15px;
     background-color: rgba(0,0,0,.5);
     padding: 8px;
@@ -118,26 +88,6 @@ h2 {
 }
 
 .login input[type = "submit"]:hover {
-    color: #996633;
-    color: #fcf477;
-}
-
-.users input[type = "submit"] {
-    color: white;
-    margin-left: 20px;
-    background-color: #3d3d37;
-    padding: 8px;
-    padding-right: 14px;
-    padding-left: 14px;
-    border: 2px #FAED26;
-    border-radius: 4px;
-    border-style: solid;
-    border-width: 1.5px;
-    font-family: 'Crimson Text', serif;
-    font-weight: bold;
-}
-
-.users input[type = "submit"]:hover {
     color: #996633;
 }
 

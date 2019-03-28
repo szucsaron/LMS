@@ -31,39 +31,31 @@
         <h2>Quizzes</h2>
         <% if (role.equals("STUDENT")) { %>
             <p>To do: </p>
-              <ul>
                   <% for (Integer id : allQuiz.keySet()) { %>
                       <% if (availableQuiz.contains(id)) { %>
-                          <li><a href="quiz?quizId=<%=id%>"><%= allQuiz.get(id) %></a></li>
+                          <a href="quiz?quizId=<%=id%>"><%= allQuiz.get(id) %></a><br>
                       <% } %>
                   <% } %>
-              </ul>
             <p>Waiting for evaluation:</p>
-              <ul>
                   <% for (Integer id : allQuiz.keySet()) { %>
                       <% if (committed.contains(id)) { %>
-                          <li><%= allQuiz.get(id) %></li>
+                          <%= allQuiz.get(id) %><br>
                       <% } %>
                   <% } %>
-              </ul>
             <p>Successful assignments:</p>
-              <ul>
                   <% for (Integer id : allQuiz.keySet()) { %>
                       <% if (passed.contains(id)) { %>
-                          <li><%= allQuiz.get(id) %></li>
+                          <%= allQuiz.get(id) %><br>
                       <% } %>
                   <% } %>
-              </ul>
         <% } else if (role.equals("MENTOR")) { %>
             <p>To check:</p>
-            <ul>
                 <% for (String student : toCheck.keySet()) { %>
                     <i><%= student %></i><br>
                     <% for (Integer id : toCheck.get(student)) { %>
-                        <li><a href="quiz?quizId=<%=id%>"><%= allQuiz.get(id) %></a></li>
+                        <a href="quiz?quizId=<%=id%>"><%= allQuiz.get(id) %></a><br>
                     <% } %>
                 <% } %>
-            </ul>
         <% } %>
     </div>
 </body>

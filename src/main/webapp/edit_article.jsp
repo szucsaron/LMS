@@ -20,25 +20,13 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<form class="login" action="edit_article" method="POST">
-        <p><br>
-            <input type="text" name="title" placeholder="title" value="<%=title%>">
-            <br>
-            <br>
-            <input type="text" name="content" placeholder="content" value="<%=content%>">
-        </p>
-        <input type="hidden" name="articleId" value=<%=articleId%>>
-        <br><br>
-        <input type="submit" value="SAVE">
-        <br>
-    </form>
       <div class="login">
           <form action="edit_article" method="POST">
               <p><br>
                   <input type="text" name="title" placeholder="title" value="<%=title%>">
                   <br>
                   <br>
-                  <textarea rows="12" cols="34" type="text" name="content" placeholder="content"><%=content%></textarea>
+                  <textarea rows="8" cols="34" type="text" name="content" placeholder="content"><%=content%></textarea>
               </p>
               <input type="hidden" name="articleId" value=<%=articleId%>>
               <br><br>
