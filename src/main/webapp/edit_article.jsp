@@ -22,10 +22,11 @@
 value=<%=title%>
 <form action="edit_article" method="POST">
         <p><br>
-        <input type="text" name="article_title" placeholder="title" value=<%=content%>>
-        <br>
-        <br>
-        <input type="text" name="content" placeholder="content"></p>
+            <input type="text" name="title" placeholder="title" value="<%=title%>">
+            <br>
+            <br>
+            <input type="text" name="content" placeholder="content" value="<%=content%>">
+        </p>
         <input type="hidden" name="articleId" value=<%=articleId%>>
         <br><br>
         <input type="submit" value="SAVE">
