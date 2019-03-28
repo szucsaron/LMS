@@ -35,7 +35,7 @@
     <div class="rightbar">
         <a class="button" href="users">USERS</a>
         <a class="button" href="profile">EDIT PROFILE</a>
-        <a class="button" href="edit_article">EDIT ARTICLE</a>
+        <a class="button" href="edit_article?articleId=<%=article.getId()%>">EDIT ARTICLE</a>
         <a class="button" href="add_article">ADD ARTICLE</a>
         <a class="button" href="quizlist">ASSIGNMENTS</a>
         <a class="button" href="attendance">ATTENDANCE</a>

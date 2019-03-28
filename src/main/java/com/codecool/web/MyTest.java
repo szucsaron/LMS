@@ -1,11 +1,7 @@
 package com.codecool.web;
 
 
-import com.codecool.web.model.Article;
 import com.codecool.web.model.Content;
-import com.codecool.web.model.quiz.Answer;
-import com.codecool.web.model.quiz.Question;
-import com.codecool.web.model.quiz.Quiz;
 import com.codecool.web.service.Database;
 import com.codecool.web.service.DatabaseLoader;
 import com.codecool.web.service.MockDatabase;
