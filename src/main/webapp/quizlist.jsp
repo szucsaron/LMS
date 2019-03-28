@@ -17,17 +17,36 @@
         // Java init
         Map<Integer, String> allQuiz = (Map<Integer, String>) request.getAttribute("quizes");
         List<Integer> avaiableQuiz = (List<Integer>) request.getAttribute("avaiable");
+        List<Integer> committed = (List<Integer>) request.getAttribute("committed");
+        List<Integer> passed = (List<Integer>) request.getAttribute("passed");
     %>
 
     <div class="users">
         <h2>Quizes</h2>
-        <ul>
-            <% for (Integer id : allQuiz.keySet()) { %>
-                <% if (avaiableQuiz.contains(id)) { %>
-                    <li><a href="quiz?articleId=<%=id%>"><%= allQuiz.get(id) %></a></li>
-                <% } %>
-            <% } %>
-        </ul>
+        <p>To do: </p>
+          <ul>
+              <% for (Integer id : allQuiz.keySet()) { %>
+                  <% if (avaiableQuiz.contains(id)) { %>
+                      <li><a href="quiz?articleId=<%=id%>"><%= allQuiz.get(id) %></a></li>
+                  <% } %>
+              <% } %>
+          </ul>
+        <p>Waiting for evaluation:</p>
+          <ul>
+              <% for (Integer id : allQuiz.keySet()) { %>
+                  <% if (committed.contains(id)) { %>
+                      <li><%= allQuiz.get(id) %></li>
+                  <% } %>
+              <% } %>
+          </ul>
+        <p>Successful assignments:</p>
+          <ul>
+              <% for (Integer id : allQuiz.keySet()) { %>
+                  <% if (passed.contains(id)) { %>
+                      <li><%= allQuiz.get(id) %></li>
+                  <% } %>
+              <% } %>
+          </ul>
     </div>
 </body>
 </html>
