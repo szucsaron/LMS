@@ -20,7 +20,9 @@ public final class UserService {
     public Map<String, List<Integer>> getCommittedTests() {
         Map<String, List<Integer>> committedTests = new HashMap<>();
         for (User u : getUsers()) {
-            committedTests.put(u.getUsername(), u.getFilledTests());
+            if (u.getRole().equals("STUDENT")) {
+                committedTests.put(u.getUsername(), u.getFilledTests());
+            }
         }
         return committedTests;
     }

@@ -13,9 +13,8 @@ body {
 .login {
     opacity:0.8;
     background-color: #3d3d37;
-    overflow: none;
-    width: 25%;
-    height: 55%;
+    width: 485px;
+    height: 485px;
     padding: 15px;
     position: absolute;
     left: 0;
@@ -31,9 +30,8 @@ body {
 
 .users {
     background-color: #3d3d37;
-    overflow: none;
-    width: 25%;
-    height: 55%;
+    width: 485px;
+    height: 485px;
     padding: 15px;
     position: absolute;
     left: 0;
