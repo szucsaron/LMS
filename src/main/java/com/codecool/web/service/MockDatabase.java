@@ -68,7 +68,15 @@ public class MockDatabase implements Database {
     }
 
     public void addArticle(Article article) {
-        content.getArticles().put(article.getId(), article);
+        int maxId = 0;
+        Map<Integer, Article> articles = content.getArticles();
+        for (int id : articles.keySet()) {
+            if (id > maxId) {
+                maxId = id;
+            }
+        }
+        article.setId(maxId);
+        content.getArticles().put(maxId, article);
     }
 
     public Map<Integer, String> getArticleIdsBySearch(String toFind) {

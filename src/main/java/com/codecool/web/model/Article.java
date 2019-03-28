@@ -12,6 +12,24 @@ public class Article {
 
     private int lvlIncrease;
 
+    public Article(Integer id, String title, String text, Quiz quiz, int level) {
+        this.title = title;
+        this.text = text;
+        this.level = level;
+        this.quiz = quiz;
+        if (quiz != null) {
+            this.quizId = quiz.getId();
+        } else {
+            this.quizId = null;
+        }
+        this.id = id;
+    }
+
+    public Article(String title, String text) {
+        this(null, title, text, null, 0);
+    }
+
+
     public Integer getId() {
         return id;
     }
@@ -30,28 +48,15 @@ public class Article {
         this.level = level;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Quiz getQuiz() {
         return quiz;
     }
 
     private Quiz quiz;
-
-    public Article(Integer id, String title, String text, Quiz quiz, int level) {
-        this.title = title;
-        this.text = text;
-        this.level = level;
-        this.quiz = quiz;
-        if (quiz != null) {
-            this.quizId = quiz.getId();
-        } else {
-            this.quizId = null;
-        }
-        this.id = id;
-    }
-
-    public Article(String title, String text) {
-        this(null, title, text, null, 0);
-    }
 
     public String getTitle() {
         return title;
