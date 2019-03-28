@@ -140,5 +140,11 @@ public class MockDatabase implements Database {
         return quizIds;
     }
 
+    public void modifyArticle(Article article) {
+        int id = article.getId();
+
+        content.getArticles().put(id, article);
+    }
+
 
 }

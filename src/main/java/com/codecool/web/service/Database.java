@@ -20,6 +20,8 @@ public interface Database {
 
     void addArticle(Article article);
 
+    void modifyArticle(Article article);
+
     Map<Integer, String> getArticleIdsBySearch(String toFind);
 
     void addUser(User user);
