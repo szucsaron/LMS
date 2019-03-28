@@ -283,3 +283,8 @@ a:hover {
     color: #FAED26;
     text-decoration: none;
 }
+
+.ui-datepicker {
+    background: #3d3d37;
+    display: none;
+}
