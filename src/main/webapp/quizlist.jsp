@@ -58,7 +58,7 @@
             <p>To check:</p>
             <ul>
                 <% for (String student : toCheck.keySet()) { %>
-                    <u><%= student %></u>
+                    <i><%= student %></i><br>
                     <% for (Integer id : toCheck.get(student)) { %>
                         <li><a href="quiz?quizId=<%=id%>"><%= allQuiz.get(id) %></a></li>
                     <% } %>
