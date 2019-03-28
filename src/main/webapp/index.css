@@ -284,6 +284,7 @@ a:hover {
     text-decoration: none;
 }
 
-.attendance {
-    position: center;
+.ui-datepicker {
+    background: #3d3d37;
+    display: none;
 }

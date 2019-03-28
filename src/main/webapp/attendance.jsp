@@ -21,6 +21,7 @@
     <script>
          $(function() {
             $('#datepicker').datepicker().datepicker('setDate', new Date());
+            $("#datepicker").attr("autocomplete", "off");
          });
     </script>
 
