@@ -19,7 +19,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeCool LMS</title>
-    <link rel="stylesheet" href="content.css" href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
+    <link rel="stylesheet" href="content.css">
 </head>
 <body>
     <div class="leftbar">
@@ -37,13 +38,13 @@
         <a class="button" href="profile">EDIT PROFILE</a>
         <a class="button" href="quizlist">MY ASSIGNMENTS</a>
         <a class="button" href="logout">LOGOUT</a>
-        <p> <%=article.getTitle()%> </p>
+        <h2><p> <%=article.getTitle()%> </p>
         <p> <%=article.getText()%> </p>
         <% if (quizId != null) { %>
             <a href="quiz?quizId=<%=articleId%>">
                 TAKE A QUIZ
             </a>
-        <% } %>
+        <% } %></h2>
     </div>
 </body>
 </html>

@@ -10,8 +10,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeCool LMS</title>
-    <link rel="stylesheet" href="content.css" href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700">
-</head>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa"/>
+    <link rel="stylesheet" href="index.css"></head>
 <body>
     <%
         // Java init
@@ -28,7 +28,7 @@
     %>
 
     <div class="users">
-        <h2>Quizes</h2>
+        <h2>Quizzes</h2>
         <% if (role.equals("STUDENT")) { %>
             <p>To do: </p>
               <ul>

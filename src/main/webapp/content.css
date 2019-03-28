@@ -1,164 +1,89 @@
 body {
     color: white;
-    background-color: #3d3d37;
+    background-color: rgba(0,0,0,.5);
     height: 100%;
     overflow: hidden;
-    font-family: 'Crimson Text', serif;
+    font-family: Comfortaa;
     font-size: 16px;
-    background: #3d3d37 url("kecske_content.png") no-repeat fixed center;
+    background: #3d3d37 url("kecske3.jpg") no-repeat fixed center;
     background-size: 100%
-
 }
 
-.login {
-    opacity:0.8;
-    background-color: #3d3d37;
-    overflow: none;
-    width: 25%;
-    height: 55%;
-    padding: 15px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    margin: auto;
-    border: 2px solid #FAED26;
-    border-radius: 5px;
-    font-family: 'Crimson Text', serif;
-    font-size: 0.875em;
-}
-
-.users {
-    background-color: #3d3d37;
-    overflow: none;
-    width: 25%;
-    height: 55%;
-    padding: 15px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    margin: auto;
-    border: 2px solid #FAED26;
-    border-radius: 5px;
-    font-family: 'Crimson Text', serif;
-    font-size: 0.875em;
-}
 
 h2 {
     text-align: center;
     margin-top: 2%;
-    margin-left: 2%;
-    color: #FAED26;
-    font-family: 'Crimson Text', serif;
-}
-
-a {
-    color: #FAED26;
-}
-
-a.button {
+    margin-left: 55%;
     color: white;
-    text-decoration: none;
-    margin-left: 5px;
-    background-color: #3d3d37;
-    padding: 8px;
-    padding-right: 14px;
-    padding-left: 14px;
-    border: 2px #FAED26;
-    border-radius: 4px;
-    border-color: #FAED26;
-    border-style: solid;
-    border-width: 1.5px;
-    font-family: 'Crimson Text', serif;
+    font-weight: none;
+    font-family: 'Comfortaa';
+    font-size: 14pt;
+}
+
+.login {
+    opacity:0.8;
+    background-color: rgba(0,0,0,.5);
+    overflow: none;
+    width: 25%;
+    height: 55%;
+    padding: 15px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    border: 2px solid #996633;
+    border-radius: 5px;
+    font-family: Comfortaa;
     font-size: 0.875em;
-}
-
-a.button:focus {
-    color: initial;
-    text-decoration: none;
-}
-
-a:visited {
-    color: white;
-    text-decoration: none;
-}
-
-a:link {
-    text-decoration: none;
-    font-weight: bold;
-}
-
-a:hover {
-    color: #fcf477;
 }
 
 .login input[type = text] {
     color: white;
     margin-left: 0px;
-    background-color: #3d3d37;
+    background-color: rgba(0,0,0,.5);
     padding: 8px;
     padding-right: 14px;
     padding-left: 14px;
-    border: 2px #FAED26;
+    border: 2px #996633;
     border-radius: 4px;
     border-style: solid;
     border-width: 1.5px;
-    font-family: 'Crimson Text', serif;
+    font-family: Comfortaa;
 }
 
 .login input[type = password] {
     color: white;
     margin-left: 0px;
-    background-color: #3d3d37;
+    background-color: rgba(0,0,0,.5);
     padding: 8px;
     padding-right: 14px;
     padding-left: 14px;
-    border: 2px #FAED26;
+    border: 2px #996633;
     border-radius: 4px;
     border-style: solid;
     border-width: 1.5px;
-    font-family: 'Crimson Text', serif;
+    font-family: Comfortaa;
 }
 
 .login input[type = submit] {
     color: white;
     margin-left: 15px;
-    background-color: #3d3d37;
+    background-color: rgba(0,0,0,.5);
     padding: 8px;
     padding-right: 14px;
     padding-left: 14px;
-    border: 2px #FAED26;
+    border: 2px #996633;
     border-radius: 4px;
     border-style: solid;
     border-width: 1.5px;
-    font-family: 'Crimson Text', serif;
+    font-family: Comfortaa;
     font-weight: bold;
 }
 
 .login input[type = "submit"]:hover {
-    color: #fcf477;
-}
-
-.users input[type = "submit"] {
-    color: white;
-    margin-left: 15px;
-    background-color: #3d3d37;
-    padding: 8px;
-    padding-right: 14px;
-    padding-left: 14px;
-    border: 2px #FAED26;
-    border-radius: 4px;
-    border-style: solid;
-    border-width: 1.5px;
-    font-family: 'Crimson Text', serif;
-    font-weight: bold;
-}
-
-.users input[type = "submit"]:hover {
-    color: #fcf477;
+    color: #996633;
 }
 
 .login p {
@@ -175,6 +100,43 @@ a:hover {
     margin: auto;
     padding-left: auto;
     padding-right: auto;
+}
+
+.users {
+    background-color: rgba(0,0,0,.5);
+    overflow: none;
+    width: 25%;
+    height: 55%;
+    padding: 15px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    border: 2px solid #996633;
+    border-radius: 5px;
+    font-family: Comfortaa;
+    font-size: 0.875em;
+}
+
+.users input[type = "submit"]:hover {
+    color: #996633;
+}
+
+.users input[type = "submit"] {
+    color: white;
+    margin-left: 15px;
+    background-color: rgba(0,0,0,.5);
+    padding: 8px;
+    padding-right: 14px;
+    padding-left: 14px;
+    border: 2px #996633;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1.5px;
+    font-family: Comfortaa;
+    font-weight: bold;
 }
 
 .users p {
@@ -199,7 +161,7 @@ a:hover {
     float: left;
     overflow: none;
     border-right: 2px ;
-    border-right-color: #FAED26;
+    border-right-color: #996633;
     border-right-style: solid;
     border-width: 1px;
     padding: none;
@@ -208,34 +170,39 @@ a:hover {
 }
 
 .leftbar input {
-    width: 70%;
+    position: absolute;
+    top: 550px;
+    width: 13%;
     color: white;
     margin-left: 5px;
-    background-color: #3d3d37;
+    background-color: rgba(0,0,0,.5);
     padding: 8px;
     padding-right: 14px;
     padding-left: 14px;
-    border: 2px #FAED26;
+    border: 2px #996633;
     border-radius: 4px;
     border-style: solid;
     border-width: 1.5px;
-    font-family: 'Crimson Text', serif;
+    font-family: Comfortaa;
 }
 
 .leftbar input[type = "submit"] {
     width: 36px;
     height: 36px;
     color: white;
-    margin-left: 5px;
-    background-color: #3d3d37;
+    position: absolute;
+    top: 549px;
+    left: 220px;
+    margin-left: 12px;
+    background-color: rgba(0,0,0,.5);
     padding: 8px;
     padding-right: 14px;
     padding-left: 14px;
-    border: 2px #FAED26;
+    border: 2px #996633;
     border-radius: 4px;
     border-style: solid;
     border-width: 1.5px;
-    font-family: 'Crimson Text', serif;
+    font-family: Comfortaa;
     font-weight: bold;
     font-size: 0.875em;
     background-image: url(search.png);
@@ -261,11 +228,63 @@ a:hover {
 }
 
 .rightbar a:link {
-    color: #FAED26;
+    position: relative;
+    color: white;
     text-decoration: none;
 }
 
 .rightbar a:visited {
-    color: #FAED26;
+    color: white;
     text-decoration: none;
+}
+
+.rightbar a:hover {
+    color: #996633;
+    text-decoration: none;
+}
+
+.rightbar a.button {
+    position: relative;
+    top: 540px;
+}
+
+a {
+    color: #996633;
+}
+
+a.button {
+    color: white;
+    text-decoration: none;
+    margin-left: 5px;
+    background-color: rgba(0,0,0,.4);
+    padding: 8px;
+    padding-right: 14px;
+    padding-left: 14px;
+    border: 2px #996633;
+    border-radius: 4px;
+    border-color: #996633;
+    border-style: solid;
+    border-width: 1.5px;
+    font-family: Comfortaa;
+    font-size: 0.875em;
+}
+
+a.button:focus {
+    color: initial;
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+a:link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #996633;
 }

@@ -33,6 +33,7 @@ public final class SessionFilter implements Filter {
             path.endsWith("register.html") ||
             path.endsWith("register") ||
             path.endsWith(".png") ||
+            path.endsWith(".jpg") ||
             path.endsWith("index.html")) {
             chain.doFilter(req, resp);
         } else {
