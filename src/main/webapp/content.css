@@ -77,7 +77,7 @@ h2 {
     background-color: rgba(0,0,0,.5);
     padding: 8px;
     padding-right: 14px;
-    padding-left: 14px;
+    padding-left: 14px;What a miser
     border: 2px #996633;
     border-radius: 4px;
     border-style: solid;
@@ -173,7 +173,7 @@ h2 {
 
 .leftbar input {
     position: absolute;
-    top: 550px;
+    top: 95%;
     width: 13%;
     color: white;
     margin-left: 5px;
@@ -193,8 +193,8 @@ h2 {
     height: 36px;
     color: white;
     position: absolute;
-    top: 549px;
-    left: 220px;
+    top: 95%;
+    left: 295px;
     margin-left: 12px;
     background-color: rgba(0,0,0,.5);
     padding: 8px;
@@ -247,7 +247,7 @@ h2 {
 
 .rightbar a.button {
     position: relative;
-    top: 540px;
+    top: 95%;
 }
 
 .rightbar p {
