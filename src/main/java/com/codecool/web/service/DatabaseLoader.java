@@ -73,7 +73,7 @@ public class DatabaseLoader {
 
 
             String text = docArticle.getTextContent();
-            text = text.replace("\n", " ");
+            text = text.replace("\n\n", "<br><br>");
             text = text.replace("    ", "");
 
             Article article = new Article(id, title, text, null, level);
