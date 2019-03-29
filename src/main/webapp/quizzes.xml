@@ -69,7 +69,7 @@
         </question>
     </quiz>
     <quiz id="3" title="Goats and refactoring">
-        <question title="Do you know the material?" correct="0">
+        <question title="Do you understand the material?" correct="0">
             <answer>Yes</answer>
             <answer>No</answer>
         </question>
