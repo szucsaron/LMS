@@ -2,8 +2,8 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.model.Article;
 import com.codecool.web.model.User;
-import com.codecool.web.service.Database;
-import com.codecool.web.service.MockDatabase;
+import com.codecool.web.service.database.Database;
+import com.codecool.web.service.database.MockDatabase;
 import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;

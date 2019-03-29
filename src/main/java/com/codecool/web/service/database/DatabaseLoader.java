@@ -1,4 +1,4 @@
-package com.codecool.web.service;
+package com.codecool.web.service.database;
 
 import com.codecool.web.model.Article;
 import com.codecool.web.model.Content;
@@ -73,7 +73,11 @@ public class DatabaseLoader {
 
 
             String text = docArticle.getTextContent();
-            text = text.replace("\n\n", "<br><br>");
+            text = text.replace("%%p", "<p>");
+            text = text.replace("%!p", "</p>");
+            text = text.replace("%%br", "<br>");
+
+
             text = text.replace("    ", "");
 
             Article article = new Article(id, title, text, null, level);

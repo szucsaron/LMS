@@ -2,13 +2,10 @@ package com.codecool.web;
 
 
 import com.codecool.web.model.Content;
-import com.codecool.web.service.Database;
-import com.codecool.web.service.DatabaseLoader;
-import com.codecool.web.service.MockDatabase;
-import com.codecool.web.service.SqlGenerator;
+import com.codecool.web.service.database.DatabaseLoader;
+import com.codecool.web.service.database.SqlGenerator;
 
 import java.io.IOException;
-import java.util.List;
 
 public class MyTest {
     public static void main(String[] args) throws IOException{
