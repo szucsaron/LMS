@@ -10,8 +10,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeCool LMS</title>
-    <link rel="stylesheet" href="content.css" href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700">
-</head>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa"/>
+    <link rel="stylesheet" href="index.css"></head>
 <body>
     <%
         // Java init
@@ -28,42 +28,34 @@
     %>
 
     <div class="users">
-        <h2>Quizes</h2>
+        <h2>Quizzes</h2>
         <% if (role.equals("STUDENT")) { %>
             <p>To do: </p>
-              <ul>
                   <% for (Integer id : allQuiz.keySet()) { %>
                       <% if (availableQuiz.contains(id)) { %>
-                          <li><a href="quiz?quizId=<%=id%>"><%= allQuiz.get(id) %></a></li>
+                          <a href="quiz?quizId=<%=id%>"><%= allQuiz.get(id) %></a><br>
                       <% } %>
                   <% } %>
-              </ul>
             <p>Waiting for evaluation:</p>
-              <ul>
                   <% for (Integer id : allQuiz.keySet()) { %>
                       <% if (committed.contains(id)) { %>
-                          <li><%= allQuiz.get(id) %></li>
+                          <%= allQuiz.get(id) %><br>
                       <% } %>
                   <% } %>
-              </ul>
             <p>Successful assignments:</p>
-              <ul>
                   <% for (Integer id : allQuiz.keySet()) { %>
                       <% if (passed.contains(id)) { %>
-                          <li><%= allQuiz.get(id) %></li>
+                          <%= allQuiz.get(id) %><br>
                       <% } %>
                   <% } %>
-              </ul>
         <% } else if (role.equals("MENTOR")) { %>
             <p>To check:</p>
-            <ul>
                 <% for (String student : toCheck.keySet()) { %>
-                    <li><u><%= student %></u></li>
+                    <i><%= student %></i><br>
                     <% for (Integer id : toCheck.get(student)) { %>
-                        <li><a href="quiz?quizId=<%=id%>"><%= allQuiz.get(id) %></a></li>
+                        <a href="quiz?quizId=<%=id%>"><%= allQuiz.get(id) %></a><br>
                     <% } %>
                 <% } %>
-            </ul>
         <% } %>
     </div>
 </body>

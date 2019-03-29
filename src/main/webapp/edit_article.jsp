@@ -16,20 +16,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeCool LMS</title>
-    <link rel="stylesheet" href="content.css" href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa"/>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<form action="edit_article" method="POST">
-        <p><br>
-            <input type="text" name="title" placeholder="title" value="<%=title%>">
-            <br>
-            <br>
-            <input type="text" name="content" placeholder="content" value="<%=content%>">
-        </p>
-        <input type="hidden" name="articleId" value=<%=articleId%>>
-        <br><br>
-        <input type="submit" value="SAVE">
-        <br>
-    </form>
+      <div class="login">
+          <form action="edit_article" method="POST">
+              <p><br>
+                  <input type="text" name="title" placeholder="title" value="<%=title%>">
+                  <br>
+                  <br>
+                  <textarea rows="8" cols="34" type="text" name="content" placeholder="content"><%=content%></textarea>
+              </p>
+              <input type="hidden" name="articleId" value=<%=articleId%>>
+              <br><br>
+              <input type="submit" value="SAVE">
+              <br>
+          </form>
+      </div>
 </body>
 </html>
