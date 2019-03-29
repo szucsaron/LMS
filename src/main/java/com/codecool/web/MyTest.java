@@ -1,4 +1,4 @@
-package com.codecool.web;
+/*package com.codecool.web;
 
 
 import com.codecool.web.model.Content;
@@ -19,4 +19,4 @@ public class MyTest {
         System.out.println(sqlGenerator.generate());
 
     }
-}
+}*/

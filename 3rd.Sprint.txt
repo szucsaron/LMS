@@ -1,0 +1,19 @@
+Tasks to do during the 3rd sprint:
+
+Front-end:
+    - Scrollable div for dynamic contents such as users, assignments etc
+    - Dynamic graphical display based on the users device
+    - Remove resize option from text-area boxes
+    - 'Back' button to every page
+    - Error messages for the user
+        - invalid things, already done quizzes
+
+Back-end:
+    - Check for uniqueness of e-mail addresses
+    - Check username when editing profile
+    - Completing the quiz system
+        - evaluation, submitting etc
+    - Completing the attendance service and servlet
+        - removing students once they've been marked absent or present
+    - Implement a database
+
