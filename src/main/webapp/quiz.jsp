@@ -31,8 +31,8 @@
         <div class="quiz">
             <p>
                 <%
-                    %>Score:<%=score%><%
-                    %><ul class="question"><h3><%=question.getDescription()%></h2><%
+                    %><h2>Score:<%=score%></h2><%
+                    %><h3><%=question.getDescription()%></h2><%
                         for (Answer answer : question) {
                             String parameters = "questionIndex=" + Integer.toString(questionIndex) + "&answerId=" +
                                                 Integer.toString(answer.getId()) + "&quizId=" + quizId;
@@ -42,8 +42,7 @@
                                 </a><br>
                             <%
                         }
-                    %></ul><%
-                %>
+                    %>
             </p>
         </div>
     </div>

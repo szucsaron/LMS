@@ -1,10 +1,47 @@
 body {
     color: white;
-    background-color: #3d3d37;
     height: 100%;
     overflow: hidden;
     font-family: Comfortaa;
     font-size: 16px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a.button {
+    margin-left: 5px;
+    background-color: rgba(0,0,0,.4);
+    padding: 8px;
+    border: 2px #996633 solid;
+    border-radius: 4px;
+    font-size: 12pt;
+}
+
+a.button:focus {
+    color: initial;
+    text-decoration: none;
+}
+
+a.button:hover {
+    color: #996633;
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+a:link {
+    color:white
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #996633;
 }
 
 h2 {
@@ -19,6 +56,19 @@ h2 {
 .bg-2 {
     background: url("goat2.jpg") no-repeat fixed center;
     background-size: 100%
+}
+
+input[type=submit], input[type = text], input[type = password], textarea {
+    color: white;
+    text-align: center;
+    background-color: rgba(0,0,0,.5);
+    border: 2px #996633 solid;
+    border-radius: 4px;
+    font-weight: bold;
+    font-family: Comfortaa;
+    padding: 8px;
+    border: 2px #996633 solid;
+    border-radius: 4px;
 }
 
 .wrapper {
@@ -39,44 +89,15 @@ h2 {
     margin: auto;
 }
 
-.wrapper input[type = text], input[type = password] {
-    color: white;
-    margin: auto;
-    background-color: rgba(0,0,0,.4);
-    padding: 8px;
-    border: 2px #996633 solid;
-    border-radius: 4px;
-    font-family: Comfortaa;
-    font-weight: bold;
-}
-
 .wrapper textarea {
-    color: white;
-    margin: auto;
     resize: none;
-    background-color: rgba(0,0,0,.4);
-    padding: 8px;
-    border: 2px #996633 solid;
-    border-radius: 4px;
-    border-width: 1.5px;
-    font-family: Comfortaa;
-    font-weight: bold;
 }
 
 .wrapper input[type = submit] {
-    text-align: center;
-    color: white;
-    margin-left: auto;
-    background-color: rgba(0,0,0,.4);
-    padding: 8px;
-    border: 2px #996633 solid;
-    border-radius: 4px;
-    font-family: Comfortaa;
     font-size: 12pt;
-    font-weight: bold;
 }
 
-.wrapper input[type = "submit"]:hover {
+.wrapper input[type = submit]:hover {
     color: #996633;
 }
 
@@ -88,7 +109,7 @@ h2 {
 .content {
     height: 95%;
     overflow: auto;
-    background-color: rgba(0,0,0,.4);
+    background-color: rgba(0,0,0,.5);
     padding: 8px;
     border: 2px #996633 solid;
     border-radius: 4px;
@@ -107,22 +128,15 @@ h2 {
     bottom: 3%;
     left: 1%;
     width: 13%;
-    padding: 8px 8px 8px 8px;
-    color: white;
-    background-color: rgba(0,0,0,.5);
-    border: 2px #996633 solid;
-    border-radius: 4px;
+    padding: 8px;
 }
 
-.leftbar input[type = "submit"] {
+.leftbar input[type = submit] {
     width: 35px;
     height: 35px;
     position: absolute;
     bottom: 3%;
     left: 16%;
-    background-color: rgba(0,0,0,.5);
-    border: 2px #996633 solid;
-    border-radius: 4px;
     background-image: url(search.png);
     background-size: 100%;
 }
@@ -136,24 +150,6 @@ h2 {
     height: 80vh;
     position: relative;
     float: right;
-    overflow: hidden;
-}
-
-.rightbar a:visited {
-    color: white;
-    text-decoration: none;
-}
-
-.rightbar a:hover {
-    color: #996633;
-    text-decoration: none;
-}
-
-.rightbar a:link {
-    position: absolute;
-    bottom: 10%;
-    color: white;
-    text-decoration: none;
 }
 
 .ui-datepicker {
@@ -161,47 +157,6 @@ h2 {
     border: 2px #996633 solid;
     border-radius: 4px;
     display: none;
-}
-
-a {
-    color: white;
-}
-
-a.button {
-    margin-left: 5px;
-    background-color: rgba(0,0,0,.4);
-    padding: 8px;
-    border: 2px #996633 solid;
-    border-radius: 4px;
-    font-size: 12pt;
-}
-
-a.button:focus {
-    color: initial;
-    text-decoration: none;
-}
-
-a:visited {
-    color: white;
-    text-decoration: none;
-}
-
-a:link {
-    text-decoration: none;
-    font-weight: bold;
-}
-
-a:hover {
-    color: #996633;
-}
-
-.attendance input[type = text] {
-    color: white;
-    margin: auto;
-    background-color: rgba(0,0,0,.4);
-    padding: 8px;
-    border: 2px #996633 solid;
-    border-radius: 4px;
 }
 
 nav {
@@ -219,7 +174,7 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  border: 1px solid white;
+  border: 1px solid #996633;
   -webkit-text-fill-color: white;
   -webkit-box-shadow: 0 0 0px 1000px #000 inset;
   transition: background-color 5000s ease-in-out 0s;
