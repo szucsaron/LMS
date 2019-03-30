@@ -3,7 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.codecool.web.model.User" %>
 
-<html lang="en">
+<html class="bg-1" lang="en">
 
 <%
     // Java init
@@ -17,12 +17,16 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
-    <div class="users">
+    <div class="wrapper">
         <h2>USERS</h2>
-        <% for (User u : users) { %>
-            <p><%= u.getRole() %> - <%= u.getUsername() %> - <%= u.getEmail() %></p>
-        <% } %>
+        <div class="scroll">
+            <% for (User u : users) { %>
+                <p><%= u.getRole() %> - <%= u.getUsername() %> - <%= u.getEmail() %></p>
+            <% } %>
+        </div>
     </div>
 </body>
+
 </html>

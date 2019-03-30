@@ -5,71 +5,65 @@ body {
     overflow: hidden;
     font-family: Comfortaa;
     font-size: 16px;
-    background: #3d3d37 url("kecske2.jpg") no-repeat fixed center;
-    background-size: 100%
-
 }
 
 h2 {
     text-align: center;
-    margin-top: 2%;
-    margin-left: 2%;
-    color: white;
-    font-weight: bold;
-    font-family: 'Comfortaa';
 }
 
-.login {
+.bg-1 {
+    background: url("goat1.jpg") no-repeat fixed center;
+    background-size: 100%
+}
+
+.bg-2 {
+    background: url("goat2.jpg") no-repeat fixed center;
+    background-size: 100%
+}
+
+.wrapper {
     text-align: center;
-    opacity: 1;
     background-color: rgba(0,0,0,.5);
-    overflow: none;
     width: 25%;
     height: 55%;
     padding: 15px;
     position: absolute;
-    left: 450px;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    margin: 50px auto 0;
+    left: 60%;
+    top: 20%;
     border: 2px solid #996633;
     border-radius: 5px;
-    font-family: Comfortaa;
-    font-size: 0.875em;
 }
 
-.login form {
-    color: white;
+.wrapper form {
     position: relative;
     margin: auto;
-    padding-left: auto;
-    padding-right: auto;
 }
 
-.login input[type = text], input[type = password] {
+.wrapper input[type = text], input[type = password] {
     color: white;
     margin: auto;
     background-color: rgba(0,0,0,.4);
     padding: 8px;
     border: 2px #996633 solid;
     border-radius: 4px;
-    border-width: 1.5px;
     font-family: Comfortaa;
+    font-weight: bold;
 }
 
-.login textarea {
+.wrapper textarea {
     color: white;
     margin: auto;
+    resize: none;
     background-color: rgba(0,0,0,.4);
     padding: 8px;
     border: 2px #996633 solid;
     border-radius: 4px;
     border-width: 1.5px;
     font-family: Comfortaa;
+    font-weight: bold;
 }
 
-.login input[type = submit] {
+.wrapper input[type = submit] {
     text-align: center;
     color: white;
     margin-left: auto;
@@ -77,121 +71,60 @@ h2 {
     padding: 8px;
     border: 2px #996633 solid;
     border-radius: 4px;
-    border-width: 1.5px;
     font-family: Comfortaa;
-    font-size: 0.875em;
+    font-size: 12pt;
     font-weight: bold;
 }
 
-.login input[type = "submit"]:hover {
+.wrapper input[type = "submit"]:hover {
     color: #996633;
 }
 
-.users {
-    text-align: center;
-    opacity: 1;
-    background-color: rgba(0,0,0,.5);
-    overflow: none;
-    width: 25%;
-    height: 55%;
-    padding: 15px;
-    position: absolute;
-    left: 450px;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    margin: 50px auto 0;
-    border: 2px solid #996633;
-    border-radius: 5px;
-    font-family: Comfortaa;
-    font-size: 0.875em;
+.scroll {
+    height: 75%;
+    overflow: auto;
 }
 
-.users input[type = "submit"] {
-    color: white;
-    margin-left: 15px;
+.content {
+    height: 95%;
+    overflow: auto;
     background-color: rgba(0,0,0,.4);
     padding: 8px;
-    padding-right: 14px;
-    padding-left: 14px;
-    border: 2px #996633;
+    border: 2px #996633 solid;
     border-radius: 4px;
-    border-style: solid;
-    border-width: 1.5px;
-    font-family: Comfortaa;
-    font-weight: bold;
-}
-
-.users input[type = "submit"]:hover {
-    color: #996633;
-}
-
-.users p {
-    color: white;
-    font-weight: 300;
-    margin: 10px;
-    padding: 5%;
-}
-
-.users form {
-    color: white;
-    position: relative;
-    margin: auto;
-    padding-left: auto;
-    padding-right: auto;
 }
 
 .leftbar {
     width: 22%;
     height: 100vh;
     float: left;
-    overflow: none;
-    border-right: 2px ;
-    border-right-color: #996633;
-    border-right-style: solid;
-    border-width: 1px;
-    padding: none;
-    margin: none;
+    overflow: hidden;
+    border-right: 1px #996633 solid;
 }
 
 .leftbar input {
-    width: 70%;
+    position: absolute;
+    bottom: 3%;
+    left: 1%;
+    width: 13%;
+    padding: 8px 8px 8px 8px;
     color: white;
-    margin-left: 5px;
-    background-color: #3d3d37;
-    padding: 8px;
-    padding-right: 14px;
-    padding-left: 14px;
-    border: 2px #996633;
+    background-color: rgba(0,0,0,.5);
+    border: 2px #996633 solid;
     border-radius: 4px;
-    border-style: solid;
-    border-width: 1.5px;
-    font-family: Comfortaa;
 }
 
 .leftbar input[type = "submit"] {
-    width: 36px;
-    height: 36px;
-    color: white;
-    margin-left: 5px;
-    background-color: #3d3d37;
-    padding: 8px;
-    padding-right: 14px;
-    padding-left: 14px;
-    border: 2px #996633;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    bottom: 3%;
+    left: 16%;
+    background-color: rgba(0,0,0,.5);
+    border: 2px #996633 solid;
     border-radius: 4px;
-    border-style: solid;
-    border-width: 1.5px;
-    font-family: Comfortaa;
-    font-weight: bold;
-    font-size: 0.875em;
     background-image: url(search.png);
-    background-size:100% 100%;
-}
-
-.leftbar input[type = "submit"] img:hover {
-    filter: hue-rotate(145deg);
-    -webkit-filter: hue-rotate(145deg);
+    background-size: 100%;
 }
 
 .leftbar img {
@@ -199,50 +132,48 @@ h2 {
 }
 
 .rightbar {
-    opacity:1;
-    width:75%;
-    padding: 8px;
-    padding-left: 16px;
-    height: 100vh;
-    float:left;
+    width: 40%;
+    height: 80vh;
+    position: relative;
+    float: right;
+    overflow: hidden;
 }
-``
-.rightbar a:link {
+
+.rightbar a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.rightbar a:hover {
     color: #996633;
     text-decoration: none;
 }
 
-.rightbar a:visited {
-    color: #996633;
+.rightbar a:link {
+    position: absolute;
+    bottom: 10%;
+    color: white;
     text-decoration: none;
 }
 
 .ui-datepicker {
-    background: #3d3d37;
+    background: #996633;
+    border: 2px #996633 solid;
+    border-radius: 4px;
     display: none;
 }
-
 
 a {
     color: white;
 }
 
 a.button {
-    color: white;
-    text-decoration: none;
     margin-left: 5px;
     background-color: rgba(0,0,0,.4);
     padding: 8px;
-    padding-right: 14px;
-    padding-left: 14px;
-    border: 2px #996633;
+    border: 2px #996633 solid;
     border-radius: 4px;
-    border-color: #996633;
-    border-style: solid;
-    border-width: 1.5px;
-    font-family: Comfortaa;
-    font-size: 0.875em;
-    font-weight: bold;
+    font-size: 12pt;
 }
 
 a.button:focus {
@@ -271,6 +202,36 @@ a:hover {
     padding: 8px;
     border: 2px #996633 solid;
     border-radius: 4px;
-    border-width: 1.5px;
-    font-family: Comfortaa;
+}
+
+nav {
+    position:absolute;
+    bottom: 4.5%;
+    left: 24%;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid white;
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }

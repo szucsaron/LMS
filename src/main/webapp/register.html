@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html class="bg-1" lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,28 +8,30 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa"/>
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
-
-<div class="login">
-    <h2>REGISTER</h2>
-    <form action="register" method="POST">
-        <p><br>
-            <input type="text" name="username" placeholder="username">
+<div class="wrapper">
+    <div class="register">
+        <h2>REGISTER</h2>
+        <form action="register" method="POST">
+            <p><br>
+                <input type="text" name="username" placeholder="username">
+                <br>
+                <br>
+                <input type="password" name="password" placeholder="password">
+                <br>
+                <br>
+                <input type="text" name="email" placeholder="e-mail address"></p>
+                <p><select name="role">
+                  <option value="STUDENT">Student</option>
+                  <option value="MENTOR">Mentor</option>
+                </select></p>
             <br>
-            <br>
-            <input type="password" name="password" placeholder="password">
-            <br>
-            <br>
-            <input type="text" name="email" placeholder="e-mail address"></p>
-            <p><select name="role">
-              <option value="STUDENT">Student</option>
-              <option value="MENTOR">Mentor</option>
-            </select></p>
-        <br>
-        <input type="submit" value="REGISTER">
-        <a class="button" href="index.html">LOGIN</a>
-    </form>
+            <input type="submit" value="REGISTER">
+            <a class="button" href="index.html">LOGIN</a>
+        </form>
+    </div>
 </div>
-
 </body>
+
 </html>

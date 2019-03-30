@@ -5,6 +5,8 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="com.codecool.web.model.Article" %>
 
+<html class="bg-1" lang="en">
+
 <%
     // Java init
     boolean success = (boolean) request.getAttribute("result");
@@ -19,14 +21,16 @@
 </head>
 
 <body>
-    <p>
-        <%
-            if (success) {
-                out.println("Quiz successfully completed");
-            } else {
-                out.println("Quiz failed.");
-            }
-        %>
-    </p>
-    <a href="content">Return</a>
+    <div class="wrapper">
+        <p>
+            <%
+                if (success) {
+                    out.println("Quiz successfully completed");
+                } else {
+                    out.println("Quiz failed.");
+                }
+            %>
+        </p>
+        <a href="content">Return</a>
+    </div>
 </body>
