@@ -7,6 +7,7 @@ body {
 }
 
 a {
+    font-weight: bold;
     color: white;
     text-decoration: none;
 }
@@ -34,12 +35,6 @@ a:visited {
     text-decoration: none;
 }
 
-a:link {
-    color:white
-    text-decoration: none;
-    font-weight: bold;
-}
-
 a:hover {
     color: #996633;
 }
@@ -58,7 +53,7 @@ h2 {
     background-size: 100%
 }
 
-input[type=submit], input[type = text], input[type = password], textarea {
+input[type=submit], input[type = text], input[type = password], textarea, select {
     color: white;
     text-align: center;
     background-color: rgba(0,0,0,.5);
@@ -128,7 +123,6 @@ input[type=submit], input[type = text], input[type = password], textarea {
     bottom: 3%;
     left: 1%;
     width: 13%;
-    padding: 8px;
 }
 
 .leftbar input[type = submit] {
@@ -176,7 +170,7 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   border: 1px solid #996633;
   -webkit-text-fill-color: white;
-  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #996633 inset;
   transition: background-color 5000s ease-in-out 0s;
 }
 
