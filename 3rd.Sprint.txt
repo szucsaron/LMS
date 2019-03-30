@@ -11,10 +11,10 @@ Front-end:
 Back-end:
     - Check for uniqueness of e-mail addresses
     - Check username when editing profile
-    - Give attendance servlet the correct user list
     - Completing the quiz system
         - evaluation, submitting etc
     - Completing the attendance service and servlet
         - removing students once they've been marked absent or present
+        - give the servlet the correct user list
     - Implement a database
 

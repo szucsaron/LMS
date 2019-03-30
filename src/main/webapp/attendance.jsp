@@ -35,11 +35,9 @@
                 <input type="text" id="datepicker" name="date" ></input><br><br>
                 <% for (User u : users) { %>
                     <% if (u.getRole().equals("STUDENT")) { %>
-                    <td>
-                    <tr><%= u.getUsername() %></tr><tr><input type="checkbox" name="<%= u.getUsername() %>" value="TRUE"></tr><br>
+                    <%= u.getUsername() %></tr><tr><input type="checkbox" name="<%= u.getUsername() %>" value="TRUE"><br>
                     <% } %>
                 <% } %>
-                    </td>
                 <br><br>
                 <input type="submit" value="Submit">
             </form>
