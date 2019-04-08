@@ -8,7 +8,7 @@ Front-end:
     - Error messages for the user
         - invalid things, already done quizzes
     - UI for a quiz editor system
-    - Level selection for article editing
+    - Level selection for article editing -- added. needs css-ing [Sz]
 
 Back-end:
     - Check for uniqueness of e-mail addresses
@@ -20,5 +20,5 @@ Back-end:
         - give the servlet the correct user list
     - Implement a database
     - Quiz editor backend
-    - Level selection for article editing
+    - Level selection for article editing -- done [Sz] 
 
