@@ -24,7 +24,7 @@ public class RegistrationServlet extends HttpServlet {
         String em = req.getParameter("email");
         String role = req.getParameter("role");
 
-        if (!service.validateRegistration(un)) {
+        if (!service.validateRegistration(un, em)) {
             resp.sendRedirect("register.html");
         } else {
             User user = new User(un, pw, em, role);

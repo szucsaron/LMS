@@ -23,20 +23,17 @@
 
 <body>
     <div class="wrapper">
-        <div class="edit">
+        <div class="textareas">
           <form action="edit_article" method="POST">
-              <p><br>
-                  <input type="text" name="title" placeholder="title" value="<%=title%>">
-                  <br>
-                  <br>
-                  <textarea rows="8" cols="34" type="text" name="content" placeholder="content"><%=content%></textarea>
-              </p>
-              <br>
-              <input type="number" name="level" min="1" max="100" value="<%=level%>">
-              <input type="hidden" name="articleId" value="<%=articleId%>">
-              <br><br>
-              <input type="submit" value="SAVE">
-              <br>
+                <input type="text" name="title" placeholder="title" value="<%=title%>">
+                <br>
+                <br>
+                <textarea type="text" name="content" placeholder="content"><%=content%></textarea>
+                <input type="number" name="level" min="1" max="100" value="<%=level%>">
+                <input type="hidden" name="articleId" value=<%=articleId%><br>
+                <input type="submit" value="SAVE">
+                <a class="button" href="content">BACK</a>
+                <br>
           </form>
         </div>
     </div>
