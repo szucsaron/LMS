@@ -33,6 +33,8 @@
                 <input readonly type="text" name="email" placeholder="<%= user.getEmail()%>"></p>
                 <br>
                 <input type="submit" value="SAVE">
+                <a class="button" href="content">BACK</a>
+                <jsp:include page="snippets/show-error.jsp"/>
             </form>
         </div>
     </div>

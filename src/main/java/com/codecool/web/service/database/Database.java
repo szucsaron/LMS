@@ -19,9 +19,9 @@ public interface Database {
 
     Map<Integer, String> getArticleIds()  throws SQLException;
 
-    void addArticle(Article article);
+    void addArticle(Article article)  throws SQLException;
 
-    void modifyArticle(Article article);
+    void modifyArticle(Article article) throws SQLException;
 
     Map<Integer, String> getArticleIdsBySearch(String toFind)  throws SQLException;
 
@@ -29,16 +29,17 @@ public interface Database {
 
     User getUserByName(String userName) throws NoSuchUserException;
 
-    User[] getUsersArray();
+    User[] getUsersArray() throws SQLException;
 
-    Set<String> getUserNames();
+    Set<String> getUserNames() throws SQLException;
 
     Question getQuestionByQuizAndIndex(int quizId, int index);
 
-    Quiz getQuizById(int quizId);
+    Quiz getQuizById(int quizId) throws SQLException;
 
-    List<Quiz> getAllQuizzes();
+    List<Quiz> getAllQuizzes() throws SQLException;
 
-    public List<Integer> getQuizIdsByLevel(int lvl);
+    public List<Integer> getQuizIdsByLevel(int lvl) throws SQLException;
 
+    List<String> getEmailAddresses() throws SQLException;
 }

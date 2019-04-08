@@ -9,32 +9,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/register")
-public class RegistrationServlet extends HttpServlet {
+public class RegistrationServlet extends AbstractServlet {
 
     private final UserService service = new UserService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
+        try {
+            resp.setContentType("text/html");
 
-        String un = req.getParameter("username");
-        String pw = req.getParameter("password");
-        String em = req.getParameter("email");
-        String role = req.getParameter("role");
+            String un = req.getParameter("username");
+            String pw = req.getParameter("password");
+            String em = req.getParameter("email");
+            String role = req.getParameter("role");
 
-        if (!service.validateRegistration(un)) {
-            resp.sendRedirect("register.html");
-        } else {
-            User user = new User(un, pw, em, role);
-            service.addUser(user);
-            resp.sendRedirect("index.html");
+            if (!service.validateRegistration(un, em)) {
+                resp.sendRedirect("register.html");
+                req.setAttribute("error", "Username is already taken!");
+                req.getRequestDispatcher("register.jsp").forward(req, resp);
+            } else {
+                User user = new User(un, pw, em, role);
+                service.addUser(user);
+                resp.sendRedirect("index.jsp");
+            }
+        } catch (SQLException e) {
+            handleError(e, req, resp);
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("register.html").forward(req, resp);
+        req.getRequestDispatcher("register.jsp").forward(req, resp);
     }
 }

@@ -11,9 +11,10 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/quiz")
-public class QuizServlet extends HttpServlet {
+public class QuizServlet extends AbstractServlet {
     private final String page = "quiz.jsp";
 
     private User user;
@@ -25,29 +26,32 @@ public class QuizServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        MockDatabase.getInstance().setLocation(req.getServletContext().getRealPath("/"));
-        user = new UserService().getCurrentUser(req);
-        int quizId = Integer.parseInt(req.getParameter("quizId"));
-        req.setAttribute("quizId", quizId);
-        int questionIndex;
         try {
-            questionIndex = Integer.parseInt(req.getParameter("questionIndex"));
-        } catch (NumberFormatException e) {
-            questionIndex = 0;
-        }
-
-
-        Question question = database.getQuestionByQuizAndIndex(quizId, questionIndex);
-        quiz = database.getQuizById(quizId);
-        if (user.validateQuiz(quiz)) { // User validation
-            if (!user.quizStarted()) {
-                user.beginQuiz(quiz);
+            MockDatabase.getInstance().setLocation(req.getServletContext().getRealPath("/"));
+            user = new UserService().getCurrentUser(req);
+            int quizId = Integer.parseInt(req.getParameter("quizId"));
+            req.setAttribute("quizId", quizId);
+            int questionIndex;
+            try {
+                questionIndex = Integer.parseInt(req.getParameter("questionIndex"));
+            } catch (NumberFormatException e) {
+                questionIndex = 0;
             }
-            handleQuestion(req, resp, question, questionIndex, quiz.size());
-        } else {
-            resp.sendRedirect("restricted.jsp");
-        }
 
+
+            Question question = database.getQuestionByQuizAndIndex(quizId, questionIndex);
+            quiz = database.getQuizById(quizId);
+            if (user.validateQuiz(quiz)) { // User validation
+                if (!user.quizStarted()) {
+                    user.beginQuiz(quiz);
+                }
+                handleQuestion(req, resp, question, questionIndex, quiz.size());
+            } else {
+                resp.sendRedirect("restricted.jsp");
+            }
+        } catch (SQLException e) {
+            handleError(e, req, resp);
+        }
     }
 
     @Override

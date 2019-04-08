@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/edit_article")
-public class EditArticleServlet extends HttpServlet {
+public class EditArticleServlet extends AbstractServlet {
 
 
     @Override
@@ -38,7 +38,7 @@ public class EditArticleServlet extends HttpServlet {
             }
             resp.sendRedirect("content");
         } catch (SQLException e) {
-
+            handleError(e, req, resp);
         }
 
 

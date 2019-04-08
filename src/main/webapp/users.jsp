@@ -25,6 +25,7 @@
             <% for (User u : users) { %>
                 <p><%= u.getRole() %> - <%= u.getUsername() %> - <%= u.getEmail() %></p>
             <% } %>
+            <br><a class="button" href="content">BACK</a>
         </div>
     </div>
 </body>

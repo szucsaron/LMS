@@ -27,7 +27,7 @@ public class ContentServlet extends AbstractServlet {
         try {
             showContent(user, req, resp);
         } catch (SQLException e) {
-            String cucu = e.getLocalizedMessage();
+            handleError(e, req, resp);
         }
     }
 

@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="com.codecool.web.model.Article" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html class="bg-1" lang="en">
-
-<%
-    // Java init
-    boolean success = (boolean) request.getAttribute("result");
-%>
 
 <head>
     <meta charset="utf-8">
@@ -21,16 +16,8 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <p>
-            <%
-                if (success) {
-                    out.println("Quiz successfully completed");
-                } else {
-                    out.println("Quiz failed.");
-                }
-            %>
-        </p>
-        <a href="content">BACK</a>
-    </div>
+Error:<br>
+${msg}
 </body>
+
+</html>

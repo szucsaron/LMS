@@ -26,8 +26,9 @@
                   <option value="STUDENT">Student</option>
                   <option value="MENTOR">Mentor</option>
                 </select></p>
+            <jsp:include page="show-error.jsp"/>
             <input type="submit" value="REGISTER">
-            <a class="button" href="index.html">LOGIN</a>
+            <a class="button" href="index.jsp">LOGIN</a>
         </form>
     </div>
 </div>

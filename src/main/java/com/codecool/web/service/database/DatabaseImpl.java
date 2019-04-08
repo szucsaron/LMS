@@ -136,4 +136,9 @@ public class DatabaseImpl implements Database {
         return new ArrayList<>();
     }
 
+    public List<String> getEmailAddresses() {
+        return new ArrayList<>();
+    }
+
+
 }

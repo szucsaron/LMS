@@ -53,10 +53,11 @@
                     <% for (String student : toCheck.keySet()) { %>
                         <i><%= student %></i><br>
                         <% for (Integer id : toCheck.get(student)) { %>
-                            <a href="quiz?quizId=<%=id%>"><%= allQuiz.get(id) %></a><br>
+                            <a href="quiz?quizId=<%=id%>"><%= allQuiz.get(id) %></a>
                         <% } %>
                     <% } %>
             <% } %>
+            <br><a class="button" href="content">BACK</a><br>
         </div>
     </div>
 </body>
