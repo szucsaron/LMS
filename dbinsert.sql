@@ -10,118 +10,96 @@ insert into users (id, user_name) values
 
 
 --**** Inserting quizzes
+INSERT INTO quizes VALUES (0,'How to goat?'),
+(1,'1 goats + 1 goats equals?'),
+(2,'Goats and moral nihilism'),
+(3,'Goats and refactoring'),
+(4,'Goats and needs'),
+(5,'Public');
 
--- Quiz 0
+INSERT INTO questions (id, quiz_id, title) VALUES
+(0,0,'Which on is the perfect name for a goat?'),
+(1,0,'Whats the most frequent illness among goats?'),
+(2,0,'How do you start a daily goat checkup?'),
+(3,0,'What is a goat?'),
+(4,1,'1 goats + 1 goats equals?'),
+(5,1,'Can you breed too many goats?'),
+(6,1,'What to do, if your goats wont breed'),
+(7,2,'Are goats great?'),
+(8,2,'What is the correct representation of the world?'),
+(9,2,'What is the difference between a painting and a goat?'),
+(10,3,'Do you understand the material?'),
+(11,4,'How many foods can you feed a goat?'),
+(12,4,'What can a goat eat?'),
+(13,4,'What can eat a goat?'),
+(14,5,'What to do if you are cornered in a dark alley by Dezső, a violent anti-goat reactionary?'),
+(15,5,'Who is Dezsős mother'),
+(16,5,'Remember the mantra: What are goats?');
 
-/*
-insert into questions (id, quiz_id, title) values 
-(, , '');
-insert into answers(question_id, id, answer, correct) values
-(, , '', '0'),
-(, , '', '0'),
-(, , '', '0'),
-(, , '', '0');
- */
-
-insert into quizes values (0, 'How to goat?');
-
-
-insert into questions (id, quiz_id, title) values 
-(0, 0, 'Which on is the perfect name for a goat?');
-insert into answers(question_id, answer, correct) values
-(0, 0, 'Billy', '0'),
-(0, 1, 'Beth', '0'),
-(0, 2, 'Hector Brown Jr.', '0'),
-(0, 3, 'Anyád', '1');
-
-insert into questions (id, quiz_id, title) values 
-(1, 0, 'What is the most frequent illness among goats?');
-insert into answers(question_id, id, answer, correct) values
-(1, 4, 'Fever', '0'),
-(1, 5, 'Cancer', '0'),
-(1, 6, 'Anyád', '1'),
-(1, 7, 'Parkinsons disease', '0');
-
-insert into questions (id, quiz_id, title) values 
-(2, 0, 'How do you start a daily goat checkup?');
-insert into answers(question_id, id, answer, correct) values
-(2, 8, 'By calling my goats.', '1'),
-(2, 9, 'By calling my goats by their names', '0'),
-(2, 10, 'By calling my goats names', '0'),
-(2, 11, 'No.', '0');
-
-insert into questions (id, quiz_id, title) values 
-(3, 0, 'What is a goat?');
-insert into answers(question_id, id, answer, correct) values
-(3, 12, 'A mammal.', '0'),
-(3, 13, 'A duck', '0'),
-(3, 14, 'An infectious disease', '0'),
-(3, 15, 'A goat is a mammal with all the hooves and none of the decency.', '1');
-
-
-insert into quizes values (1, 'Goats and moral nihilism');
-
-insert into questions (id, quiz_id, title) values 
-(4, 1, 'Are goats great?');
-insert into answers(question_id, id, answer, correct) values
-(4, 16, 'Hell yeah!', '1'),
-(4, 17, 'Nay!', '0'),
-(4, 18, 'Sort of', '0'),
-(4, 19, 't cannot be determined, as goats have no intrinsic values assigned to them by nature', '0');
-
-insert into questions (id, quiz_id, title) values 
-(5, 1, 'What is the correct representation of the world?');
-insert into answers(question_id, id, answer, correct) values
-(5, 20, 'Goat goat = new Goat(Meaning.getNullInstance())', '0'),
-(5, 21, 'Goat goat = new Goat(Meaning.getObjectiveInstance())', '0'),
-(5, 22, 'Meaning meaning = (Meaning) NonsenseFactory.getInstance().createNonsense()', '0'),
-(5, 23, 'Meaning meaning = Meaning.parseNonsense(NonsenseFactory.getInstance().createNonsense())', '0'),
-(4, 24, '; is missing', '1');
-
-insert into questions (id, quiz_id, title) values 
-(6, 1, 'What is the difference between a painting and a goat?');
-insert into answers(question_id, id, answer, correct) values
-(6, 25, 'Nothing. They live in the same physical reality.', '0'),
-(6, 26, 'Nothing. Their names have letters in common.', '0'),
-(6, 27, 'You can paint goats, but you cannot goat paints', '0'),
-(6, 28, 'They are nice', '1'),
-(6, 29, 'They both lack things: The goat doesnt have wheels, as a bicycle doesnt have legs.', '0'),
-(6, 30, 'One is the ultimate expression of creativity, spirit and human nature; the exaltation of life force itself, the other is a wall decoration.', '0');
-
-
-insert into quizes values (3, 'Goats and refactoring?');
-insert into questions (id, quiz_id, title) values 
-(7, 3, 'Do you understand the material?');
-insert into answers(question_id, id, answer, correct) values
-(7, , 'Yes', '1'),
-(7, , 'No', '0');
-
-insert into questions (id, quiz_id, title) values 
-(8, 3, 'How many foods can you feed a goat?');
-insert into answers(question_id, id, answer, correct) values
-(8, , '5', '0'),
-(8, , '6', '1'),
-(8, , '77', '0'),
-(8, , '1', '0');
-
-insert into questions (id, quiz_id, title) values 
-(9, 3, 'What can a goat eat');
-insert into answers(question_id, id, answer, correct) values
-(9, , 'Cucumber', '0'),
-(9, , 'Void', '0'),
-(9, , 'Bastards eat everything', '0'),
-(9, , 'Diesel fuel', '0');
-
-insert into questions (id, quiz_id, title) values 
-(10, 3, 'What can eat a goat?');
-insert into answers(question_id, id, answer, correct) values
-(10, , 'Animals that eat goats', '0'),
-(10, , 'Animals that do not eat goats', '0'),
-(10, , 'Both', '0'),
-(10, , 'None of the above', '0');
---**** Inserting Solutions
-
-insert into solutions (user_id, answer_id) values
-(0, 0),
-(0, 6),
-(0, 8);
+INSERT INTO answers (id, question_id, answer, correct) VALUES
+(0, 0, 'Billy','0'),
+(1, 0, 'Beth','0'),
+(2, 0, 'Hector Brown Jr.','0'),
+(3, 0, 'Anyád','1'),
+(4, 1, 'Fever','0'),
+(5, 1, 'Cancer','0'),
+(6, 1, 'Anyád','1'),
+(7, 1, 'Parkinsons disease','0'),
+(8, 2, 'By calling my goats.','1'),
+(9, 2, 'By calling my goats by their names','0'),
+(10, 2, 'By calling my goats names','0'),
+(11, 2, 'No.','0'),
+(12, 3, 'A mammal.','0'),
+(13, 3, 'A duck','0'),
+(14, 3, 'An infectious disease','0'),
+(15, 3, 'A goat is a mammal with all the hooves and none of the decency.','1'),
+(16, 4, '1 goat','0'),
+(17, 4, '2 goats','0'),
+(18, 4, 'Goat[] goats = new Goat[] {new Goat(), new Goat()}','1'),
+(19, 4, 'Goats dont exist.','0'),
+(20, 5, 'Yes','0'),
+(21, 5, 'No','1'),
+(22, 6, 'Accept yourself as a failure.','1'),
+(23, 6, 'Try to get goats that actually breed','0'),
+(24, 6, 'Try to improve conditions in the barn','0'),
+(25, 6, 'Switch to ducks.','0'),
+(26, 7, 'Hell yeah!','1'),
+(27, 7, 'Nay!','0'),
+(28, 7, 'Sort of','0'),
+(29, 7, 'It cannot be determined, as goats have no intrinsic values assigned to them by nature','0'),
+(32, 8, 'Meaning meaning = (Meaning) NonsenseFactory.getInstance().createNonsense()','0'),
+(33, 8, 'Meaning meaning = Meaning.parseNonsense(NonsenseFactory.getInstance().createNonsense())','0'),
+(34, 8, '; is missing','1'),
+(30, 8, 'Goat goat = new Goat(Meaning.getNullInstance())','0'),
+(31, 8, 'Goat goat = new Goat(Meaning.getObjectiveInstance())','0'),
+(35, 9, 'Nothing. They live in the same physical reality.','0'),
+(36, 9, 'Nothing. Their names have letters in common.','0'),
+(37, 9, 'You can paint goats, but you cant goat paints','0'),
+(38, 9, 'They are nice','1'),
+(39, 9, 'They both lack things: The goat doesnt have wheels, as a bicycle doesnt have legs.','0'),
+(40, 9, 'One is the ultimate expression of creativity, spirit and human nature; the exaltation of life force itself, the other is a wall decoration.','0'),
+(41, 10, 'Yes','1'),
+(42, 10, 'No','0'),
+(43, 11, '5','0'),
+(44, 11, '6','1'),
+(45, 11, '77','0'),
+(46, 11, '1','0'),
+(48, 12, 'Void','0'),
+(49, 12, 'Bastards eat everything','1'),
+(50, 12, 'Diesel fuel','0'),
+(47, 12, 'Cucumber','0'),
+(51, 13, 'Animals that eat goats','1'),
+(52, 13, 'Animals that dont eat goats','0'),
+(53, 13, 'Both','0'),
+(54, 13, 'None of the above','0'),
+(55, 14, 'Cry','0'),
+(56, 14, 'Spit','1'),
+(57, 14, 'This is the correct answer','0'),
+(58, 14, 'Call upon the powers of Pan','0'),
+(59, 14, 'Invalidate his person by writing a 200 page manifesto of goat-criticism-criticism. Hell die of shame.','0'),
+(60, 15, 'A nice person','0'),
+(61, 15, 'A shameless piece of half-sentient, infectious flesh as useful as a heart attack','1'),
+(62, 15, 'Someone, who had given birth to Dezső','0'),
+(63, 15, 'Dezső','0'),
+(64, 16, 'A calling','1'),
+(65, 16, 'An obsession','0');

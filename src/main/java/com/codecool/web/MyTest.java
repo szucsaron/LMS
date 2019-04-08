@@ -5,7 +5,7 @@ import com.codecool.web.model.Content;
 import com.codecool.web.service.database.DatabaseLoader;
 import com.codecool.web.service.database.SqlGenerator;
 
-import java.io.IOException;
+import java.io.*;
 
 public class MyTest {
     public static void main(String[] args) throws IOException{
@@ -13,7 +13,11 @@ public class MyTest {
 
         Content content = databaseLoader.loadContent("src/main/webapp/articles.xml", "src/main/webapp/quizzes.xml");
         SqlGenerator sqlGenerator = new SqlGenerator(content);
-        System.out.println(sqlGenerator.generate());
+        String output = sqlGenerator.generate();
+
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("goat_insert.sql")));
+        bufferedWriter.write(output);
+        bufferedWriter.close();
 
     }
 }*/
