@@ -35,6 +35,7 @@
                 <jsp:include page="show-error.jsp"/>
                 <input type="submit" value="SAVE">
                 <a class="button" href="content">BACK</a>
+                <jsp:include page="snippets/show-error.jsp"/>
             </form>
         </div>
     </div>

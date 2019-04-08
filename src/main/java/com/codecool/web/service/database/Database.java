@@ -40,4 +40,5 @@ public interface Database {
 
     public List<Integer> getQuizIdsByLevel(int lvl);
 
+    List<String> getEmailAddresses();
 }

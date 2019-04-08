@@ -119,6 +119,14 @@ public class MockDatabase implements Database {
         return users.keySet();
     }
 
+    public List<String> getEmailAddresses() {
+        List<String> addresses = new ArrayList<>();
+        for (User u : users.values()) {
+            addresses.add(u.getEmail());
+        }
+        return addresses;
+    }
+
     public Question getQuestionByQuizAndIndex(int quizId, int index) {
         return content.getQuestionsByQuizIndex(quizId, index);
     }

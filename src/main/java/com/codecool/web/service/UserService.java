@@ -40,8 +40,16 @@ public final class UserService {
         }
     }
 
-    public boolean validateRegistration(String username) {
-        return database.getUserNames().contains(username);
+    public boolean validateRegistration(String username, String email) {
+        return validateUniqueUsername(username) && validateUniqueEmail(email);
+    }
+
+    public boolean validateUniqueUsername(String username) {
+        return !database.getUserNames().contains(username);
+    }
+
+    public boolean validateUniqueEmail(String email) {
+        return !database.getEmailAddresses().contains(email);
     }
 
     public User getCurrentUser(HttpServletRequest req) {
