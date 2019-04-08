@@ -18,7 +18,7 @@
     <%
         // Java init
         String role = (String) request.getAttribute("role");
-        Map<Integer, String> allQuiz = (Map<Integer, String>) request.getAttribute("quizes");
+        Map<Integer, String> allQuiz = (Map<Integer, String>) request.getAttribute("quizzes");
 
         List<Integer> availableQuiz = (List<Integer>) request.getAttribute("available");
         List<Integer> committed = (List<Integer>) request.getAttribute("committed");

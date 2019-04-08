@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @WebServlet("/quizlist")
-public class QuizListingServlet extends HttpServlet {
+public class QuizListingServlet extends AbstractServlet {
 
     private Database database = MockDatabase.getInstance();
     private UserService us = new UserService();
@@ -47,11 +47,12 @@ public class QuizListingServlet extends HttpServlet {
             }
 
             req.setAttribute("role", role);
-            req.setAttribute("quizes", quizList);
+            req.setAttribute("quizzes", quizList);
+
 
             requestDispatcher.forward(req, resp);
         } catch (SQLException e) {
-
+            handleError(e, req, resp);
         }
     }
 }
