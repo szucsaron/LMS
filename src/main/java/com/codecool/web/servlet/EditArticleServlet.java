@@ -21,12 +21,15 @@ public class EditArticleServlet extends HttpServlet {
         String title = req.getParameter("title");
         String content = req.getParameter("content");
         String articleIdParam = req.getParameter("articleId");
+        int level = Integer.parseInt(req.getParameter("level"));
         if (articleIdParam.equals("new")) {
             Article article = new Article(title, content);
+            article.setLevel(level);
             database.addArticle(article);
         } else {
             int articleId = Integer.parseInt(articleIdParam);
             Article article = database.getArticle(articleId);
+            article.setLevel(level);
             article.setTitle(title);
             article.setText(content);
             database.modifyArticle(article);
@@ -43,18 +46,23 @@ public class EditArticleServlet extends HttpServlet {
         String articleIdParam = req.getParameter("articleId");
         String title;
         String content;
+        int level;
+
         if (articleIdParam.equals("new")) {
             title = "";
             content = "";
+            level = 1;
         } else {
             int articleId = Integer.parseInt(req.getParameter("articleId"));
             Article article = database.getArticle(articleId);
             title = article.getTitle();
             content = article.getText();
+            level = article.getLevel();
         }
         req.setAttribute("title", title);
         req.setAttribute("content", content);
         req.setAttribute("articleId", articleIdParam);
+        req.setAttribute("level", level);
 
 
         req.getRequestDispatcher("edit_article.jsp").forward(req, resp);

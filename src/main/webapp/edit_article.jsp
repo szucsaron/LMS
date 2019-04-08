@@ -9,6 +9,7 @@
     String title = (String) request.getAttribute("title");
     String content = (String) request.getAttribute("content");
     String articleId = (String) request.getAttribute("articleId");
+    Integer level = (Integer) request.getAttribute("level");
 
 %>
 
@@ -30,7 +31,9 @@
                   <br>
                   <textarea rows="8" cols="34" type="text" name="content" placeholder="content"><%=content%></textarea>
               </p>
-              <input type="hidden" name="articleId" value=<%=articleId%>>
+              <br>
+              <input type="number" name="level" min="1" max="100" value="<%=level%>">
+              <input type="hidden" name="articleId" value=<%=articleId%>
               <br><br>
               <input type="submit" value="SAVE">
               <br>
