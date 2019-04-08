@@ -10,10 +10,11 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Map;
 
 @WebServlet("/content")
-public class ContentServlet extends HttpServlet {
+public class ContentServlet extends AbstractServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,10 +24,14 @@ public class ContentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         MockDatabase.getInstance().setLocation(req.getServletContext().getRealPath("/"));
         User user = new UserService().getCurrentUser(req);
-        showContent(user, req, resp);
+        try {
+            showContent(user, req, resp);
+        } catch (SQLException e) {
+            handleError(e, req, resp);
+        }
     }
 
-    private void showContent(User user, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void showContent(User user, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
         int id;
 
         try {
@@ -35,7 +40,7 @@ public class ContentServlet extends HttpServlet {
             id = 0;
         }
 
-        Database database = MockDatabase.getInstance();
+        Database database = getDatabase();
         Article article = database.getArticle(id);
         if (article.hasAccess(user)) {
             req.setAttribute("articleId", id);

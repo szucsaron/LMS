@@ -10,21 +10,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @WebServlet("/attendance")
-public class AttendanceServlet extends HttpServlet {
+public class AttendanceServlet extends AbstractServlet {
 
-    private Database database = MockDatabase.getInstance();
-    private User[] users = database.getUsersArray();
+
+    private User[] users;
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("users", users);
-        req.getRequestDispatcher("attendance.jsp").forward(req, resp);
+        try {
+            Database database = MockDatabase.getInstance();
+            users = database.getUsersArray();
+            req.setAttribute("users", users);
+            req.getRequestDispatcher("attendance.jsp").forward(req, resp);
+        } catch (SQLException e){
+            handleError(e, req, resp);
+        }
     }
 
     @Override

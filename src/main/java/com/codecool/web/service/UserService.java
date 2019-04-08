@@ -4,9 +4,11 @@ import com.codecool.web.model.NoSuchUserException;
 import com.codecool.web.model.User;
 import com.codecool.web.service.database.Database;
 import com.codecool.web.service.database.MockDatabase;
+import com.codecool.web.service.database.SqlGenerator;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,11 +17,11 @@ public final class UserService {
 
     Database database = MockDatabase.getInstance();
 
-    public User[] getUsers() {
+    public User[] getUsers() throws SQLException {
         return database.getUsersArray();
     }
 
-    public Map<String, List<Integer>> getCommittedTests() {
+    public Map<String, List<Integer>> getCommittedTests() throws SQLException {
         Map<String, List<Integer>> committedTests = new HashMap<>();
         for (User u : getUsers()) {
             if (u.getRole().equals("STUDENT")) {
@@ -40,15 +42,15 @@ public final class UserService {
         }
     }
 
-    public boolean validateRegistration(String username, String email) {
+    public boolean validateRegistration(String username, String email)  throws SQLException{
         return validateUniqueUsername(username) && validateUniqueEmail(email);
     }
 
-    public boolean validateUniqueUsername(String username) {
+    public boolean validateUniqueUsername(String username) throws SQLException{
         return !database.getUserNames().contains(username);
     }
 
-    public boolean validateUniqueEmail(String email) {
+    public boolean validateUniqueEmail(String email)  throws SQLException{
         return !database.getEmailAddresses().contains(email);
     }
 

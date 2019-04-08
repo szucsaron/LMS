@@ -9,36 +9,37 @@ import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 
 public interface Database {
     void setLocation(String locationPrefix);
 
-    Article getArticle(int id);
+    Article getArticle(int id) throws SQLException;
 
-    Map<Integer, String> getArticleIds();
+    Map<Integer, String> getArticleIds()  throws SQLException;
 
-    void addArticle(Article article);
+    void addArticle(Article article)  throws SQLException;
 
-    void modifyArticle(Article article);
+    void modifyArticle(Article article) throws SQLException;
 
-    Map<Integer, String> getArticleIdsBySearch(String toFind);
+    Map<Integer, String> getArticleIdsBySearch(String toFind)  throws SQLException;
 
     void addUser(User user);
 
     User getUserByName(String userName) throws NoSuchUserException;
 
-    User[] getUsersArray();
+    User[] getUsersArray() throws SQLException;
 
-    Set<String> getUserNames();
+    Set<String> getUserNames() throws SQLException;
 
     Question getQuestionByQuizAndIndex(int quizId, int index);
 
-    Quiz getQuizById(int quizId);
+    Quiz getQuizById(int quizId) throws SQLException;
 
-    List<Quiz> getAllQuizzes();
+    List<Quiz> getAllQuizzes() throws SQLException;
 
-    public List<Integer> getQuizIdsByLevel(int lvl);
+    public List<Integer> getQuizIdsByLevel(int lvl) throws SQLException;
 
-    List<String> getEmailAddresses();
+    List<String> getEmailAddresses() throws SQLException;
 }

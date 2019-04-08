@@ -10,7 +10,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet("/login")
-public class LogInServlet extends HttpServlet {
+public class LogInServlet extends AbstractServlet {
 
     private final UserService service = new UserService();
 
