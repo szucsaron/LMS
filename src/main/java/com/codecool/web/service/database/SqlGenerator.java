@@ -111,14 +111,16 @@ public class SqlGenerator {
     private void getArticles(StringBuilder sb) {
         Map<Integer, Article> articles = content.getArticles();
         Collection<Integer> articleIds = articles.keySet();
-        sb.append("INSERT INTO articles (id, quiz_id, title, textcontent) VALUES\n");
+        sb.append("INSERT INTO articles (id, quiz_id, title, textcontent, lvl) VALUES\n");
         for (int id : articleIds) {
             Article article = articles.get(id);
-            sb.append(String.format("(%d, %d, '%s', '%s'),\n",
+            sb.append(String.format("(%d, %d, '%s', '%s', %d),\n",
                                     article.getId(),
                                     article.getQuizId(),
                                     article.getTitle(),
-                                    article.getText().replace("'", "").replace("\n", "")));
+                                    article.getText().replace("'", "").replace("\n", " ").replace("    ", ""),
+                                    article.getLevel()
+            ));
         }
         sb.replace(sb.length() - 2, sb.length(), "");
         sb.append(";\n\n");
@@ -135,13 +137,13 @@ public class SqlGenerator {
             "\n" +
             "\n" +
             "CREATE TABLE users (\n" +
-            "\tid INT primary key,\n" +
+            "\tid serial primary key,\n" +
             "\tuser_name VARCHAR(50),\n" +
             "\tpasswd VARCHAR(50)\n" +
             ");\n" +
             "\n" +
             "CREATE TABLE quizzes (\n" +
-            "\tid INT primary key,\n" +
+            "\tid serial primary key,\n" +
             "\ttitle VARCHAR(200)\n" +
             ");\n" +
             "\n" +
@@ -152,10 +154,11 @@ public class SqlGenerator {
             ");\n" +
             "\n" +
             "CREATE TABLE articles (\n" +
-            "\tid INT primary key,\n" +
+            "\tid serial primary key,\n" +
             "\tquiz_id INT references quizzes(id),\n" +
             "\ttitle VARCHAR(200),\n" +
-            "\ttextcontent text\n" +
+            "\ttextcontent text,\n" +
+            "\tlvl INT\n" +
             ");\n" +
             "\n" +
             "CREATE TABLE answers (\n" +

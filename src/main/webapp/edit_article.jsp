@@ -30,7 +30,7 @@
                 <br>
                 <textarea type="text" name="content" placeholder="content"><%=content%></textarea>
                 <input type="number" name="level" min="1" max="100" value="<%=level%>">
-                <input type="hidden" name="articleId" value=<%=articleId%><br>
+                <input type="hidden" name="articleId" value="<%=articleId%>"<br>
                 <input type="submit" value="SAVE">
                 <a class="button" href="content">BACK</a>
                 <br>

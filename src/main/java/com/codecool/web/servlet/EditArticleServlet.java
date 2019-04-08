@@ -19,7 +19,7 @@ public class EditArticleServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            Database database = MockDatabase.getInstance();
+            Database database = getDatabase();
             String title = req.getParameter("title");
             String content = req.getParameter("content");
             String articleIdParam = req.getParameter("articleId");

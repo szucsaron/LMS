@@ -7,13 +7,13 @@ DROP TABLE IF EXISTS quizzes;
 
 
 CREATE TABLE users (
-	id INT primary key,
+	id serial primary key,
 	user_name VARCHAR(50),
 	passwd VARCHAR(50)
 );
 
 CREATE TABLE quizzes (
-	id INT primary key,
+	id serial primary key,
 	title VARCHAR(200)
 );
 
@@ -24,10 +24,11 @@ CREATE TABLE questions (
 );
 
 CREATE TABLE articles (
-	id INT primary key,
+	id serial primary key,
 	quiz_id INT references quizzes(id),
 	title VARCHAR(200),
-	textcontent text
+	textcontent text,
+	lvl INT
 );
 
 CREATE TABLE answers (
@@ -137,11 +138,11 @@ INSERT INTO answers (id, question_id, answer, correct) VALUES
 (64, 16, 'A calling','1'),
 (65, 16, 'An obsession','0');
 
-INSERT INTO articles (id, quiz_id, title, textcontent) VALUES
-(0, 0, 'What is a goat?', 'A goat is a mammal with all the hooves and none of the decency. From this can be all derived. In a fact, it is such a universal claim,that to imagine a world without goats is a bleak and pitiful existence without ANY redeeming qualities. To the trainee goatist, the seeminglyinsurmountable odds of overcoming any irrational fear of upgoating can be overcome by discipline and precision of mind, which can besharpened by defining these creatures of utmost importance. Lets see it in practise:<p>1. A goat is everything, which is, by nature not not a goat.</p><p>2. A goat is an animal, on which the number of limbs attached by the forces of nature never exceeds that of a donkey or a horse, and while this numberis inferior to that of cockroaches, it never entails any kind of species-wise inferiority. The reason behind that lies in a factor thatpredisposes goat limbs to be multi-faceted constructions of compound appendages due to them having thick fur, in which each piece of hair can be considereda separate leg by invertebrate standards. In a sense, it can be said, that goats have limbs in the number of hundred-thousands. Can donkey-hair or horse-hairconsidered as well to be an array of legs? No, as its quite obvious that equines and their relatives cannot jump on fences, rooftops or other elevated platforms,on the other hand, goats can. This can be only explained by the latter having a high number of legs (which provides great extra strength), and the former dont.In other words, to the caprine, fur is legs, to other hoofed kindred, fur is just ... fur. A goat is, therefore, very good.</p>'),
-(1, 1, 'Goat breeding', 'Try to raise your number of goats. Hint: Add goats to make more goats. If you have enough goats, you dont have enough goats. Ideal goat population approachesinfinity. Ideal human population doesnt. Conclusion: dont have children, have goats instead and breed them. Or even better, find yourself a team of decentlydrunken surgeons, so that by the miracle of scalpels and blood and saws and blood and drills and blood and hammers and blood and sutures and blood and just a hint ofneo-Freudean charlatanry, you can become a goat yourself. Find friends; become goats together; make doctors exhausted, overworked and devilishly rich. You poorbastard, deep inside you know, you can never become one of these fine creatures. So you come up with stupid ideas, like this? Shame!'),
-(2, 2, 'Teaching your goats moral nihilism', 'You can teach your goats the base values of moral nihilism like this:<p>public class MyGoat() extends Goat {<br>private Boolean goodOrBad = null;<br>}<br></p>'),
-(3, 3, 'Goat refactoring 101', 'Goats are to be refactored constantly for the greater good of goatkind. It is good. In refactoring, the more always means better. If your goats lack eyes, just stick a fewdozen on each of them, or even hundreds. If your goat doesnt like Chinese food, duct tape a few external digestive tracts on their bodies, which can processstuff like that. Dont bother with untangling seemingly overcomplicated goat bionics you recently installed, as its a huge time sink.Has Your goat become a labyrinthine mess of a biological framework? Dont give a crap! Goats are strong. Thingsll sort themselves out in the end.If its too much work, let it rot. Its refactoring 101.'),
-(4, 4, 'Putting your goat before your needs', 'Die for your goat. No exception.'),
-(5, 5, 'Dealing with the public: It is a calling, not an obsession!', 'So far, you have learned valuable lessons stemming from the basic proposition: Goats are great. However, public support forthe cause may diminish each time you talk about goats, refer to goat food or mimic the calls of goats. There is a reason for that:For others, goats are not that great. What to do? Its easy: have ample time to refer to your opponents mothers. This will underminetheir statements and make their very rhetoric collapse by its own weight.');
+INSERT INTO articles (id, quiz_id, title, textcontent, lvl) VALUES
+(0, 0, 'What is a goat?', ' A goat is a mammal with all the hooves and none of the decency. From this can be all derived. In a fact, it is such a universal claim, that to imagine a world without goats is a bleak and pitiful existence without ANY redeeming qualities. To the trainee goatist, the seemingly insurmountable odds of overcoming any irrational fear of upgoating can be overcome by discipline and precision of mind, which can be sharpened by defining these creatures of utmost importance. Lets see it in practise: <p> 1. A goat is everything, which is, by nature not not a goat. </p> <p> 2. A goat is an animal, on which the number of limbs attached by the forces of nature never exceeds that of a donkey or a horse, and while this number is inferior to that of cockroaches, it never entails any kind of species-wise inferiority. The reason behind that lies in a factor that predisposes goat limbs to be multi-faceted constructions of compound appendages due to them having thick fur, in which each piece of hair can be considered a separate leg by invertebrate standards. In a sense, it can be said, that goats have limbs in the number of hundred-thousands. Can donkey-hair or horse-hair considered as well to be an array of legs? No, as its quite obvious that equines and their relatives cannot jump on fences, rooftops or other elevated platforms, on the other hand, goats can. This can be only explained by the latter having a high number of legs (which provides great extra strength), and the former dont. In other words, to the caprine, fur is legs, to other hoofed kindred, fur is just ... fur. A goat is, therefore, very good. </p> ', 1),
+(1, 1, 'Goat breeding', ' Try to raise your number of goats. Hint: Add goats to make more goats. If you have enough goats, you dont have enough goats. Ideal goat population approaches infinity. Ideal human population doesnt. Conclusion: dont have children, have goats instead and breed them. Or even better, find yourself a team of decently drunken surgeons, so that by the miracle of scalpels and blood and saws and blood and drills and blood and hammers and blood and sutures and blood and just a hint of neo-Freudean charlatanry, you can become a goat yourself. Find friends; become goats together; make doctors exhausted, overworked and devilishly rich. You poor bastard, deep inside you know, you can never become one of these fine creatures. So you come up with stupid ideas, like this? Shame! ', 1),
+(2, 2, 'Teaching your goats moral nihilism', ' You can teach your goats the base values of moral nihilism like this: <p> public class MyGoat() extends Goat {<br> private Boolean goodOrBad = null;<br> }<br> </p> ', 3),
+(3, 3, 'Goat refactoring 101', ' Goats are to be refactored constantly for the greater good of goatkind. It is good. In refactoring, the more always means better. If your goats lack eyes, just stick a few dozen on each of them, or even hundreds. If your goat doesnt like Chinese food, duct tape a few external digestive tracts on their bodies, which can process stuff like that. Dont bother with untangling seemingly overcomplicated goat bionics you recently installed, as its a huge time sink. Has Your goat become a labyrinthine mess of a biological framework? Dont give a crap! Goats are strong. Thingsll sort themselves out in the end. If its too much work, let it rot. Its refactoring 101.  ', 4),
+(4, 4, 'Putting your goat before your needs', ' Die for your goat. No exception. ', 5),
+(5, 5, 'Dealing with the public: It is a calling, not an obsession!', ' So far, you have learned valuable lessons stemming from the basic proposition: Goats are great. However, public support for the cause may diminish each time you talk about goats, refer to goat food or mimic the calls of goats. There is a reason for that: For others, goats are not that great. What to do? Its easy: have ample time to refer to your opponents mothers. This will undermine their statements and make their very rhetoric collapse by its own weight. ', 6);
 

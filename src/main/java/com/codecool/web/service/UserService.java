@@ -31,7 +31,7 @@ public final class UserService {
         return committedTests;
     }
 
-    public void addUser(User user) {
+    public void addUser(User user) throws SQLException {
         database.addUser(user);
     }
 
