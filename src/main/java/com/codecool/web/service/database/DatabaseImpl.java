@@ -155,5 +155,8 @@ public class DatabaseImpl implements Database {
         return new ArrayList<>();
     }
 
+    public void close() throws SQLException{
+        connection.close();
+    }
 
 }
