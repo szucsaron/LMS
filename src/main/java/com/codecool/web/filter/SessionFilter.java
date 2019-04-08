@@ -30,16 +30,16 @@ public final class SessionFilter implements Filter {
         HttpSession session = req.getSession();
         if (path.endsWith(".css") ||
             path.endsWith("login") ||
-            path.endsWith("register.html") ||
+            path.endsWith("register.jsp") ||
             path.endsWith("register") ||
             path.endsWith(".png") ||
             path.endsWith(".jpg") ||
-            path.endsWith("index.html")) {
+            path.endsWith("index.jsp")) {
             chain.doFilter(req, resp);
         } else {
             User user = (User) session.getAttribute("user");
             if (user == null) {
-                resp.sendRedirect("index.html");
+                resp.sendRedirect("index.jsp");
             } else {
                 chain.doFilter(req, resp);
             }
