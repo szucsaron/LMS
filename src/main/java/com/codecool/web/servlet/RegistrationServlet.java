@@ -27,8 +27,12 @@ public class RegistrationServlet extends AbstractServlet {
             String role = req.getParameter("role");
 
             if (!service.validateRegistration(un, em)) {
-                resp.sendRedirect("register.html");
-                req.setAttribute("error", "Username is already taken!");
+                if (!service.validateUniqueUsername(un)) {
+                    req.setAttribute("error", "Username is already taken!");
+                }
+                if (!service.validateUniqueEmail(em)) {
+                    req.setAttribute("error", "E-mail address is already taken!");
+                }
                 req.getRequestDispatcher("register.jsp").forward(req, resp);
             } else {
                 User user = new User(un, pw, em, role);
