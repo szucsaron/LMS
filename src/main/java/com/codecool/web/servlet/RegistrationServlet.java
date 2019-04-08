@@ -23,14 +23,16 @@ public class RegistrationServlet extends HttpServlet {
         String pw = req.getParameter("password");
         String em = req.getParameter("email");
         String role = req.getParameter("role");
+        String errorMsg = "";
 
         if (!service.validateRegistration(un, em)) {
             if (!service.validateUniqueUsername(un)) {
-                req.setAttribute("error", "Username is already taken!");
+                errorMsg += "Username is already taken! <br>";
             }
             if (!service.validateUniqueEmail(em)) {
-                req.setAttribute("error", "E-mail address is already taken!");
+                errorMsg += "E-mail address is already taken!";
             }
+            req.setAttribute("error", errorMsg);
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         } else {
             User user = new User(un, pw, em, role);
