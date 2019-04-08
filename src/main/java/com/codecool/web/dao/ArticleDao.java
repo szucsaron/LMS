@@ -12,10 +12,10 @@ import java.util.Map;
 public class ArticleDao extends AbstractDao {
 
 
-
     public ArticleDao(Connection connection) {
         super(connection);
     }
+
     public Article getArticle(int id) throws SQLException {
         String sql = "SELECT * FROM articles WHERE id = ?";
 
@@ -26,8 +26,9 @@ public class ArticleDao extends AbstractDao {
             rs.next();
             String title = rs.getString("title");
             String text = rs.getString("textcontent");
+            int quizId = rs.getInt("quiz_id");
             int level = rs.getInt("lvl");
-            Article article = new Article(id, title, text);
+            Article article = new Article(id, title, text, quizId, level);
             article.setLevel(level);
             return article;
         }
@@ -38,7 +39,7 @@ public class ArticleDao extends AbstractDao {
         return getArticleIdsBySearch("");
     }
 
-    public void addArticle(Article article) throws SQLException{
+    public void addArticle(Article article) throws SQLException {
         String sql = "INSERT INTO articles (title, textcontent, lvl) VALUES (?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, article.getTitle());
@@ -48,7 +49,7 @@ public class ArticleDao extends AbstractDao {
         }
     }
 
-    public void modifyArticle(Article article)  throws SQLException {
+    public void modifyArticle(Article article) throws SQLException {
         String sql = "UPDATE articles SET title=?, textcontent=?, lvl=? WHERE id=?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, article.getTitle());

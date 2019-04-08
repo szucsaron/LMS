@@ -31,7 +31,7 @@
         <a class="button" href="quizlist">MY ASSIGNMENTS</a>
         <a class="button" href="logout">LOGOUT</a>
         <% if (quizId != null) { %>
-            <a class="button" href="quiz?quizId=<%=articleId%>">TAKE A QUIZ</a>
+            <a class="button" href="quiz?quizId=<%=quizId%>">TAKE A QUIZ</a>
         <% } %>
     </nav>
     <div class="leftbar">

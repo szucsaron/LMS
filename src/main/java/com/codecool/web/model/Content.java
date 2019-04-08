@@ -17,7 +17,7 @@ public class Content {
 
         for (Integer quizId : quizzes.keySet()) {
             Quiz old = quizzes.get(quizId);
-            Quiz container = new Quiz(old.getId(), null);
+            Quiz container = new Quiz(old.getId(), null, 0);
             for (Question question : old) {
                 container.addQuestion(question);
             }

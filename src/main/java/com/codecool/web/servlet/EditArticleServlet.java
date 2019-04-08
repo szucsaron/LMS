@@ -38,8 +38,6 @@ public class EditArticleServlet extends AbstractServlet {
         } catch (SQLException e) {
             handleError(e, req, resp);
         }
-
-
     }
 
     @Override
@@ -70,7 +68,5 @@ public class EditArticleServlet extends AbstractServlet {
         } catch (SQLException e) {
             handleError(e, req, resp);
         }
-
     }
-
 }

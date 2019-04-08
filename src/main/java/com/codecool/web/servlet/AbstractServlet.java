@@ -15,13 +15,9 @@ import java.sql.SQLException;
 
 abstract class AbstractServlet extends HttpServlet {
 
-    Connection getConnection(ServletContext sce) throws SQLException {
+    protected Connection getConnection(ServletContext sce) throws SQLException {
         DataSource dataSource = (DataSource) sce.getAttribute("dataSource");
         return dataSource.getConnection();
-    }
-
-    public Database getDatabase() throws SQLException{
-        return new DatabaseImpl(getConnection(getServletContext()));
     }
 
     protected void handleError(Exception e, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

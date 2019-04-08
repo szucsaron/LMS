@@ -42,6 +42,7 @@ public class ContentServlet extends AbstractServlet {
         }
 
         Article article = articleDao.getArticle(id);
+        boolean hasQuiz = article.hasQuiz();
         if (article.hasAccess(user)) {
             req.setAttribute("articleId", id);
             req.setAttribute("article", article);

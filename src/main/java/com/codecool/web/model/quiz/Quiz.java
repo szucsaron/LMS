@@ -21,9 +21,10 @@ public class Quiz implements Iterable<Question>{
         return description;
     }
 
-    public Quiz(int id, String description) {
+    public Quiz(int id, String description, int questionSize) {
         this.description = description;
         this.id = id;
+        this.size = questionSize;
     }
 
     public void addQuestion(Question question) {

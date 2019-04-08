@@ -12,16 +12,12 @@ public class Article {
 
     private int lvlIncrease;
 
-    public Article(Integer id, String title, String text, Quiz quiz, int level) {
+    public Article(Integer id, String title, String text, Integer quizId, int level) {
         this.title = title;
         this.text = text;
         this.level = level;
-        this.quiz = quiz;
-        if (quiz != null) {
-            this.quizId = quiz.getId();
-        } else {
-            this.quizId = null;
-        }
+        this.quizId = quizId;
+
         this.id = id;
     }
 
@@ -61,11 +57,6 @@ public class Article {
         this.id = id;
     }
 
-    public Quiz getQuiz() {
-        return quiz;
-    }
-
-    private Quiz quiz;
 
     public String getTitle() {
         return title;
@@ -76,11 +67,7 @@ public class Article {
     }
 
     public String toString() {
-        String out = id + " " + title + "\n" + text + "\n";
-        if (quiz != null) {
-            out += quiz.toString();
-        }
-        return out;
+        return String.format("id: %d, quizId: %d, title: %s, text: %s", id, quizId, title, text);
     }
 
     public boolean hasAccess(User user) {
@@ -90,7 +77,6 @@ public class Article {
 
     public void addQuiz(Quiz quiz) {
         this.quizId = quiz.getId();
-        this.quiz = quiz;
     }
 
     public boolean hasQuiz() {
