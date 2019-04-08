@@ -1,10 +1,9 @@
-package com.codecool.web.service;
+package com.codecool.web.service.database;
 
 import com.codecool.web.model.Article;
 import com.codecool.web.model.Content;
 import com.codecool.web.model.NoSuchUserException;
 import com.codecool.web.model.User;
-import com.codecool.web.model.quiz.Answer;
 import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
 

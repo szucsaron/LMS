@@ -5,7 +5,8 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="com.codecool.web.model.Article" %>
 
-<html lang="en">
+<html class="bg-1" lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@
     <meta charset="UTF-8">
     <title>Restricted access</title>
 </head>
+
 <body>
     <h1>Illegal Access</h1>
     <h3>
@@ -24,4 +26,5 @@
         Please, hold your location, wait for our staff and think pleasant thoughts.
     </h3>
 </body>
+
 </html>
