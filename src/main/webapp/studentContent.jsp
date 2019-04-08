@@ -14,15 +14,26 @@
     Integer quizId = (Integer) article.getQuizId();
 %>
 
-<html lang="en">
+<html class="bg-2" lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeCool LMS</title>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
-    <link rel="stylesheet" href="content.css">
+    <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
+    <nav>
+        <a class="button" href="users">USERS</a>
+        <a class="button" href="profile">EDIT PROFILE</a>
+        <a class="button" href="quizlist">MY ASSIGNMENTS</a>
+        <a class="button" href="logout">LOGOUT</a>
+        <% if (quizId != null) { %>
+            <a class="button" href="quiz?quizId=<%=articleId%>">TAKE A QUIZ</a>
+        <% } %>
+    </nav>
     <div class="leftbar">
     <form action="content" method="GET">
         <input type="text" name="search">
@@ -31,20 +42,15 @@
         <% for (Integer key : titles.keySet()) { %>
             <br><a href="content?pageID=<%=key%>"><%= titles.get(key).toUpperCase() %><br></a>
         <% } %>
-
     </div>
     <div class="rightbar">
-        <a class="button" href="users">USERS</a>
-        <a class="button" href="profile">EDIT PROFILE</a>
-        <a class="button" href="quizlist">MY ASSIGNMENTS</a>
-        <a class="button" href="logout">LOGOUT</a>
-        <h2><p> <%=article.getTitle()%> <br><br>
-        <%=article.getText()%> </p>
-        <% if (quizId != null) { %>
-            <a href="quiz?quizId=<%=articleId%>"><br>
-                TAKE A QUIZ
-            </a>
-        <% } %></h2>
+        <div class="content">
+            <h2>
+                <p> <%=article.getTitle()%> <br><br>
+                <%=article.getText()%> </p>
+            </h2>
+        </div>
     </div>
 </body>
+
 </html>

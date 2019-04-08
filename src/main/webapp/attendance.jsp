@@ -2,7 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="com.codecool.web.model.User" %>
 
-<html lang="en">
+<html class="bg-1" lang="en">
 
 <head>
     <meta charset="iso-8859-1">
@@ -12,13 +12,14 @@
     <link rel="stylesheet" href="index.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 </head>
+
 <body>
     <%
         // Java init
         User[] users = (User[]) request.getAttribute("users");
     %>
+
     <script>
          $(function() {
             $('#datepicker').datepicker().datepicker('setDate', new Date());
@@ -27,22 +28,21 @@
          });
     </script>
 
-    <div class="users">
+    <div class="wrapper">
         <h2>Attendance</h2>
-
-        <form class="attendance" action="attendance" method="POST">
-            <input type="text" id="datepicker" name="date" ></input><br><br>
-            <% for (User u : users) { %>
-                <% if (u.getRole().equals("STUDENT")) { %>
-                <td>
-                <tr><%= u.getUsername() %></tr><tr><input type="checkbox" name="<%= u.getUsername() %>" value="TRUE"></tr><br>
+        <div class="scroll">
+            <form class="attendance" action="attendance" method="POST">
+                <input type="text" id="datepicker" name="date" ></input><br><br>
+                <% for (User u : users) { %>
+                    <% if (u.getRole().equals("STUDENT")) { %>
+                    <%= u.getUsername() %></tr><tr><input type="checkbox" name="<%= u.getUsername() %>" value="TRUE"><br>
+                    <% } %>
                 <% } %>
-            <% } %>
-                </td>
-            <br><br>
-            <input type="submit" value="Submit">
-        </form>
-
+                <br><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
     </div>
 </body>
+
 </html>

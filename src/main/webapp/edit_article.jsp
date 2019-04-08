@@ -3,7 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.codecool.web.model.Article" %>
 
-<html lang="en">
+<html class="bg-1" lang="en">
 
 <%
     String title = (String) request.getAttribute("title");
@@ -19,8 +19,10 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa"/>
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
-      <div class="login">
+    <div class="wrapper">
+        <div class="edit">
           <form action="edit_article" method="POST">
               <p><br>
                   <input type="text" name="title" placeholder="title" value="<%=title%>">
@@ -33,6 +35,8 @@
               <input type="submit" value="SAVE">
               <br>
           </form>
-      </div>
+        </div>
+    </div>
 </body>
+
 </html>

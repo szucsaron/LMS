@@ -1,4 +1,4 @@
-package com.codecool.web;
+/*package com.codecool.web;
 
 
 import com.codecool.web.model.Content;
@@ -20,4 +20,4 @@ public class MyTest {
         bufferedWriter.close();
 
     }
-}
+}*/
