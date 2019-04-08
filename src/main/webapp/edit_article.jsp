@@ -33,7 +33,7 @@
               </p>
               <br>
               <input type="number" name="level" min="1" max="100" value="<%=level%>">
-              <input type="hidden" name="articleId" value=<%=articleId%>
+              <input type="hidden" name="articleId" value="<%=articleId%>">
               <br><br>
               <input type="submit" value="SAVE">
               <br>
