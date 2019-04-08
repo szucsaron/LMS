@@ -31,6 +31,6 @@
                 }
             %>
         </p>
-        <a href="content">Return</a>
+        <a href="content">BACK</a>
     </div>
 </body>

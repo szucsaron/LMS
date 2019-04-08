@@ -39,7 +39,8 @@
                     <% } %>
                 <% } %>
                 <br><br>
-                <input type="submit" value="Submit">
+                <input type="submit" value="SUBMIT">
+                <a class="button" href="content">BACK</a>
             </form>
         </div>
     </div>

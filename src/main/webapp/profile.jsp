@@ -33,6 +33,7 @@
                 <input readonly type="text" name="email" placeholder="<%= user.getEmail()%>"></p>
                 <br>
                 <input type="submit" value="SAVE">
+                <a class="button" href="content">BACK</a>
             </form>
         </div>
     </div>

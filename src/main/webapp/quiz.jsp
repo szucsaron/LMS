@@ -44,6 +44,7 @@
                         }
                     %>
             </p>
+            <a class="button" href="content">BACK</a><br>
         </div>
     </div>
 
