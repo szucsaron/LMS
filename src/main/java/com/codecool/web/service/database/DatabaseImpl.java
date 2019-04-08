@@ -82,7 +82,6 @@ public class DatabaseImpl implements Database {
     public void addArticle(Article article) throws SQLException{
         String sql = "INSERT INTO articles (title, textcontent, lvl) VALUES (?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-
             statement.setString(1, article.getTitle());
             statement.setString(2, article.getText());
             statement.setInt(3, article.getLevel());
@@ -90,8 +89,15 @@ public class DatabaseImpl implements Database {
         }
     }
 
-    public void modifyArticle(Article article)  throws SQLException{
-
+    public void modifyArticle(Article article)  throws SQLException {
+        String sql = "UPDATE articles SET title=?, textcontent=?, lvl=? WHERE id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, article.getTitle());
+            statement.setString(2, article.getText());
+            statement.setInt(3, article.getLevel());
+            statement.setInt(4, article.getId());
+            statement.executeUpdate();
+        }
     }
 
     public Map<Integer, String> getArticleIdsBySearch(String toFind) throws SQLException {
@@ -149,5 +155,8 @@ public class DatabaseImpl implements Database {
         return new ArrayList<>();
     }
 
+    public void close() throws SQLException{
+        connection.close();
+    }
 
 }

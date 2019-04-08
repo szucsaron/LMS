@@ -160,5 +160,9 @@ public class MockDatabase implements Database {
         content.getArticles().put(id, article);
     }
 
+    public void close() {
+
+    }
+
 
 }

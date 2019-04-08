@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 
-public interface Database {
+public interface Database extends AutoCloseable{
     void setLocation(String locationPrefix);
 
     Article getArticle(int id) throws SQLException;
@@ -39,7 +39,10 @@ public interface Database {
 
     List<Quiz> getAllQuizzes() throws SQLException;
 
-    public List<Integer> getQuizIdsByLevel(int lvl) throws SQLException;
+    List<Integer> getQuizIdsByLevel(int lvl) throws SQLException;
 
     List<String> getEmailAddresses() throws SQLException;
+
+    @Override
+    void close() throws SQLException;
 }

@@ -40,32 +40,33 @@ public class ContentServlet extends AbstractServlet {
             id = 0;
         }
 
-        Database database = getDatabase();
-        Article article = database.getArticle(id);
-        if (article.hasAccess(user)) {
-            req.setAttribute("articleId", id);
-            req.setAttribute("article", article);
-        } else {
-            req.setAttribute("articleId", id);
-            req.setAttribute("article", new Article("Restricted material", "Your progress is too low to view this article. Please, practice more \n" +
-                "or have a bigger wallet/penis."));
-        }
+        try (Database database = getDatabase()) {
+            Article article = database.getArticle(id);
+            if (article.hasAccess(user)) {
+                req.setAttribute("articleId", id);
+                req.setAttribute("article", article);
+            } else {
+                req.setAttribute("articleId", id);
+                req.setAttribute("article", new Article("Restricted material", "Your progress is too low to view this article. Please, practice more \n" +
+                    "or have a bigger wallet/penis."));
+            }
 
-        Map<Integer, String> sidebar;
+            Map<Integer, String> sidebar;
 
-        String toFind = req.getParameter("search");
-        if (toFind == null) {
-            sidebar = database.getArticleIds();
-        } else {
-            sidebar = database.getArticleIdsBySearch(toFind);
-        }
+            String toFind = req.getParameter("search");
+            if (toFind == null) {
+                sidebar = database.getArticleIds();
+            } else {
+                sidebar = database.getArticleIdsBySearch(toFind);
+            }
 
-        req.setAttribute("sidebar", sidebar);
+            req.setAttribute("sidebar", sidebar);
 
-        if (user.getRole().toUpperCase().equals("MENTOR")) {
-            req.getRequestDispatcher("mentorContent.jsp").forward(req, resp);
-        } else if (user.getRole().toUpperCase().equals("STUDENT")) {
-            req.getRequestDispatcher("studentContent.jsp").forward(req, resp);
+            if (user.getRole().toUpperCase().equals("MENTOR")) {
+                req.getRequestDispatcher("mentorContent.jsp").forward(req, resp);
+            } else if (user.getRole().toUpperCase().equals("STUDENT")) {
+                req.getRequestDispatcher("studentContent.jsp").forward(req, resp);
+            }
         }
     }
 }
