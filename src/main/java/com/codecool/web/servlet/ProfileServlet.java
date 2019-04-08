@@ -47,8 +47,13 @@ public class ProfileServlet extends HttpServlet {
         String un = req.getParameter("username");
         String pw = req.getParameter("password");
 
-        actualUser.setUsername(un);
-        actualUser.setPassword(pw);
-        resp.sendRedirect("content");
+        if (service.validateRegistration(un)) {
+            req.setAttribute("error", "Username is already taken!");
+            req.getRequestDispatcher("profile.jsp").forward(req, resp);
+        } else {
+            actualUser.setUsername(un);
+            actualUser.setPassword(pw);
+            resp.sendRedirect("content");
+        }
     }
 }
