@@ -9,6 +9,7 @@
     String title = (String) request.getAttribute("title");
     String content = (String) request.getAttribute("content");
     String articleId = (String) request.getAttribute("articleId");
+    Integer level = (Integer) request.getAttribute("level");
 
 %>
 
@@ -24,15 +25,15 @@
     <div class="wrapper">
         <div class="textareas">
           <form action="edit_article" method="POST">
-                  <input type="text" name="title" placeholder="title" value="<%=title%>">
-                  <br>
-                  <br>
-                  <textarea type="text" name="content" placeholder="content"><%=content%></textarea>
-              <input type="hidden" name="articleId" value=<%=articleId%>>
-              <br><br>
-              <input type="submit" value="SAVE">
-              <a class="button" href="content">BACK</a>
-              <br>
+                <input type="text" name="title" placeholder="title" value="<%=title%>">
+                <br>
+                <br>
+                <textarea type="text" name="content" placeholder="content"><%=content%></textarea>
+                <input type="number" name="level" min="1" max="100" value="<%=level%>">
+                <input type="hidden" name="articleId" value=<%=articleId%><br>
+                <input type="submit" value="SAVE">
+                <a class="button" href="content">BACK</a>
+                <br>
           </form>
         </div>
     </div>

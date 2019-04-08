@@ -1,4 +1,4 @@
-/*package com.codecool.web;
+package com.codecool.web;
 
 
 import com.codecool.web.model.Content;
@@ -15,9 +15,9 @@ public class MyTest {
         SqlGenerator sqlGenerator = new SqlGenerator(content);
         String output = sqlGenerator.generate();
 
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("goat_insert.sql")));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("goat_init.sql")));
         bufferedWriter.write(output);
         bufferedWriter.close();
 
     }
-}*/
+}
