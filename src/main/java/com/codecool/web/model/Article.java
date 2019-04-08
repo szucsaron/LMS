@@ -29,6 +29,11 @@ public class Article {
         this(null, title, text, null, 0);
     }
 
+    public Article(int id, String title, String text) {
+        this(id, title, text, null, 0);
+    }
+
+
 
     public Integer getId() {
         return id;

@@ -6,6 +6,10 @@ import com.codecool.web.model.quiz.Answer;
 import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +22,7 @@ public class SqlGenerator {
         this.content = content;
     }
 
-    public String generate() {
+    public String generate() throws IOException {
         StringBuilder sb = new StringBuilder();
         StringBuilder answerSb = new StringBuilder();
         createTables(sb);
@@ -26,7 +30,12 @@ public class SqlGenerator {
         getQuestions(sb, answerSb);
         sb.append(answerSb);
         getArticles(sb);
-        return sb.toString();
+
+        String output = sb.toString();
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("goat_init.sql")));
+        bufferedWriter.write(output);
+        bufferedWriter.close();
+        return output;
     }
 
     private void getQuizzes(StringBuilder sb) {

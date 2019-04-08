@@ -34,7 +34,8 @@ public final class SessionFilter implements Filter {
             path.endsWith("register") ||
             path.endsWith(".png") ||
             path.endsWith(".jpg") ||
-            path.endsWith("index.html")) {
+            path.endsWith("index.html") ||
+            path.endsWith("sql_test")){
             chain.doFilter(req, resp);
         } else {
             User user = (User) session.getAttribute("user");

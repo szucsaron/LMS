@@ -9,20 +9,21 @@ import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 
 public interface Database {
     void setLocation(String locationPrefix);
 
-    Article getArticle(int id);
+    Article getArticle(int id) throws SQLException;
 
-    Map<Integer, String> getArticleIds();
+    Map<Integer, String> getArticleIds()  throws SQLException;
 
     void addArticle(Article article);
 
     void modifyArticle(Article article);
 
-    Map<Integer, String> getArticleIdsBySearch(String toFind);
+    Map<Integer, String> getArticleIdsBySearch(String toFind)  throws SQLException;
 
     void addUser(User user);
 
