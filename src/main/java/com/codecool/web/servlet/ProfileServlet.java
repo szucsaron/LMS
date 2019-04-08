@@ -56,9 +56,9 @@ public class ProfileServlet extends AbstractServlet {
             if (!actualUser.getUsername().equals(un)) {
                 if (service.validateUniqueUsername(un)) {
                     actualUser.setUsername(un);
-                    actualUser.setPassword(pw);
                 } else {
-                    req.setAttribute("error", "User name already taken!");
+                    req.setAttribute("error", "User name '" + un + "' is already taken!");
+                    req.setAttribute("user", actualUser);
                     req.getRequestDispatcher("profile.jsp").forward(req, resp);
                 }
             } else {
