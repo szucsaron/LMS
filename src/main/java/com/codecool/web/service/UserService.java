@@ -2,9 +2,8 @@ package com.codecool.web.service;
 
 import com.codecool.web.model.NoSuchUserException;
 import com.codecool.web.model.User;
-import com.codecool.web.service.database.Database;
-import com.codecool.web.service.database.MockDatabase;
-import com.codecool.web.service.database.SqlGenerator;
+import com.codecool.web.dao.Database;
+import com.codecool.web.dao.MockDatabase;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

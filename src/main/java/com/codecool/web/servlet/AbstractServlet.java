@@ -1,7 +1,7 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.service.database.Database;
-import com.codecool.web.service.database.DatabaseImpl;
+import com.codecool.web.dao.Database;
+import com.codecool.web.dao.DatabaseImpl;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

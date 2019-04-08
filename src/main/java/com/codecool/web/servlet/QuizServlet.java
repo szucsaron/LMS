@@ -3,8 +3,8 @@ package com.codecool.web.servlet;
 import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
-import com.codecool.web.service.database.Database;
-import com.codecool.web.service.database.MockDatabase;
+import com.codecool.web.dao.Database;
+import com.codecool.web.dao.MockDatabase;
 import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;

@@ -2,8 +2,8 @@ package com.codecool.web;
 
 
 import com.codecool.web.model.Content;
-import com.codecool.web.service.database.DatabaseLoader;
-import com.codecool.web.service.database.SqlGenerator;
+import com.codecool.web.dao.DatabaseLoader;
+import com.codecool.web.dao.SqlGenerator;
 
 import java.io.*;
 
