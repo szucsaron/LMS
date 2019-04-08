@@ -18,6 +18,7 @@ public class RegistrationServlet extends AbstractServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         try {
             resp.setContentType("text/html");
 
@@ -27,18 +28,21 @@ public class RegistrationServlet extends AbstractServlet {
             String role = req.getParameter("role");
 
             if (!service.validateRegistration(un, em)) {
+                String errorMsg = "";
                 if (!service.validateUniqueUsername(un)) {
-                    req.setAttribute("error", "Username is already taken!");
+                    errorMsg += "Username is already taken! <br>";
                 }
                 if (!service.validateUniqueEmail(em)) {
-                    req.setAttribute("error", "E-mail address is already taken!");
+                    errorMsg += "E-mail address is already taken!";
                 }
+                req.setAttribute("error", errorMsg);
                 req.getRequestDispatcher("register.jsp").forward(req, resp);
             } else {
                 User user = new User(un, pw, em, role);
                 service.addUser(user);
                 resp.sendRedirect("index.jsp");
             }
+
         } catch (SQLException e) {
             handleError(e, req, resp);
         }
