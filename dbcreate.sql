@@ -18,7 +18,7 @@ create table quizes (
 );
 
 create table questions (
-	id INT primary key,
+	id serial primary key,
 	quiz_id INT references quizes(id),
 	title VARCHAR(200)
 );
@@ -42,4 +42,5 @@ create table solutions (
 	answer_id INT references answers(id),
 	primary key(user_id, answer_id)
 );
+
 
