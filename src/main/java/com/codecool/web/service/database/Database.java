@@ -25,7 +25,7 @@ public interface Database {
 
     Map<Integer, String> getArticleIdsBySearch(String toFind)  throws SQLException;
 
-    void addUser(User user);
+    void addUser(User user) throws SQLException;
 
     User getUserByName(String userName) throws NoSuchUserException;
 

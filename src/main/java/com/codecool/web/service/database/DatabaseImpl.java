@@ -67,7 +67,9 @@ public class DatabaseImpl implements Database {
             rs.next();
             String title = rs.getString("title");
             String text = rs.getString("textcontent");
+            int level = rs.getInt("lvl");
             Article article = new Article(id, title, text);
+            article.setLevel(level);
             return article;
         }
     }
@@ -77,11 +79,18 @@ public class DatabaseImpl implements Database {
         return getArticleIdsBySearch("");
     }
 
-    public void addArticle(Article article) {
+    public void addArticle(Article article) throws SQLException{
+        String sql = "INSERT INTO articles (title, textcontent, lvl) VALUES (?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
+            statement.setString(1, article.getTitle());
+            statement.setString(2, article.getText());
+            statement.setInt(3, article.getLevel());
+            statement.executeUpdate();
+        }
     }
 
-    public void modifyArticle(Article article) {
+    public void modifyArticle(Article article)  throws SQLException{
 
     }
 
