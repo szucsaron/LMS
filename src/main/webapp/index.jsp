@@ -20,7 +20,7 @@
                 <br>
                 <br>
                 <input type="password" name="password" placeholder ="password"></p>
-                <br><br>
+                <br>
                 <jsp:include page="show-error.jsp"/>
                 <input type="submit" value="LOGIN">
                 <a class="button" href="register.jsp">REGISTER</a>

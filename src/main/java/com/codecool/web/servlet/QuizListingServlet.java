@@ -45,7 +45,7 @@ public class QuizListingServlet extends HttpServlet {
         }
 
         req.setAttribute("role", role);
-        req.setAttribute("quizes", quizList);
+        req.setAttribute("quizzes", quizList);
 
         requestDispatcher.forward(req, resp);
     }
