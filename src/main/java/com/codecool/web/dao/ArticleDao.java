@@ -1,62 +1,21 @@
-package com.codecool.web.service.database;
+package com.codecool.web.dao;
 
 import com.codecool.web.model.Article;
-import com.codecool.web.model.NoSuchUserException;
-import com.codecool.web.model.User;
-import com.codecool.web.model.quiz.Question;
-import com.codecool.web.model.quiz.Quiz;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-public class DatabaseImpl implements Database {
+public class ArticleDao extends AbstractDao {
 
-    private final Connection connection;
 
-    public DatabaseImpl(Connection connection) {
-        this.connection = connection;
+
+    public ArticleDao(Connection connection) {
+        super(connection);
     }
-
-
-    public List<String> doStuff() throws SQLException {
-        String sql = "SELECT * FROM articles";
-        List<String> titles = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                String title = resultSet.getString("title");
-                titles.add(title);
-            }
-        }
-        return titles;
-    }
-
-
-/*
-    public List<Coupon> find(int userId, int shopId) throws SQLException {
-        String sql = "SELECT id, name, percentage FROM coupons  LEFT JOIN coupons_shops ON coupons.id = coupon_id WHERE user_id = ? and shop_id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            List<Coupon> coupons = new ArrayList<>();
-            statement.setInt(1, userId);
-            statement.setInt(2, shopId);
-
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                coupons.add(fetchCoupon(resultSet));
-            }
-
-            return coupons;
-        }
-    }
-*/
-
-    public void setLocation(String locationPrefix) {
-
-    }
-
     public Article getArticle(int id) throws SQLException {
         String sql = "SELECT * FROM articles WHERE id = ?";
 
@@ -118,45 +77,4 @@ public class DatabaseImpl implements Database {
             return ids;
         }
     }
-
-    public void addUser(User user) {
-
-    }
-
-    public User getUserByName(String userName) throws NoSuchUserException {
-        return new User();
-    }
-
-    public User[] getUsersArray() {
-        return new User[0];
-    }
-
-    public Set<String> getUserNames() {
-        return new HashSet<>();
-    }
-
-    public Question getQuestionByQuizAndIndex(int quizId, int index) {
-        return new Question(null, 0);
-    }
-
-    public Quiz getQuizById(int quizId) {
-        return new Quiz(0, null);
-    }
-
-    public List<Quiz> getAllQuizzes() {
-        return new ArrayList<>();
-    }
-
-    public List<Integer> getQuizIdsByLevel(int lvl) {
-        return new ArrayList<>();
-    }
-
-    public List<String> getEmailAddresses() {
-        return new ArrayList<>();
-    }
-
-    public void close() throws SQLException{
-        connection.close();
-    }
-
 }

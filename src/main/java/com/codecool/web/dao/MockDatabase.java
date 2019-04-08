@@ -1,4 +1,4 @@
-package com.codecool.web.service.database;
+package com.codecool.web.dao;
 
 import com.codecool.web.model.Article;
 import com.codecool.web.model.Content;
