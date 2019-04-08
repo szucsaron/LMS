@@ -14,3 +14,5 @@ Back-end:
     - Implement a database
     - Quiz editor back-end
 
+Complete REFACTOR of servlets and exceptions.
+
