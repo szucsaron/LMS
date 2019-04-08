@@ -23,7 +23,7 @@ public class LogInServlet extends HttpServlet {
         }
         HttpSession newSession = req.getSession(true);
         newSession.setMaxInactiveInterval(5 * 60);
-        req.getRequestDispatcher("index.html").forward(req, resp);
+        req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,19 +33,15 @@ public class LogInServlet extends HttpServlet {
         String pw = req.getParameter("password");
 
         try {
-            if (service.validateLogIn(un, pw)) {
-                User user = service.getCurrentUser(req);
-                req.getSession().setAttribute("user", user);
-                resp.addCookie(new Cookie("name", un));
-                resp.addCookie(new Cookie("password", pw));
-                resp.sendRedirect("content");
-            } else {
-                req.setAttribute("errMsg", "Wrong username or password!");
-                req.getRequestDispatcher("index.html").forward(req, resp);
-            }
+            service.validateLogIn(un, pw);
+            User user = service.getCurrentUser(req);
+            req.getSession().setAttribute("user", user);
+            resp.addCookie(new Cookie("name", un));
+            resp.addCookie(new Cookie("password", pw));
+            resp.sendRedirect("content");
         } catch (NoSuchUserException e) {
-            req.setAttribute("errMsg", "Wrong username!");
-            resp.sendRedirect("index.html");
+            req.setAttribute("error", "Wrong username or password!");
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
         }
 
     }

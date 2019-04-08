@@ -33,16 +33,15 @@ public final class UserService {
         database.addUser(user);
     }
 
-    public boolean validateLogIn(String username, String password) throws NoSuchUserException {
+    public void validateLogIn(String username, String password) throws NoSuchUserException {
         User u = database.getUserByName(username);
-        if (u.getPassword().equals(password)) {
-            return true;
+        if (!u.getPassword().equals(password)) {
+            throw new NoSuchUserException();
         }
-        return false;
     }
 
     public boolean validateRegistration(String username) {
-        return !database.getUserNames().contains(username);
+        return database.getUserNames().contains(username);
     }
 
     public User getCurrentUser(HttpServletRequest req) {

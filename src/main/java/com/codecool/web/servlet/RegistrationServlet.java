@@ -24,17 +24,18 @@ public class RegistrationServlet extends HttpServlet {
         String em = req.getParameter("email");
         String role = req.getParameter("role");
 
-        if (!service.validateRegistration(un)) {
-            resp.sendRedirect("register.html");
+        if (service.validateRegistration(un)) {
+            req.setAttribute("error", "Username is already taken!");
+            req.getRequestDispatcher("register.jsp").forward(req, resp);
         } else {
             User user = new User(un, pw, em, role);
             service.addUser(user);
-            resp.sendRedirect("index.html");
+            resp.sendRedirect("index.jsp");
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("register.html").forward(req, resp);
+        req.getRequestDispatcher("register.jsp").forward(req, resp);
     }
 }
