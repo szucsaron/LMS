@@ -46,6 +46,8 @@ CREATE TABLE solutions (
 	primary key(user_name, answer_id)
 );
 
+
+
 INSERT INTO quizzes VALUES (0,'How to goat?'),
 (1,'1 goats + 1 goats equals?'),
 (2,'Goats and moral nihilism'),
@@ -153,7 +155,11 @@ insert into users (email, user_name, passwd, role_id, progress) values
 ('student1@codecool.com', 'Ludovikusz', '1234', 1, 3),
 ('student2@codecool.com', 'Erzsi', '1234', 1, 6),
 ('mentor@codecool.com', 'Pali', '1234', 2, 6);
+/*
 
-
+insert into solutions (user_name, answer_id) values ('Jancsi', 0);
+insert into solutions (user_name, answer_id) values ('Jancsi', 4);
+insert into solutions (user_name, answer_id) values ('Jancsi', 8);
+*/
 
 

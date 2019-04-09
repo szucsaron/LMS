@@ -102,9 +102,6 @@ public final class User {
         actualQuiz = quiz;
     }
 
-    public void endQuiz(int lvlIncrease) {
-
-    }
 
     public List<Integer> getFilledTests() {
         return filledTests;
