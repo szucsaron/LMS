@@ -15,15 +15,15 @@ import java.util.List;
 import java.util.Map;
 
 public final class UserService {
-    Database database = MockDatabase.getInstance();
-    UserDao userDao;
+
+    private UserDao userDao;
 
     public UserService(UserDao userDao) {
         this.userDao = userDao;
     }
 
     public User[] getUsers() throws SQLException {
-        return database.getUsersArray();
+        return userDao.getUsers();
     }
 
     public Map<String, List<Integer>> getCommittedTests() throws SQLException {
@@ -37,14 +37,15 @@ public final class UserService {
     }
 
     public void addUser(User user) throws SQLException {
-        database.addUser(user);
+        userDao.addUser(user);
     }
 
-    public void validateLogIn(String username, String password) throws NoSuchUserException {
-        User u = database.getUserByName(username);
-        if (!u.getPassword().equals(password)) {
-            throw new NoSuchUserException();
+    public boolean validateLogIn(String username, String password) throws SQLException{
+        User u = userDao.getUserByName(username);
+        if (u != null && u.getPassword().equals(password)) {
+            return true;
         }
+        return false;
     }
 
     public boolean validateRegistration(String username, String email) throws SQLException {
@@ -52,15 +53,15 @@ public final class UserService {
     }
 
     public boolean validateUniqueUsername(String username) throws SQLException {
-        return !database.getUserNames().contains(username);
+        return userDao.getUserByName(username) == null;
+
     }
 
     public boolean validateUniqueEmail(String email) throws SQLException {
-        return !database.getEmailAddresses().contains(email);
+        return userDao.getUserByEmail(email) == null;
     }
 
-    public User getCurrentUser(HttpServletRequest req) {
-
+    public User getCurrentUser(HttpServletRequest req) throws SQLException {
         Cookie[] cookies = req.getCookies();
         if (cookies == null) {
             return getGuest();
@@ -77,15 +78,12 @@ public final class UserService {
                 passwd = value;
             }
         }
-        try {
-            User user;
-            user = MockDatabase.getInstance().getUserByName(userName);
-            if (user.getPassword().equals(passwd)) {
-                return user;
-            } else {
-                return getGuest();
-            }
-        } catch (NoSuchUserException e) {
+        User user;
+        user = userDao.getUserByName(userName);
+
+        if (user != null && user.getPassword().equals(passwd)) {
+            return user;
+        } else {
             return getGuest();
         }
     }
