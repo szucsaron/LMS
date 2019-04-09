@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao extends AbstractDao {
     public UserDao(Connection connection) {
@@ -27,6 +29,20 @@ public class UserDao extends AbstractDao {
         }
     }
 
+    public User[] getUsers() throws SQLException{
+        String sql = "SELECT * FROM users";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.execute();
+            ResultSet rs = statement.getResultSet();
+            List<User> users = new ArrayList<>();
+            while (rs.next()) {
+                users.add(fetchUser(rs));
+            }
+            return users.toArray(new User[users.size()]);
+
+        }
+    }
     public User getUserByEmail(String email) throws SQLException {
         String sql = "SELECT * FROM users WHERE email=?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -40,6 +56,31 @@ public class UserDao extends AbstractDao {
             }
         }
     }
+
+    public void addUser(User user) throws SQLException {
+        String sql = "INSERT INTO users (user_name, passwd, email, role_id, progress) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            int roleId;
+            switch (user.getRole()) {
+                case "STUDENT":
+                    roleId = 1;
+                    break;
+                case "MENTOR":
+                    roleId = 2;
+                    break;
+                default:
+                    roleId = 0;
+            }
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getEmail());
+            statement.setInt(4, roleId);
+            statement.setInt(5, user.getProgress());
+            statement.executeUpdate();
+        }
+    }
+
+
 
     private User fetchUser (ResultSet rs) throws SQLException{
         String password = rs.getString("passwd");

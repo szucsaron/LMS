@@ -15,15 +15,15 @@ import java.util.List;
 import java.util.Map;
 
 public final class UserService {
-    Database database = MockDatabase.getInstance();
-    UserDao userDao;
+
+    private UserDao userDao;
 
     public UserService(UserDao userDao) {
         this.userDao = userDao;
     }
 
     public User[] getUsers() throws SQLException {
-        return database.getUsersArray();
+        return userDao.getUsers();
     }
 
     public Map<String, List<Integer>> getCommittedTests() throws SQLException {
@@ -37,7 +37,7 @@ public final class UserService {
     }
 
     public void addUser(User user) throws SQLException {
-        database.addUser(user);
+        userDao.addUser(user);
     }
 
     public boolean validateLogIn(String username, String password) throws SQLException{
