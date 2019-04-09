@@ -103,10 +103,7 @@ public final class User {
     }
 
     public void endQuiz(int lvlIncrease) {
-        filledTests.add(actualQuiz.getId());
-        progress += lvlIncrease;
-        actualQuiz = null;
-        score = 0;
+
     }
 
     public List<Integer> getFilledTests() {

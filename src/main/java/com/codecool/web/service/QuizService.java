@@ -17,7 +17,7 @@ public class QuizService {
         this.quizDao = quizDao;
     }
 
-    public boolean validateQuiz(int quizId) throws SQLException {
+    public boolean validateQuiz(User user, int quizId) throws SQLException {
         return true;
     }
 
@@ -30,6 +30,8 @@ public class QuizService {
     }
 
     public boolean isOver (User user, int quizId) throws SQLException {
-        return false;
+        int userAnswerCount = quizDao.countAnsweredQuestions(user.getUsername(), quizId);
+        int questionsInQuizCount = quizDao.countQuestions(quizId);
+        return userAnswerCount == questionsInQuizCount;
     }
 }

@@ -7,6 +7,7 @@ import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
 import com.codecool.web.dao.Database;
 import com.codecool.web.dao.MockDatabase;
+import com.codecool.web.service.QuizService;
 import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;
@@ -20,8 +21,8 @@ public class QuizServlet extends AbstractServlet {
     private final String page = "quiz.jsp";
 
     private User user;
-    private UserService service;
-
+    private QuizService quizService;
+    private UserService userService;
 
     private Quiz quiz;
 
@@ -31,9 +32,9 @@ public class QuizServlet extends AbstractServlet {
         try (QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()));
              UserDao userDao = new UserDao(getConnection(req.getServletContext()))
         ) {
-            service = new UserService(userDao);
-            MockDatabase.getInstance().setLocation(req.getServletContext().getRealPath("/"));
-            user = service.getCurrentUser(req);
+            userService = new UserService(userDao);
+            quizService = new QuizService(userDao, quizDao);
+            user = userService.getCurrentUser(req);
             int quizId = Integer.parseInt(req.getParameter("quizId"));
             req.setAttribute("quizId", quizId);
             int questionIndex;
@@ -43,14 +44,10 @@ public class QuizServlet extends AbstractServlet {
                 questionIndex = 0;
             }
 
-
             Question question = quizDao.getQuestionByQuizAndIndex(quizId, questionIndex);
             quiz = quizDao.getQuizById(quizId);
-            if (user.validateQuiz(quiz)) { // User validation
-                if (!user.quizStarted()) {
-                    user.beginQuiz(quiz);
-                }
-                handleQuestion(req, resp, question, questionIndex, quiz.size(), quizDao);
+            if (quizService.validateQuiz(user, quizId)) { // User validation
+                handleQuestion(req, resp, question, questionIndex, quiz.size());
             } else {
                 resp.sendRedirect("restricted.jsp");
             }
@@ -64,16 +61,14 @@ public class QuizServlet extends AbstractServlet {
 
     }
 
-    private void handleQuestion(HttpServletRequest req, HttpServletResponse resp, Question question, int questionIndex, int questionNumber, QuizDao database) throws ServletException, IOException, SQLException {
+    private void handleQuestion(HttpServletRequest req, HttpServletResponse resp, Question question, int questionIndex, int questionNumber) throws ServletException, IOException, SQLException {
         req.setAttribute("score", user.getScore());
         try {
             int answerId = Integer.parseInt(req.getParameter("answerId"));
-            if (question.validateAnswer(answerId)) {
-                user.incrementScore();
-            }
+            quizService.passAnswer(user.getUsername(), answerId);
             questionIndex++;
-            if (questionIndex < questionNumber) {
-                question = database.getQuestionByQuizAndIndex(quiz.getId(), questionIndex);
+            if (!quizService.isOver(user, quiz.getId())) {
+                question = quizService.getQuestion(quiz.getId(), questionIndex);
                 handleRequest(req, resp, question, questionIndex);
             } else {
                 handleQuizEnd(req, resp);

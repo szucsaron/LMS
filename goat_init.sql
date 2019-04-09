@@ -41,9 +41,9 @@ CREATE TABLE answers (
 );
 
 CREATE TABLE solutions (
-	user_email VARCHAR(100) references users(user_name),
+	user_name VARCHAR(100) references users(user_name),
 	answer_id INT references answers(id),
-	primary key(user_email, answer_id)
+	primary key(user_name, answer_id)
 );
 
 INSERT INTO quizzes VALUES (0,'How to goat?'),

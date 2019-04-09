@@ -49,14 +49,13 @@ public class QuizDao extends AbstractDao {
         return question;
     }
 
-    public boolean passAnswer(String userName, int answerId) throws SQLException{
+    public void passAnswer(String userName, int answerId) throws SQLException{
         String sql = "INSERT INTO solutions (user_name, answer_id) VALUES (?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, userName);
             statement.setInt(2, answerId);
             statement.executeUpdate();
         }
-        return true;
     }
 
     public Solution getSolution(String userName, int quizId) throws SQLException {
@@ -79,8 +78,22 @@ public class QuizDao extends AbstractDao {
         return new ArrayList<>();
     }
 
-    public Quiz getQuizById(int quizId) {
-        return new Quiz(0, null, 0);
+    public Quiz getQuizById(int quizId) throws SQLException{
+        String sql = "SELECT * FROM quizzes WHERE id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, quizId);
+            statement.execute();
+            ResultSet rs = statement.getResultSet();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String title = rs.getString("title");
+                Quiz quiz = new Quiz(id, title, 0);
+                return quiz;
+            } else {
+                throw new SQLException("Something happened!");
+            }
+
+        }
     }
 
     public List<Quiz> getAllQuizzes() {
@@ -89,6 +102,38 @@ public class QuizDao extends AbstractDao {
 
     public List<Integer> getQuizIdsByLevel(int lvl) {
         return new ArrayList<>();
+    }
+
+    public int countQuestions(int quizId) throws SQLException {
+        String sql = "select count(id) from questions where quiz_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, quizId);
+            statement.execute();
+            ResultSet rs = statement.getResultSet();
+            if (rs.next()) {
+                return rs.getInt("count");
+            } else  {
+                throw new SQLException("Something happened!");
+            }
+        }
+    }
+
+    public int countAnsweredQuestions(String userName, int quizId) throws SQLException{
+        String sql = "select count(solutions.answer_id) from solutions " +
+            "inner join answers on solutions.answer_id = answers.id " +
+            "inner join questions on answers.question_id = questions.id " +
+            "where questions.quiz_id = ? and solutions.user_name = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, quizId);
+            statement.setString(2, userName);
+            statement.execute();
+            ResultSet rs = statement.getResultSet();
+            if (rs.next()) {
+                return rs.getInt("count");
+            } else  {
+                throw new SQLException("Something happened!");
+            }
+        }
     }
 
 
