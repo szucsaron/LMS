@@ -1,7 +1,7 @@
 Tasks to do during the 3rd sprint:
 
 Front-end:
-    - UI for a quiz editor system
+    - UI for a quiz editor system - EXTRA FEATURE
 
 Back-end:
     - Completing the quiz system
@@ -10,7 +10,7 @@ Back-end:
         - removing students once they've been marked absent or present
         - give the servlet the correct user list
     - Implement a database
-    - Quiz editor back-end
+    - Quiz editor back-end - EXTRA FEATURE
 
 Complete REFACTOR of servlets and exceptions.
 
