@@ -16,14 +16,7 @@
 </head>
 
 <body>
-
-    <c:forEach var="title" items="${titles}">
-        <br>${title}
-
-    </c:forEach>
-
-    ${article.getText()}
-    ${err}
+${msg}
 </body>
 
 </html>

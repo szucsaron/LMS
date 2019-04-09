@@ -1,9 +1,6 @@
 package com.codecool.web.dao;
 
-import com.codecool.web.model.quiz.Answer;
-import com.codecool.web.model.quiz.Question;
-import com.codecool.web.model.quiz.Quiz;
-import com.codecool.web.model.quiz.Solution;
+import com.codecool.web.model.quiz.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,7 +46,7 @@ public class QuizDao extends AbstractDao {
         return question;
     }
 
-    public void passAnswer(String userName, int answerId) throws SQLException{
+    public void passAnswer(String userName, int answerId) throws SQLException {
         String sql = "INSERT INTO solutions (user_name, answer_id) VALUES (?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, userName);
@@ -59,26 +56,38 @@ public class QuizDao extends AbstractDao {
     }
 
     public Solution getSolution(String userName, int quizId) throws SQLException {
-        Solution solution = new Solution(0, "What is good goat?");
-        Question question = new Question("Is it good?", 0);
-        question.addAnswer(new Answer(0, "Yes", true));
+        String sql = "SELECT title, answer, question_id, answer_id, correct FROM solutions\n" +
+            "LEFT JOIN answers ON solutions.answer_id = answers.id\n" +
+            "LEFT JOIN questions ON answers.question_id = questions.id\n" +
+            "WHERE user_name = ? AND quiz_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, userName);
+            statement.setInt(2, quizId);
+            statement.execute();
+            ResultSet rs = statement.getResultSet();
+            Solution solution = new Solution(quizId, "Sample Quiz Name (Work in progress)");
+            while (rs.next()) {
+                String title = rs.getString("title");
+                String answer = rs.getString("answer");
+                int questionId = rs.getInt("question_id");
+                int answerId = rs.getInt("answer_id");
+                boolean correct = rs.getBoolean("correct");
+                Question question = new Question(title, questionId);
+                question.addAnswer(new Answer(answerId, answer, correct));
+                solution.addQuestion(question);
 
-        Question question1 = new Question("What are birds", 1);
-        question1.addAnswer(new Answer(1, "Trees", false));
+            }
+            return solution;
+        }
 
-        Question question2 = new Question("What is 2 + 2", 2);
-        question2.addAnswer(new Answer(2, "4", true));
-        solution.addQuestion(question);
-        solution.addQuestion(question1);
-        solution.addQuestion(question2);
-        return solution;
+
     }
 
-    public List<Quiz> getCompletedQuizIds(String userEmail) {
+    public List<Quiz> getCompletedQuizIds(String userName) {
         return new ArrayList<>();
     }
 
-    public Quiz getQuizById(int quizId) throws SQLException{
+    public Quiz getQuizById(int quizId) throws SQLException {
         String sql = "SELECT * FROM quizzes WHERE id=?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, quizId);
@@ -112,13 +121,13 @@ public class QuizDao extends AbstractDao {
             ResultSet rs = statement.getResultSet();
             if (rs.next()) {
                 return rs.getInt("count");
-            } else  {
+            } else {
                 throw new SQLException("Something happened!");
             }
         }
     }
 
-    public int countAnsweredQuestions(String userName, int quizId) throws SQLException{
+    public int countAnsweredQuestions(String userName, int quizId) throws SQLException {
         String sql = "select count(solutions.answer_id) from solutions " +
             "inner join answers on solutions.answer_id = answers.id " +
             "inner join questions on answers.question_id = questions.id " +
@@ -130,9 +139,28 @@ public class QuizDao extends AbstractDao {
             ResultSet rs = statement.getResultSet();
             if (rs.next()) {
                 return rs.getInt("count");
-            } else  {
+            } else {
                 throw new SQLException("Something happened!");
             }
+        }
+    }
+
+    public QuizEvaluation evaluateUserByQuiz(String userName, int quizId) throws SQLException {
+        String sql = "SELECT status FROM evaluations WHERE user_name=? and quiz_id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, userName);
+            statement.setInt(2, quizId);
+            statement.execute();
+            ResultSet rs = statement.getResultSet();
+            if (rs.next()) {
+                Boolean status = rs.getBoolean("status");
+                if (status) {
+                    return QuizEvaluation.PASSED;
+                } else if (status != null) {
+                    return QuizEvaluation.FAILED;
+                }
+            }
+            return null;
         }
     }
 

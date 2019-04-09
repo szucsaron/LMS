@@ -1,7 +1,9 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.model.Article;
-import com.codecool.web.dao.DatabaseImpl;
+import com.codecool.web.dao.QuizDao;
+import com.codecool.web.model.quiz.Question;
+import com.codecool.web.model.quiz.QuizEvaluation;
+import com.codecool.web.model.quiz.Solution;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,26 +11,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 @WebServlet("/sql_test")
 public class SqlTestServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String err = "";
-        try {
-            DatabaseImpl db = new DatabaseImpl(getConnection(req.getServletContext()));
-            Article article = db.getArticle(0);
-            List<String> titles = db.doStuff();
-            req.setAttribute("titles", titles);
+        try (QuizDao quizDao= new QuizDao(getConnection(req.getServletContext()))) {
+            Solution solution = quizDao.getSolution("Jancsi", 0);
+            StringBuilder sb = new StringBuilder();
+            for (Question question : solution) {
+                sb.append(question).append("<br>");
+            }
+            QuizEvaluation fasz = quizDao.evaluateUserByQuiz("Erzsi", 0);
+            QuizEvaluation fasz1 = quizDao.evaluateUserByQuiz("Erzsi", 3);
+            QuizEvaluation fasz2 = quizDao.evaluateUserByQuiz("Jancsi", 7);
 
-            req.setAttribute("article", article);
+
+            req.setAttribute("msg", String.format("%s %s %s", fasz.toString(), fasz1.toString(), fasz2.toString()));
+            req.getRequestDispatcher("sql_test.jsp").forward(req, resp);
+
 
         } catch (SQLException e) {
-            err = e.getLocalizedMessage();
+            handleError(e, req, resp);
         }
-        req.setAttribute("err", err);
-        req.getRequestDispatcher("sql_test.jsp").forward(req, resp);
     }
 }

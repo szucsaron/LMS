@@ -43,6 +43,7 @@ public class UserDao extends AbstractDao {
 
         }
     }
+
     public User getUserByEmail(String email) throws SQLException {
         String sql = "SELECT * FROM users WHERE email=?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -79,8 +80,6 @@ public class UserDao extends AbstractDao {
             statement.executeUpdate();
         }
     }
-
-
 
     private User fetchUser (ResultSet rs) throws SQLException{
         String password = rs.getString("passwd");
