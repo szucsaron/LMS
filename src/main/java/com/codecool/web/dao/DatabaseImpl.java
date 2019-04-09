@@ -1,4 +1,4 @@
-package com.codecool.web.service.database;
+package com.codecool.web.dao;
 
 import com.codecool.web.model.Article;
 import com.codecool.web.model.NoSuchUserException;
@@ -140,7 +140,7 @@ public class DatabaseImpl implements Database {
     }
 
     public Quiz getQuizById(int quizId) {
-        return new Quiz(0, null);
+        return new Quiz(0, null, 0);
     }
 
     public List<Quiz> getAllQuizzes() {

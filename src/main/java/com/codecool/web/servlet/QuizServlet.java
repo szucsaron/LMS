@@ -1,10 +1,11 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.dao.QuizDao;
 import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
-import com.codecool.web.service.database.Database;
-import com.codecool.web.service.database.MockDatabase;
+import com.codecool.web.dao.Database;
+import com.codecool.web.dao.MockDatabase;
 import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;
@@ -20,13 +21,13 @@ public class QuizServlet extends AbstractServlet {
     private User user;
     private final UserService service = new UserService();
 
-    private Database database = MockDatabase.getInstance();
+
     private Quiz quiz;
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
+        try (QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()))) {
             MockDatabase.getInstance().setLocation(req.getServletContext().getRealPath("/"));
             user = new UserService().getCurrentUser(req);
             int quizId = Integer.parseInt(req.getParameter("quizId"));
@@ -39,13 +40,13 @@ public class QuizServlet extends AbstractServlet {
             }
 
 
-            Question question = database.getQuestionByQuizAndIndex(quizId, questionIndex);
-            quiz = database.getQuizById(quizId);
+            Question question = quizDao.getQuestionByQuizAndIndex(quizId, questionIndex);
+            quiz = quizDao.getQuizById(quizId);
             if (user.validateQuiz(quiz)) { // User validation
                 if (!user.quizStarted()) {
                     user.beginQuiz(quiz);
                 }
-                handleQuestion(req, resp, question, questionIndex, quiz.size());
+                handleQuestion(req, resp, question, questionIndex, quiz.size(), quizDao);
             } else {
                 resp.sendRedirect("restricted.jsp");
             }
@@ -59,7 +60,7 @@ public class QuizServlet extends AbstractServlet {
 
     }
 
-    private void handleQuestion(HttpServletRequest req, HttpServletResponse resp, Question question, int questionIndex, int questionNumber) throws ServletException, IOException {
+    private void handleQuestion(HttpServletRequest req, HttpServletResponse resp, Question question, int questionIndex, int questionNumber, QuizDao database) throws ServletException, IOException, SQLException {
         req.setAttribute("score", user.getScore());
         try {
             int answerId = Integer.parseInt(req.getParameter("answerId"));

@@ -1,9 +1,10 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.dao.ArticleDao;
 import com.codecool.web.model.Article;
 import com.codecool.web.model.User;
-import com.codecool.web.service.database.Database;
-import com.codecool.web.service.database.MockDatabase;
+import com.codecool.web.dao.Database;
+import com.codecool.web.dao.MockDatabase;
 import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;
@@ -24,14 +25,14 @@ public class ContentServlet extends AbstractServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         MockDatabase.getInstance().setLocation(req.getServletContext().getRealPath("/"));
         User user = new UserService().getCurrentUser(req);
-        try {
-            showContent(user, req, resp);
+        try (ArticleDao articleDao = new ArticleDao(getConnection(req.getServletContext()))) {
+            showContent(user, req, resp, articleDao);
         } catch (SQLException e) {
             handleError(e, req, resp);
         }
     }
 
-    private void showContent(User user, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
+    private void showContent(User user, HttpServletRequest req, HttpServletResponse resp, ArticleDao articleDao) throws ServletException, IOException, SQLException {
         int id;
 
         try {
@@ -40,33 +41,32 @@ public class ContentServlet extends AbstractServlet {
             id = 0;
         }
 
-        try (Database database = getDatabase()) {
-            Article article = database.getArticle(id);
-            if (article.hasAccess(user)) {
-                req.setAttribute("articleId", id);
-                req.setAttribute("article", article);
-            } else {
-                req.setAttribute("articleId", id);
-                req.setAttribute("article", new Article("Restricted material", "Your progress is too low to view this article. Please, practice more \n" +
-                    "or have a bigger wallet/penis."));
-            }
+        Article article = articleDao.getArticle(id);
+        boolean hasQuiz = article.hasQuiz();
+        if (article.hasAccess(user)) {
+            req.setAttribute("articleId", id);
+            req.setAttribute("article", article);
+        } else {
+            req.setAttribute("articleId", id);
+            req.setAttribute("article", new Article("Restricted material", "Your progress is too low to view this article. Please, practice more \n" +
+                "or have a bigger wallet/penis."));
+        }
 
-            Map<Integer, String> sidebar;
+        Map<Integer, String> sidebar;
 
-            String toFind = req.getParameter("search");
-            if (toFind == null) {
-                sidebar = database.getArticleIds();
-            } else {
-                sidebar = database.getArticleIdsBySearch(toFind);
-            }
+        String toFind = req.getParameter("search");
+        if (toFind == null) {
+            sidebar = articleDao.getArticleIds();
+        } else {
+            sidebar = articleDao.getArticleIdsBySearch(toFind);
+        }
 
-            req.setAttribute("sidebar", sidebar);
+        req.setAttribute("sidebar", sidebar);
 
-            if (user.getRole().toUpperCase().equals("MENTOR")) {
-                req.getRequestDispatcher("mentorContent.jsp").forward(req, resp);
-            } else if (user.getRole().toUpperCase().equals("STUDENT")) {
-                req.getRequestDispatcher("studentContent.jsp").forward(req, resp);
-            }
+        if (user.getRole().toUpperCase().equals("MENTOR")) {
+            req.getRequestDispatcher("mentorContent.jsp").forward(req, resp);
+        } else if (user.getRole().toUpperCase().equals("STUDENT")) {
+            req.getRequestDispatcher("studentContent.jsp").forward(req, resp);
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.codecool.web.service.database;
+package com.codecool.web.dao;
 
 import com.codecool.web.model.Article;
 import com.codecool.web.model.Content;
@@ -97,7 +97,7 @@ public class DatabaseLoader {
             String quizTitle = docQuiz.getAttribute("title");
             NodeList questions = docQuiz.getElementsByTagName("question");
 
-            Quiz quiz = new Quiz(quizId, quizTitle);
+            Quiz quiz = new Quiz(quizId, quizTitle, 0);
             for (int questI = 0; questI < questions.getLength(); questI++) {
                 Element docQuestion = (Element) questions.item(questI);
                 quiz.addQuestion(createQuestion(docQuestion));

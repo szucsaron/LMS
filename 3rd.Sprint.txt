@@ -4,8 +4,6 @@ Front-end:
     - UI for a quiz editor system - EXTRA FEATURE
 
 Back-end:
-    - Check for uniqueness of e-mail addresses
-    - Check username when editing profile
     - Completing the quiz system
         - evaluation, submitting etc
     - Completing the attendance service and servlet
