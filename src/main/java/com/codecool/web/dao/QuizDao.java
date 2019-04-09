@@ -49,12 +49,17 @@ public class QuizDao extends AbstractDao {
         return question;
     }
 
-    public boolean passSolution(int answerId) {
-        // Adds a user solution to the database
+    public boolean passAnswer(String userName, int answerId) throws SQLException{
+        String sql = "INSERT INTO solutions (user_name, answer_id) VALUES (?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, userName);
+            statement.setInt(2, answerId);
+            statement.executeUpdate();
+        }
         return true;
     }
 
-    public Solution getSolution(String userEmail, int quizId) throws SQLException {
+    public Solution getSolution(String userName, int quizId) throws SQLException {
         Solution solution = new Solution(0, "What is good goat?");
         Question question = new Question("Is it good?", 0);
         question.addAnswer(new Answer(0, "Yes", true));
