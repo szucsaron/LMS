@@ -1,11 +1,9 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.dao.ArticleDao;
-import com.codecool.web.dao.UserDao;
+import com.codecool.web.dao.*;
 import com.codecool.web.model.Article;
 import com.codecool.web.model.User;
-import com.codecool.web.dao.Database;
-import com.codecool.web.dao.MockDatabase;
+import com.codecool.web.model.quiz.QuizEvaluation;
 import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;
@@ -48,7 +46,6 @@ public class ContentServlet extends AbstractServlet {
         }
 
         Article article = articleDao.getArticle(id);
-        boolean hasQuiz = article.hasQuiz();
         if (article.hasAccess(user)) {
             req.setAttribute("articleId", id);
             req.setAttribute("article", article);
@@ -72,6 +69,15 @@ public class ContentServlet extends AbstractServlet {
         if (user.getRole().toUpperCase().equals("MENTOR")) {
             req.getRequestDispatcher("mentorContent.jsp").forward(req, resp);
         } else if (user.getRole().toUpperCase().equals("STUDENT")) {
+            handleStudent(req, resp, user, article.getQuizId());
+        }
+    }
+
+    private void handleStudent(HttpServletRequest req, HttpServletResponse resp, User user, int quizId) throws ServletException, IOException, SQLException {
+        try (QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()))) {
+            QuizEvaluation qe = quizDao.getQuizEvaluation(user.getUsername(), quizId);
+
+            req.setAttribute("quizEval", qe);
             req.getRequestDispatcher("studentContent.jsp").forward(req, resp);
         }
     }

@@ -90,8 +90,9 @@ public class QuizServlet extends AbstractServlet {
 
     }
 
-    private void handleQuizEnd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void handleQuizEnd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
         req.setAttribute("result", true);
+        quizService.markQuizForEvaluation(quiz, user);
         req.getRequestDispatcher("quizresult.jsp").forward(req, resp);
 
     }

@@ -5,12 +5,16 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="com.codecool.web.model.Article" %>
 <%@ page import="com.codecool.web.model.User" %>
+<%@ page import="com.codecool.web.model.quiz.QuizEvaluation" %>
+
+
 
 <%
     // Java Init
     Article article = (Article) request.getAttribute("article");
     Map<Integer, String> titles = (Map<Integer, String>) request.getAttribute("sidebar");
     int articleId = (int) request.getAttribute("articleId");
+    QuizEvaluation quizEval = (QuizEvaluation) request.getAttribute("quizEval");
     Integer quizId = (Integer) article.getQuizId();
 %>
 
@@ -30,8 +34,16 @@
         <a class="button" href="profile">EDIT PROFILE</a>
         <a class="button" href="quizlist">MY ASSIGNMENTS</a>
         <a class="button" href="logout">LOGOUT</a>
-        <% if (quizId != null) { %>
-            <a class="button" href="quiz?quizId=<%=quizId%>">TAKE A QUIZ</a>
+        <% if (quizEval == QuizEvaluation.PASSED) { %>
+            <div class="quizStatus" > Quiz passed </div>
+
+        <% } else if (quizEval == QuizEvaluation.UNCHECKED) { %>
+            <div class="quizStatus" > Quiz under evaluation </div>
+        <% } else if (quizEval == QuizEvaluation.FAILED) { %>
+            <div class="quizStatus" > Quiz failed </div>
+            <a class="button" href="quiz?quizId=<%=quizId%>">RETAKE QUIZ</a>
+        <% } else { %>
+            <a class="button" href="quiz?quizId=<%=quizId%>">TAKE QUIZ</a>
         <% } %>
     </nav>
     <div class="leftbar">

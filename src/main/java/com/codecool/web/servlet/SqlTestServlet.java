@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/sql_test")
 public class SqlTestServlet extends AbstractServlet {
@@ -23,12 +25,14 @@ public class SqlTestServlet extends AbstractServlet {
             for (Question question : solution) {
                 sb.append(question).append("<br>");
             }
-            QuizEvaluation fasz = quizDao.evaluateUserByQuiz("Erzsi", 0);
-            QuizEvaluation fasz1 = quizDao.evaluateUserByQuiz("Erzsi", 3);
-            QuizEvaluation fasz2 = quizDao.evaluateUserByQuiz("Jancsi", 7);
+            List<QuizEvaluation> cuccok = new ArrayList<>();
+            cuccok.add( quizDao.getQuizEvaluation("Erzsi", 4));
+            req.setAttribute("cuccok", cuccok);
 
 
-            req.setAttribute("msg", String.format("%s %s %s", fasz.toString(), fasz1.toString(), fasz2.toString()));
+
+
+
             req.getRequestDispatcher("sql_test.jsp").forward(req, resp);
 
 

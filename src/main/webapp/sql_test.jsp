@@ -16,7 +16,13 @@
 </head>
 
 <body>
-${msg}
+
+    <c:forEach var="val" items="${cuccok}">
+        <br>${val}
+
+    </c:forEach>
+
+
 </body>
 
 </html>

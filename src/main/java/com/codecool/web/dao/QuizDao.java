@@ -145,7 +145,7 @@ public class QuizDao extends AbstractDao {
         }
     }
 
-    public QuizEvaluation evaluateUserByQuiz(String userName, int quizId) throws SQLException {
+    public QuizEvaluation getQuizEvaluation(String userName, int quizId) throws SQLException {
         String sql = "SELECT status FROM evaluations WHERE user_name=? and quiz_id=?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, userName);
@@ -153,14 +153,39 @@ public class QuizDao extends AbstractDao {
             statement.execute();
             ResultSet rs = statement.getResultSet();
             if (rs.next()) {
-                Boolean status = rs.getBoolean("status");
-                if (status) {
-                    return QuizEvaluation.PASSED;
-                } else if (status != null) {
-                    return QuizEvaluation.FAILED;
+                int status = rs.getInt("status");
+                switch (status) {
+                    case 1:
+                        return QuizEvaluation.PASSED;
+                    case 0:
+                        return QuizEvaluation.FAILED;
+                    case -1:
+                        return QuizEvaluation.UNCHECKED;
                 }
             }
             return null;
+        }
+    }
+
+    public void setQuizEvaluation(String userName, int quizId, QuizEvaluation quizEvaluation) throws SQLException {
+        String sql = "INSERT INTO evaluations (user_name, quiz_id, status) VALUES (?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, userName);
+            statement.setInt(2, quizId);
+            int status;
+            switch (quizEvaluation) {
+                case PASSED:
+                    status = 1;
+                    break;
+                case FAILED:
+                    status = 0;
+                    break;
+                default:
+                    status = -1;
+                    break;
+            }
+            statement.setInt(3, status);
+            statement.executeUpdate();
         }
     }
 

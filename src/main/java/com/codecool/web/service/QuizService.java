@@ -5,6 +5,7 @@ import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
+import com.codecool.web.model.quiz.QuizEvaluation;
 
 import java.sql.SQLException;
 
@@ -34,4 +35,9 @@ public class QuizService {
         int questionsInQuizCount = quizDao.countQuestions(quizId);
         return userAnswerCount == questionsInQuizCount;
     }
+
+    public void markQuizForEvaluation(Quiz quiz, User user) throws SQLException{
+        quizDao.setQuizEvaluation(user.getUsername(), quiz.getId(), QuizEvaluation.UNCHECKED);
+    }
+
 }
