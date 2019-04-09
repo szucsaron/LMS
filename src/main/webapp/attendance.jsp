@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="com.codecool.web.model.User" %>
+<%@ page import="java.util.Date" %>
 
 <html class="bg-1" lang="en">
 
@@ -33,9 +34,14 @@
         <div class="scroll">
             <form class="attendance" action="attendance" method="POST">
                 <input type="text" id="datepicker" name="date" ></input><br><br>
+                <%! Date today = new Date(); %>
                 <% for (User u : users) { %>
                     <% if (u.getRole().equals("STUDENT")) { %>
-                    <%= u.getUsername() %></tr><tr><input type="checkbox" name="<%= u.getUsername() %>" value="TRUE"><br>
+                        <% if (u.getAttendance(today)) { %>
+                            <%= u.getUsername() %></tr><tr><input type="checkbox" name="<%= u.getUsername() %>" value="TRUE" checked><br>
+                        <% } else { %>
+                            <%= u.getUsername() %></tr><tr><input type="checkbox" name="<%= u.getUsername() %>" value="TRUE"><br>
+                        <% } %>
                     <% } %>
                 <% } %>
                 <br><br>

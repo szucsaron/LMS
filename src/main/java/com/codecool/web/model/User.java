@@ -91,7 +91,7 @@ public final class User {
     }
 
     public Boolean getAttendance(Date date) {
-        return attendance.containsKey(date) ? attendance.get(date) : Boolean.FALSE;
+        return attendance.getOrDefault(date, Boolean.FALSE);
     }
 
     public void setRole(String type) {

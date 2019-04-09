@@ -43,7 +43,12 @@ public class AttendanceServlet extends AbstractServlet {
         try {
             Date date = df.parse(dateString);
             for (User u : users) {
-                u.setAttendance(date, Boolean.valueOf(req.getParameter(u.getUsername())));
+                boolean history = u.getAttendance(new Date());
+                String name = u.getUsername();
+                boolean attendance = Boolean.valueOf(req.getParameter(name));
+                u.setAttendance(date, attendance);
+                boolean present = u.getAttendance(date);
+                System.out.println("placeholder");
             }
         } catch (ParseException e) {
             req.setAttribute("error", "Invalid date!");

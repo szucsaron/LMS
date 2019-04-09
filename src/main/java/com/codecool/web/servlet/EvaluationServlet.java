@@ -21,7 +21,7 @@ public class EvaluationServlet extends AbstractServlet {
         try (QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()))) {
             User user = (User) req.getAttribute("student");
             String userName = req.getParameter("student");
-          
+
             int quizID = (int) req.getAttribute("id");
             Solution solution = quizDao.getSolution(user.getEmail(), quizID);
 
