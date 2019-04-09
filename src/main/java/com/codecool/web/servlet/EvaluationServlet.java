@@ -21,15 +21,13 @@ import java.sql.SQLException;
 public class EvaluationServlet extends AbstractServlet {
 
 
-    UserService service;
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        try (QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()));
-             UserDao userDao = new UserDao(getConnection(req.getServletContext()))
-        ) {
-            service = new UserService(userDao);
+        try (QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()))) {
+
             User user = (User) req.getAttribute("student");
             String userName = req.getParameter("student");
 
@@ -50,7 +48,7 @@ public class EvaluationServlet extends AbstractServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (UserDao userDao = new UserDao(getConnection(req.getServletContext()))) {
-            service = new UserService(userDao);
+            UserService service = new UserService(userDao);
             // Logic goes here
         } catch (SQLException e) {
             handleError(e, req, resp);
