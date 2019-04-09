@@ -2,6 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="com.codecool.web.model.User" %>
 <%@ page import="java.util.Date" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html class="bg-1" lang="en">
 
@@ -16,10 +17,6 @@
 </head>
 
 <body>
-    <%
-        // Java init
-        User[] users = (User[]) request.getAttribute("users");
-    %>
 
     <script>
          $(function() {
@@ -34,16 +31,21 @@
         <div class="scroll">
             <form class="attendance" action="attendance" method="POST">
                 <input type="text" id="datepicker" name="date" ></input><br><br>
-                <%! Date today = new Date(); %>
-                <% for (User u : users) { %>
-                    <% if (u.getRole().equals("STUDENT")) { %>
-                        <% if (u.getAttendance(today)) { %>
-                            <%= u.getUsername() %></tr><tr><input type="checkbox" name="<%= u.getUsername() %>" value="TRUE" checked><br>
-                        <% } else { %>
-                            <%= u.getUsername() %></tr><tr><input type="checkbox" name="<%= u.getUsername() %>" value="TRUE"><br>
-                        <% } %>
-                    <% } %>
-                <% } %>
+                <c:forEach var="u" items="${users}">
+                    <c:set var="chosen" scope="session" value="${chosen}"/>
+                    <c:choose>
+                        <c:when test="${u.getRole() == 'STUDENT'}">
+                            <c:choose>
+                                <c:when test="${u.getAttendance(chosen)}">
+                                    ${u.getUsername()} <input type="checkbox" name="${u.getUsername()}" value="TRUE" checked><br>
+                                </c:when>
+                                <c:otherwise>
+                                    ${u.getUsername()} <input type="checkbox" name="${u.getUsername()}" value="TRUE"><br>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:when>
+                    </c:choose>
+                </c:forEach>
                 <br><br>
                 <input type="submit" value="SUBMIT">
                 <a class="button" href="content">BACK</a>

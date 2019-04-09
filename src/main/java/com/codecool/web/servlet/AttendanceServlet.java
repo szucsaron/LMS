@@ -27,10 +27,18 @@ public class AttendanceServlet extends AbstractServlet {
         try {
             Database database = MockDatabase.getInstance();
             users = database.getUsersArray();
+            DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+            Date chosen = formatter.parse(formatter.format(new Date()));
+            /*if (req.getSession(false).getAttribute("date") != null) {
+                chosen = formatter.parse(formatter.format(req.getSession(false).getAttribute("date")));
+            }*/
+            req.setAttribute("chosen", chosen);
             req.setAttribute("users", users);
             req.getRequestDispatcher("attendance.jsp").forward(req, resp);
         } catch (SQLException e){
             handleError(e, req, resp);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
     }
 
@@ -42,13 +50,11 @@ public class AttendanceServlet extends AbstractServlet {
 
         try {
             Date date = df.parse(dateString);
+            //req.getSession(false).setAttribute("date", date);
             for (User u : users) {
-                boolean history = u.getAttendance(new Date());
                 String name = u.getUsername();
                 boolean attendance = Boolean.valueOf(req.getParameter(name));
                 u.setAttendance(date, attendance);
-                boolean present = u.getAttendance(date);
-                System.out.println("placeholder");
             }
         } catch (ParseException e) {
             req.setAttribute("error", "Invalid date!");
