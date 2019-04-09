@@ -75,7 +75,7 @@ public class QuizDao extends AbstractDao {
     }
 
     public Quiz getQuizById(int quizId) {
-        return new Quiz(0, null, 0);
+        return new Quiz(quizId, null, 0);
     }
 
     public List<Quiz> getAllQuizzes() {

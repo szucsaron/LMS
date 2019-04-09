@@ -52,11 +52,15 @@
                 <p>To check:</p>
                     <form action="evaluate" method="GET">
                     <% for (String student : toCheck.keySet()) { %>
-                        <i><%= student %></i><br>
-                        <% for (Integer id : toCheck.get(student)) { %>
-                            <input type="hidden" value="<%= student %>" name="student">
-                            <input type="hidden" value="<%= id %>" name ="id">
-                            <p><input type="submit" name="<%= allQuiz.get(id)%>"></p>
+                        <% if (toCheck.get(student).size() > 0) { %>
+                            <i><%= student %></i><br>
+                            <hr>
+                            <% for (Integer id : toCheck.get(student)) { %>
+                                <input type="hidden" value="<%= student %>" name="student">
+                                <input type="hidden" value="<%= id %>" name ="id">
+                                <p><input type="submit" value="<%= allQuiz.get(id)%>"></p>
+                            <% } %>
+                            <hr>
                         <% } %>
                     <% } %>
                     </form>
