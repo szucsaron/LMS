@@ -1,5 +1,6 @@
 package com.codecool.web.service;
 
+import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.NoSuchUserException;
 import com.codecool.web.model.User;
 import com.codecool.web.dao.Database;
@@ -14,8 +15,12 @@ import java.util.List;
 import java.util.Map;
 
 public final class UserService {
-
     Database database = MockDatabase.getInstance();
+    UserDao userDao;
+
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     public User[] getUsers() throws SQLException {
         return database.getUsersArray();
@@ -42,15 +47,15 @@ public final class UserService {
         }
     }
 
-    public boolean validateRegistration(String username, String email)  throws SQLException{
+    public boolean validateRegistration(String username, String email) throws SQLException {
         return validateUniqueUsername(username) && validateUniqueEmail(email);
     }
 
-    public boolean validateUniqueUsername(String username) throws SQLException{
+    public boolean validateUniqueUsername(String username) throws SQLException {
         return !database.getUserNames().contains(username);
     }
 
-    public boolean validateUniqueEmail(String email)  throws SQLException{
+    public boolean validateUniqueEmail(String email) throws SQLException {
         return !database.getEmailAddresses().contains(email);
     }
 

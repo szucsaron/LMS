@@ -1,5 +1,6 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
 import com.codecool.web.service.UserService;
 
@@ -14,12 +15,13 @@ import java.sql.SQLException;
 @WebServlet("/register")
 public class RegistrationServlet extends AbstractServlet {
 
-    private final UserService service = new UserService();
+    private UserService service;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        try {
+        try (UserDao userDao = new UserDao(getConnection(req.getServletContext()))) {
+            service = new UserService(userDao);
             resp.setContentType("text/html");
 
             String un = req.getParameter("username");

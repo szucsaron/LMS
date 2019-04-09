@@ -1,5 +1,6 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
 import com.codecool.web.service.UserService;
 
@@ -18,11 +19,12 @@ import java.util.List;
 @WebServlet("/profile")
 public class ProfileServlet extends AbstractServlet {
 
-    private UserService service = new UserService();
+    private UserService service;
     private User actualUser = new User();
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
+        try (UserDao userDao = new UserDao(getConnection(req.getServletContext()))) {
+            service = new UserService(userDao);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("profile.jsp");
             List<Cookie> cookies = Arrays.asList(req.getCookies());
             User[] users = service.getUsers();
@@ -47,7 +49,8 @@ public class ProfileServlet extends AbstractServlet {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
+        try (UserDao userDao = new UserDao(getConnection(req.getServletContext()))) {
+            service = new UserService(userDao);
             resp.setContentType("text/html");
 
             String un = req.getParameter("username");
