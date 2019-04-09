@@ -2,7 +2,6 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.model.NoSuchUserException;
 import com.codecool.web.model.User;
-import com.codecool.web.model.Solution;
 import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;
@@ -19,7 +18,7 @@ public class EvaluationServlet extends AbstractServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getAttribute("user");
         int quizID = (int) req.getAttribute("id");
-        Solution solution = solutionService.getSolution(user.getEmail(), quizID);
+        //Solution solution = solutionService.getSolution(user.getEmail(), quizID);
         
 
     }
