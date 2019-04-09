@@ -1,15 +1,9 @@
 
 
--- Get a quiz by id
-select title from quizes where id = 0;
-
--- Get a question by id in the same quiz
-select id, title from questions where quiz_id = 0 order by questions.id limit 1 offset 3 ;
-
--- Get all answers
-select answers.id, answer, title from answers left join questions on question_id = questions.id  where question_id = 2;
-
-select count(question_id) from answers where question_id = 2 and username = "Jancsi";
+select title, answer, question_id, answer_id, correct from solutions
+left join answers on solutions.answer_id = answers.id
+left join questions on answers.question_id = questions.id
+where user_name = 'Jancsi' and quiz_id = 0;
 
 
 /*

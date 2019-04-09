@@ -2,13 +2,14 @@ DROP TABLE IF EXISTS solutions;
 DROP TABLE IF EXISTS answers;
 DROP TABLE IF EXISTS articles;
 DROP TABLE IF EXISTS questions;
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS evaluations;
 DROP TABLE IF EXISTS quizzes;
+DROP TABLE IF EXISTS users;
 
 
 CREATE TABLE users (
 	email VARCHAR(100),
-	user_name VARCHAR(50) primary key,
+	user_name VARCHAR(100) primary key,
 	passwd VARCHAR(50),
 	role_id INT,
 	progress INT
@@ -17,6 +18,13 @@ CREATE TABLE users (
 CREATE TABLE quizzes (
 	id serial primary key,
 	title VARCHAR(200)
+);
+
+create table evaluations (
+	user_name VARCHAR(100) references users(user_name),
+	quiz_id int references quizzes(id),
+	status int,
+	primary key (user_name, quiz_id)
 );
 
 CREATE TABLE questions (
@@ -155,6 +163,14 @@ insert into users (email, user_name, passwd, role_id, progress) values
 ('student1@codecool.com', 'Ludovikusz', '1234', 1, 3),
 ('student2@codecool.com', 'Erzsi', '1234', 1, 6),
 ('mentor@codecool.com', 'Pali', '1234', 2, 6);
+
+insert into evaluations (user_name, quiz_id, status) values
+('Erzsi', 0, 1),
+('Erzsi', 1, 1),
+('Erzsi', 2, 1),
+('Erzsi', 3, 1),
+('Erzsi', 4, 0),
+('Erzsi', 5, -1);
 /*
 
 insert into solutions (user_name, answer_id) values ('Jancsi', 0);
