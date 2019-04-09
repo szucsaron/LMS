@@ -1,6 +1,7 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.dao.QuizDao;
+import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
@@ -19,7 +20,7 @@ public class QuizServlet extends AbstractServlet {
     private final String page = "quiz.jsp";
 
     private User user;
-    private final UserService service = new UserService();
+    private UserService service;
 
 
     private Quiz quiz;
@@ -27,9 +28,12 @@ public class QuizServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try (QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()))) {
+        try (QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()));
+             UserDao userDao = new UserDao(getConnection(req.getServletContext()))
+        ) {
+            service = new UserService(userDao);
             MockDatabase.getInstance().setLocation(req.getServletContext().getRealPath("/"));
-            user = new UserService().getCurrentUser(req);
+            user = service.getCurrentUser(req);
             int quizId = Integer.parseInt(req.getParameter("quizId"));
             req.setAttribute("quizId", quizId);
             int questionIndex;

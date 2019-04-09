@@ -7,7 +7,7 @@
 <%
     // Java init
     User user = (User) request.getAttribute("user");
-    List<Solution> solutions = (List<Solution>) request.getAttribute("solutions");
+    Solution solutions = (Solution) request.getAttribute("solutions");
 %>
 
 <html class="bg-1" lang="en">
