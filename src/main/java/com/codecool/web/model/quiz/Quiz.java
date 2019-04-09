@@ -8,7 +8,6 @@ public class Quiz implements Iterable<Question>{
     private List<Question> questions = new ArrayList<>();
 
     private String description;
-    private int mistakeLimit = 1;
     private int size = 0;
 
     public int getId() {
@@ -37,10 +36,6 @@ public class Quiz implements Iterable<Question>{
     }
 
 
-    public boolean validateSuccess(int score) {
-        return score >= questions.size() - mistakeLimit;
-    }
-
     public Question getQuestion(int index) {
             return questions.get(index);
     }
@@ -50,11 +45,12 @@ public class Quiz implements Iterable<Question>{
     }
 
     public String toString () {
-        String out = description + "\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append(description).append( "\n");
         for (Question question : this) {
-            out += question;
+            sb.append(question);
         }
-        return out;
+        return sb.toString();
     }
 
     public void removeQuestions() {

@@ -46,7 +46,7 @@ public class AttendanceServlet extends AbstractServlet {
                 u.setAttendance(date, Boolean.valueOf(req.getParameter(u.getUsername())));
             }
         } catch (ParseException e) {
-            req.setAttribute("errorMessage", "Invalid date!");
+            req.setAttribute("error", "Invalid date!");
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
         resp.sendRedirect("content");

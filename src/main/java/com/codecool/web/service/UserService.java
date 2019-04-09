@@ -5,6 +5,7 @@ import com.codecool.web.model.User;
 import com.codecool.web.dao.Database;
 import com.codecool.web.dao.MockDatabase;
 
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;

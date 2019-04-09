@@ -4,7 +4,7 @@
 select title from quizes where id = 0;
 
 -- Get a question by id in the same quiz
-select id, title from questions where quiz_id = 0 limit 1 offset 1;
+select id, title from questions where quiz_id = 0 order by questions.id limit 1 offset 3 ;
 
 -- Get all answers
 select answers.id, answer, title from answers left join questions on question_id = questions.id  where question_id = 2;
