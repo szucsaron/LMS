@@ -55,7 +55,19 @@ public class QuizDao extends AbstractDao {
     }
 
     public Solution getSolution(String userEmail, int quizId) throws SQLException {
-        return new Solution(0, null);
+        Solution solution = new Solution(0, "What is good goat?");
+        Question question = new Question("Is it good?", 0);
+        question.addAnswer(new Answer(0, "Yes", true));
+
+        Question question1 = new Question("What are birds", 1);
+        question1.addAnswer(new Answer(1, "Trees", false));
+
+        Question question2 = new Question("What is 2 + 2", 2);
+        question2.addAnswer(new Answer(2, "4", true));
+        solution.addQuestion(question);
+        solution.addQuestion(question1);
+        solution.addQuestion(question2);
+        return solution;
     }
 
     public List<Quiz> getCompletedQuizIds(String userEmail) {
