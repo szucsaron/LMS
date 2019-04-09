@@ -1,5 +1,6 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
 import com.codecool.web.service.UserService;
 
@@ -15,10 +16,12 @@ import java.sql.SQLException;
 @WebServlet("/users")
 public class ListingServlet extends AbstractServlet {
 
-    private UserService service = new UserService();
+    private UserService service;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
+
+        try (UserDao userDao = new UserDao(getConnection(req.getServletContext()))) {
+            service = new UserService(userDao);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("users.jsp");
             User[] users = service.getUsers();
             req.setAttribute("users", users);

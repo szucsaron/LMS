@@ -1,5 +1,6 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
 import com.codecool.web.dao.Database;
 import com.codecool.web.dao.MockDatabase;
@@ -19,10 +20,11 @@ import java.util.Map;
 public class QuizListingServlet extends AbstractServlet {
 
     private Database database = MockDatabase.getInstance();
-    private UserService us = new UserService();
+    private UserService us;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
+        try (UserDao userDao = new UserDao(getConnection(req.getServletContext()))) {
+            us = new UserService(userDao);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("quizlist.jsp");
 
             User currentUser = us.getCurrentUser(req);
