@@ -53,11 +53,12 @@ public final class UserService {
     }
 
     public boolean validateUniqueUsername(String username) throws SQLException {
-        return !database.getUserNames().contains(username);
+        return userDao.getUserByName(username) == null;
+
     }
 
     public boolean validateUniqueEmail(String email) throws SQLException {
-        return !database.getEmailAddresses().contains(email);
+        return userDao.getUserByEmail(email) == null;
     }
 
     public User getCurrentUser(HttpServletRequest req) throws SQLException {
