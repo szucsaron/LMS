@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class QuizDao extends AbstractDao {
@@ -155,12 +154,15 @@ public class QuizDao extends AbstractDao {
             if (rs.next()) {
                 int status = rs.getInt("status");
                 switch (status) {
-                    case 1:
-                        return QuizEvaluation.PASSED;
-                    case 0:
-                        return QuizEvaluation.FAILED;
                     case -1:
-                        return QuizEvaluation.UNCHECKED;
+                        return QuizEvaluation.FAILED;
+                    case 0:
+                        return QuizEvaluation.STARTED;
+                    case 1:
+                        return QuizEvaluation.FINISHED;
+                    case 2:
+                        return QuizEvaluation.PASSED;
+
                 }
             }
             return null;
@@ -172,20 +174,38 @@ public class QuizDao extends AbstractDao {
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, userName);
             statement.setInt(2, quizId);
-            int status;
-            switch (quizEvaluation) {
-                case PASSED:
-                    status = 1;
-                    break;
-                case FAILED:
-                    status = 0;
-                    break;
-                default:
-                    status = -1;
-                    break;
-            }
+            int status = getQuizEvaluationNum(quizEvaluation);
             statement.setInt(3, status);
+            try {
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                updateQuizEvaluation(userName, quizId, quizEvaluation);
+            }
+        }
+    }
+
+    private void updateQuizEvaluation(String userName, int quizId, QuizEvaluation quizEvaluation) throws SQLException {
+        String sql = "UPDATE evaluations SET status=? WHERE user_name=? and quiz_id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, getQuizEvaluationNum(quizEvaluation));
+            statement.setString(2, userName);
+            statement.setInt(3, quizId);
             statement.executeUpdate();
+        }
+    }
+
+    private int getQuizEvaluationNum(QuizEvaluation quizEvaluation) {
+        switch (quizEvaluation) {
+            case FAILED:
+                return -1;
+            case STARTED:
+                return 0;
+            case FINISHED:
+                return 1;
+            case PASSED:
+                return 2;
+            default:
+                throw new IllegalArgumentException();
         }
     }
 

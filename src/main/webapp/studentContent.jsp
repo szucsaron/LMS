@@ -37,7 +37,7 @@
         <% if (quizEval == QuizEvaluation.PASSED) { %>
             <div class="quizStatus" > Quiz passed </div>
 
-        <% } else if (quizEval == QuizEvaluation.UNCHECKED) { %>
+        <% } else if (quizEval == QuizEvaluation.FINISHED) { %>
             <div class="quizStatus" > Quiz under evaluation </div>
         <% } else if (quizEval == QuizEvaluation.FAILED) { %>
             <div class="quizStatus" > Quiz failed </div>

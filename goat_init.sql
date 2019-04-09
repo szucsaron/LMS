@@ -20,10 +20,16 @@ CREATE TABLE quizzes (
 	title VARCHAR(200)
 );
 
+/* STATUS
+ * -1: failed
+ * 0: started
+ * 1: finished
+ * 2: passed 
+ */
 create table evaluations (
 	user_name VARCHAR(100) references users(user_name),
 	quiz_id int references quizzes(id),
-	status int,
+	status numeric(1),
 	primary key (user_name, quiz_id)
 );
 
@@ -165,12 +171,12 @@ insert into users (email, user_name, passwd, role_id, progress) values
 ('mentor@codecool.com', 'Pali', '1234', 2, 6);
 
 insert into evaluations (user_name, quiz_id, status) values
-('Erzsi', 0, 1),
-('Erzsi', 1, 1),
-('Erzsi', 2, 1),
-('Erzsi', 3, 1),
-('Erzsi', 4, 0),
-('Erzsi', 5, -1);
+('Erzsi', 0, 2),
+('Erzsi', 1, 2),
+('Erzsi', 2, 2),
+('Erzsi', 3, 2),
+('Erzsi', 4, -1),
+('Erzsi', 5, 1);
 /*
 
 insert into solutions (user_name, answer_id) values ('Jancsi', 0);

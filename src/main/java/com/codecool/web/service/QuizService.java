@@ -1,6 +1,7 @@
 package com.codecool.web.service;
 
 import com.codecool.web.dao.QuizDao;
+import com.codecool.web.dao.SqlGenerator;
 import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.Question;
@@ -30,14 +31,18 @@ public class QuizService {
         quizDao.passAnswer(userName, userId);
     }
 
-    public boolean isOver (User user, int quizId) throws SQLException {
+    public boolean isOver(User user, int quizId) throws SQLException {
         int userAnswerCount = quizDao.countAnsweredQuestions(user.getUsername(), quizId);
         int questionsInQuizCount = quizDao.countQuestions(quizId);
         return userAnswerCount == questionsInQuizCount;
     }
 
-    public void markQuizForEvaluation(Quiz quiz, User user) throws SQLException{
-        quizDao.setQuizEvaluation(user.getUsername(), quiz.getId(), QuizEvaluation.UNCHECKED);
+    public void markQuizForEvaluation(Quiz quiz, User user) throws SQLException {
+        quizDao.setQuizEvaluation(user.getUsername(), quiz.getId(), QuizEvaluation.FINISHED);
+    }
+
+    public void markQuizForStart(Quiz quiz, User user) throws SQLException {
+        quizDao.setQuizEvaluation(user.getUsername(), quiz.getId(), QuizEvaluation.STARTED);
     }
 
 }
