@@ -40,14 +40,13 @@ public class LogInServlet extends AbstractServlet {
             String un = req.getParameter("username");
             String pw = req.getParameter("password");
 
-            try {
-                service.validateLogIn(un, pw);
+            if (service.validateLogIn(un, pw)) {
                 User user = service.getCurrentUser(req);
                 req.getSession().setAttribute("user", user);
                 resp.addCookie(new Cookie("name", un));
                 resp.addCookie(new Cookie("password", pw));
                 resp.sendRedirect("content");
-            } catch (NoSuchUserException e) {
+            } else {
                 req.setAttribute("error", "Wrong username or password!");
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
             }

@@ -18,25 +18,29 @@ public class UserDao extends AbstractDao {
             statement.setString(1, name);
             statement.execute();
             ResultSet rs = statement.getResultSet();
-            rs.next();
-            String password = rs.getString("passwd");
-            String email = rs.getString("email");
-            int roleId = rs.getInt("role_id");
-            int progress = rs.getInt("progress");
-            String role;
-            switch (roleId) {
-                case 1:
-                    role = "STUDENT";
-                    break;
-                case 2:
-                    role = "MENTOR";
-                    break;
-                default:
-                    role = "GUEST";
+            if (rs.next()) {
+
+                String password = rs.getString("passwd");
+                String email = rs.getString("email");
+                int roleId = rs.getInt("role_id");
+                int progress = rs.getInt("progress");
+                String role;
+                switch (roleId) {
+                    case 1:
+                        role = "STUDENT";
+                        break;
+                    case 2:
+                        role = "MENTOR";
+                        break;
+                    default:
+                        role = "GUEST";
+                }
+                User user = new User(name, password, email, role);
+                user.setProgress(progress);
+                return user;
+            } else {
+                return null;
             }
-            User user = new User(name, password, email, role);
-            user.setProgress(progress);
-            return user;
 
         }
     }

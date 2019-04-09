@@ -124,4 +124,8 @@ public final class User {
     public boolean validateQuiz(Quiz quiz) {
         return true;
     }
+
+    public String toString() {
+        return String.format("name: %s, email: %s, password: %s", username, email, password);
+    }
 }

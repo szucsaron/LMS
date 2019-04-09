@@ -40,11 +40,12 @@ public final class UserService {
         database.addUser(user);
     }
 
-    public void validateLogIn(String username, String password) throws NoSuchUserException {
-        User u = database.getUserByName(username);
-        if (!u.getPassword().equals(password)) {
-            throw new NoSuchUserException();
+    public boolean validateLogIn(String username, String password) throws SQLException{
+        User u = userDao.getUserByName(username);
+        if (u != null && u.getPassword().equals(password)) {
+            return true;
         }
+        return false;
     }
 
     public boolean validateRegistration(String username, String email) throws SQLException {
@@ -59,8 +60,7 @@ public final class UserService {
         return !database.getEmailAddresses().contains(email);
     }
 
-    public User getCurrentUser(HttpServletRequest req) {
-
+    public User getCurrentUser(HttpServletRequest req) throws SQLException {
         Cookie[] cookies = req.getCookies();
         if (cookies == null) {
             return getGuest();
@@ -77,15 +77,12 @@ public final class UserService {
                 passwd = value;
             }
         }
-        try {
-            User user;
-            user = MockDatabase.getInstance().getUserByName(userName);
-            if (user.getPassword().equals(passwd)) {
-                return user;
-            } else {
-                return getGuest();
-            }
-        } catch (NoSuchUserException e) {
+        User user;
+        user = userDao.getUserByName(userName);
+
+        if (user != null && user.getPassword().equals(passwd)) {
+            return user;
+        } else {
             return getGuest();
         }
     }
