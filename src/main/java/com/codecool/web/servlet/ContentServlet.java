@@ -1,6 +1,7 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.dao.ArticleDao;
+import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.Article;
 import com.codecool.web.model.User;
 import com.codecool.web.dao.Database;
@@ -23,13 +24,18 @@ public class ContentServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        MockDatabase.getInstance().setLocation(req.getServletContext().getRealPath("/"));
-        User user = new UserService().getCurrentUser(req);
-        try (ArticleDao articleDao = new ArticleDao(getConnection(req.getServletContext()))) {
-            showContent(user, req, resp, articleDao);
+        try (UserDao userDao = new UserDao(getConnection(req.getServletContext()))) {
+            MockDatabase.getInstance().setLocation(req.getServletContext().getRealPath("/"));
+            User user = new UserService(userDao).getCurrentUser(req);
+            try (ArticleDao articleDao = new ArticleDao(getConnection(req.getServletContext()))) {
+                showContent(user, req, resp, articleDao);
+            } catch (SQLException e) {
+                handleError(e, req, resp);
+            }
         } catch (SQLException e) {
             handleError(e, req, resp);
         }
+
     }
 
     private void showContent(User user, HttpServletRequest req, HttpServletResponse resp, ArticleDao articleDao) throws ServletException, IOException, SQLException {

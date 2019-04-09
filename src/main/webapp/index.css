@@ -99,6 +99,11 @@ input[type=submit], input[type = text],input[type = number], input[type = passwo
     color: #996633;
 }
 
+.quizzes {
+    overflow-y: scroll;
+    text-align: left;
+}
+
 .scroll {
     height: 75%;
     overflow: auto;

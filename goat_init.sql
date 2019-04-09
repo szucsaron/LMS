@@ -7,9 +7,11 @@ DROP TABLE IF EXISTS quizzes;
 
 
 CREATE TABLE users (
-	id serial primary key,
-	user_name VARCHAR(50),
-	passwd VARCHAR(50)
+	email VARCHAR(100),
+	user_name VARCHAR(50) primary key,
+	passwd VARCHAR(50),
+	role_id INT,
+	progress INT
 );
 
 CREATE TABLE quizzes (
@@ -39,10 +41,12 @@ CREATE TABLE answers (
 );
 
 CREATE TABLE solutions (
-	user_id INT references users(id),
+	user_name VARCHAR(100) references users(user_name),
 	answer_id INT references answers(id),
-	primary key(user_id, answer_id)
+	primary key(user_name, answer_id)
 );
+
+
 
 INSERT INTO quizzes VALUES (0,'How to goat?'),
 (1,'1 goats + 1 goats equals?'),
@@ -145,4 +149,17 @@ INSERT INTO articles (id, quiz_id, title, textcontent, lvl) VALUES
 (3, 3, 'Goat refactoring 101', ' Goats are to be refactored constantly for the greater good of goatkind. It is good. In refactoring, the more always means better. If your goats lack eyes, just stick a few dozen on each of them, or even hundreds. If your goat doesnt like Chinese food, duct tape a few external digestive tracts on their bodies, which can process stuff like that. Dont bother with untangling seemingly overcomplicated goat bionics you recently installed, as its a huge time sink. Has Your goat become a labyrinthine mess of a biological framework? Dont give a crap! Goats are strong. Thingsll sort themselves out in the end. If its too much work, let it rot. Its refactoring 101.  ', 4),
 (4, 4, 'Putting your goat before your needs', ' Die for your goat. No exception. ', 5),
 (5, 5, 'Dealing with the public: It is a calling, not an obsession!', ' So far, you have learned valuable lessons stemming from the basic proposition: Goats are great. However, public support for the cause may diminish each time you talk about goats, refer to goat food or mimic the calls of goats. There is a reason for that: For others, goats are not that great. What to do? Its easy: have ample time to refer to your opponents mothers. This will undermine their statements and make their very rhetoric collapse by its own weight. ', 6);
+
+insert into users (email, user_name, passwd, role_id, progress) values 
+('student@codecool.com', 'Jancsi', '1234', 1, 1),
+('student1@codecool.com', 'Ludovikusz', '1234', 1, 3),
+('student2@codecool.com', 'Erzsi', '1234', 1, 6),
+('mentor@codecool.com', 'Pali', '1234', 2, 6);
+/*
+
+insert into solutions (user_name, answer_id) values ('Jancsi', 0);
+insert into solutions (user_name, answer_id) values ('Jancsi', 4);
+insert into solutions (user_name, answer_id) values ('Jancsi', 8);
+*/
+
 
