@@ -1,5 +1,6 @@
 package com.codecool.web.dao;
 
+import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.*;
 
 import java.sql.Connection;
@@ -7,7 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class QuizDao extends AbstractDao {
     public QuizDao(Connection connection) {
@@ -153,28 +156,38 @@ public class QuizDao extends AbstractDao {
             ResultSet rs = statement.getResultSet();
             if (rs.next()) {
                 int status = rs.getInt("status");
-                switch (status) {
-                    case -1:
-                        return QuizEvaluation.FAILED;
-                    case 0:
-                        return QuizEvaluation.STARTED;
-                    case 1:
-                        return QuizEvaluation.FINISHED;
-                    case 2:
-                        return QuizEvaluation.PASSED;
-
-                }
+                return convertNumToQuizEvaluation(status);
             }
             return null;
         }
     }
+
+    public Map<Integer, QuizEvaluation> getEvaluationForAllQuizzes(String userName) throws SQLException {
+        String sql = "SELECT status FROM evaluations WHERE user_name=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, userName);
+            statement.execute();
+            ResultSet rs = statement.getResultSet();
+            Map<Integer, QuizEvaluation> quizEvalMap = new HashMap<>();
+            while (rs.next()) {
+                int status = rs.getInt("status");
+                QuizEvaluation quizEval = convertNumToQuizEvaluation(status);
+                int quizId = rs.getInt("quiz_id");
+                quizEvalMap.put(quizId, quizEval);
+
+            }
+            return quizEvalMap;
+        }
+
+    }
+
 
     public void setQuizEvaluation(String userName, int quizId, QuizEvaluation quizEvaluation) throws SQLException {
         String sql = "INSERT INTO evaluations (user_name, quiz_id, status) VALUES (?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, userName);
             statement.setInt(2, quizId);
-            int status = getQuizEvaluationNum(quizEvaluation);
+            int status = convertQuizEvaluationToNum(quizEvaluation);
             statement.setInt(3, status);
             try {
                 statement.executeUpdate();
@@ -187,14 +200,14 @@ public class QuizDao extends AbstractDao {
     private void updateQuizEvaluation(String userName, int quizId, QuizEvaluation quizEvaluation) throws SQLException {
         String sql = "UPDATE evaluations SET status=? WHERE user_name=? and quiz_id=?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, getQuizEvaluationNum(quizEvaluation));
+            statement.setInt(1, convertQuizEvaluationToNum(quizEvaluation));
             statement.setString(2, userName);
             statement.setInt(3, quizId);
             statement.executeUpdate();
         }
     }
 
-    private int getQuizEvaluationNum(QuizEvaluation quizEvaluation) {
+    private int convertQuizEvaluationToNum(QuizEvaluation quizEvaluation) {
         switch (quizEvaluation) {
             case FAILED:
                 return -1;
@@ -204,6 +217,21 @@ public class QuizDao extends AbstractDao {
                 return 1;
             case PASSED:
                 return 2;
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
+
+    private QuizEvaluation convertNumToQuizEvaluation(int num) {
+        switch (num) {
+            case -1:
+                return QuizEvaluation.FAILED;
+            case 0:
+                return QuizEvaluation.STARTED;
+            case 1:
+                return QuizEvaluation.FINISHED;
+            case 2:
+                return QuizEvaluation.PASSED;
             default:
                 throw new IllegalArgumentException();
         }

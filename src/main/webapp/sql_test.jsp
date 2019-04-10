@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="com.codecool.web.model.Article" %>
+<%@ page import="com.codecool.web.model.quiz.Quiz" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html class="bg-1" lang="en">
@@ -17,10 +18,7 @@
 
 <body>
 
-    <c:forEach var="val" items="${cuccok}">
-        <br>${val}
-
-    </c:forEach>
+    %{msg}
 
 
 </body>
