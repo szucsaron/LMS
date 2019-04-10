@@ -204,6 +204,13 @@ public class QuizDao extends AbstractDao {
         }
     }
 
+    public void modifyQuestion(Question question) throws SQLException{
+        String sql = "";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+        }
+    }
+
     private void updateQuizEvaluation(String userName, int quizId, QuizEvaluation quizEvaluation) throws SQLException {
         String sql = "UPDATE evaluations SET status=? WHERE user_name=? and quiz_id=?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -256,4 +263,5 @@ public class QuizDao extends AbstractDao {
         }
         return quizList;
     }
+
 }

@@ -125,4 +125,8 @@ public class QuizService {
     public List<Integer> getQuizzesFailed(String userName) throws SQLException {
         return getAllQuizzesFailed().get(userName);
     }
+
+    public void modifyQuestion(Question question) {
+
+    }
 }

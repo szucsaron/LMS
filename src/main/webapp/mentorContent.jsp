@@ -33,7 +33,7 @@
         <a class="button" href="edit_article?articleId=new">ADD ARTICLE</a>
         <a class="button" href="quizlist">ASSIGNMENTS</a>
         <a class="button" href="attendance">ATTENDANCE</a>
-        <a class="button" href="quiz_edit?quizId=<%=quizId%>&questionIndex=0">EDIT QUIZ</a>
+        <a class="button" href="quiz_edit?quizId=<%=quizId%>">EDIT QUIZ</a>
         <a class="button" href="logout">LOGOUT</a>
     </nav>
     <div class="leftbar">
