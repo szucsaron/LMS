@@ -18,8 +18,8 @@
 
 <body>
 
-    %{msg}
 
+${msg}
 
 </body>
 

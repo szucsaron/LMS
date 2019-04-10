@@ -163,7 +163,7 @@ public class QuizDao extends AbstractDao {
     }
 
     public Map<Integer, QuizEvaluation> getEvaluationForAllQuizzes(String userName) throws SQLException {
-        String sql = "SELECT status FROM evaluations WHERE user_name=?";
+        String sql = "SELECT quiz_id, status FROM evaluations WHERE user_name=?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, userName);
             statement.execute();

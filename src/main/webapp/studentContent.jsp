@@ -35,10 +35,9 @@
         <a class="button" href="quizlist">MY ASSIGNMENTS</a>
         <a class="button" href="logout">LOGOUT</a>
         <% if (quizEval == QuizEvaluation.PASSED) { %>
-            <div class="quizStatus" > Quiz passed </div>
-
+            <p> Quiz passed </p>
         <% } else if (quizEval == QuizEvaluation.FINISHED) { %>
-            <div class="quizStatus" > Quiz under evaluation </div>
+            <p> Quiz under evaluation </p>
         <% } else if (quizEval == QuizEvaluation.FAILED) { %>
             <div class="quizStatus" > Quiz failed </div>
             <a class="button" href="quiz?quizId=<%=quizId%>">RETAKE QUIZ</a>

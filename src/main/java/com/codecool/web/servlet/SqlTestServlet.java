@@ -24,9 +24,9 @@ public class SqlTestServlet extends AbstractServlet {
             Map<Integer, QuizEvaluation> cucc = quizDao.getEvaluationForAllQuizzes("Erzsi");
             StringBuilder msg = new StringBuilder();
             for (Integer key : cucc.keySet()) {
-                msg.append(cucc.get(key) + "\n");
+                msg.append(String.format("%d: %s <br>", key, cucc.get(key)));
             }
-
+            req.setAttribute("msg", msg.toString());
             req.getRequestDispatcher("sql_test.jsp").forward(req, resp);
 
 
