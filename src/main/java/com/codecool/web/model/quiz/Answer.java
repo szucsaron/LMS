@@ -13,6 +13,10 @@ public class Answer {
         return text;
     }
 
+    public void setText(String text) {
+        this.text = text;
+    }
+
     public Answer(int id, String text, boolean correct) {
         this.id = id;
         this.text = text;

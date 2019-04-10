@@ -16,6 +16,10 @@ public class Question implements Iterable<Answer>{
         this.id = id;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public void addAnswer(Answer answer) {
         answers.put(answer.getId(), answer);
     }

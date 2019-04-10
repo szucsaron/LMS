@@ -126,6 +126,12 @@ public class QuizService {
         return getAllQuizzesFailed().get(userName);
     }
 
+
+    public void modifyQuestion(Question question) throws SQLException {
+        quizDao.modifyQuestion(question);
+    }
+
+
     public Map<Integer, String> getQuizNamesWithLvlLimit(int limit) throws SQLException {
         Map<Integer, String> result = new HashMap<>();
         List<Quiz> list = quizDao.getQuizzesWithLvlLimit(limit);
@@ -148,5 +154,6 @@ public class QuizService {
             }
         }
         return result;
+
     }
 }

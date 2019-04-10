@@ -204,6 +204,37 @@ public class QuizDao extends AbstractDao {
         }
     }
 
+    public void modifyQuestion(Question question) throws SQLException{
+        String sql = "UPDATE questions SET title = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, question.getDescription());
+            statement.setInt(2, question.getId());
+            statement.executeUpdate();
+        }
+
+        modifyAnswers(question);
+
+    }
+
+    public void modifyAnswers(Question question) throws SQLException{
+        StringBuilder sb = new StringBuilder();
+
+        for (Answer answer : question) {
+            String correct;
+            if (answer.validate()) {
+                correct = "1";
+            } else {
+                correct = "0";
+            }
+            String sql = String.format("UPDATE answers SET answer='%s', correct='%s' WHERE id=%d;", answer.getText(), correct, answer.getId());
+            sb.append(sql);
+        }
+
+        try (PreparedStatement statement = connection.prepareStatement(sb.toString())) {
+            statement.executeUpdate();
+        }
+    }
+
     private void updateQuizEvaluation(String userName, int quizId, QuizEvaluation quizEvaluation) throws SQLException {
         String sql = "UPDATE evaluations SET status=? WHERE user_name=? and quiz_id=?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -244,6 +275,7 @@ public class QuizDao extends AbstractDao {
         }
     }
 
+
     private List<Quiz> fetchQuizzes(PreparedStatement statement) throws SQLException{
         List<Quiz> quizList = new ArrayList<>();
         statement.execute();
@@ -256,4 +288,5 @@ public class QuizDao extends AbstractDao {
         }
         return quizList;
     }
+
 }
