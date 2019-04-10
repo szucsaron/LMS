@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet("/sql_test")
 public class SqlTestServlet extends AbstractServlet {
@@ -20,18 +21,11 @@ public class SqlTestServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (QuizDao quizDao= new QuizDao(getConnection(req.getServletContext()))) {
-            Solution solution = quizDao.getSolution("Jancsi", 0);
-            StringBuilder sb = new StringBuilder();
-            for (Question question : solution) {
-                sb.append(question).append("<br>");
+            Map<Integer, QuizEvaluation> cucc = quizDao.getEvaluationForAllQuizzes("Erzsi");
+            StringBuilder msg = new StringBuilder();
+            for (Integer key : cucc.keySet()) {
+                msg.append(cucc.get(key) + "\n");
             }
-            List<QuizEvaluation> cuccok = new ArrayList<>();
-            cuccok.add( quizDao.getQuizEvaluation("Erzsi", 4));
-            req.setAttribute("cuccok", cuccok);
-
-
-
-
 
             req.getRequestDispatcher("sql_test.jsp").forward(req, resp);
 
