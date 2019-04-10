@@ -4,15 +4,22 @@ DROP TABLE IF EXISTS articles;
 DROP TABLE IF EXISTS questions;
 DROP TABLE IF EXISTS evaluations;
 DROP TABLE IF EXISTS quizzes;
+DROP TABLE IF EXISTS attendance;
 DROP TABLE IF EXISTS users;
 
 
 CREATE TABLE users (
-	email VARCHAR(100),
+	email VARCHAR(100) UNIQUE,
 	user_name VARCHAR(100) primary key,
 	passwd VARCHAR(50),
 	role_id INT,
 	progress INT
+);
+
+CREATE TABLE attendance (
+	present VARCHAR(10),
+	user_name VARCHAR(100) REFERENCES users(user_name),
+	PRIMARY KEY (user_name, present)
 );
 
 CREATE TABLE quizzes (
@@ -177,6 +184,25 @@ insert into evaluations (user_name, quiz_id, status) values
 ('Erzsi', 3, 2),
 ('Erzsi', 4, -1),
 ('Erzsi', 5, 1);
+
+INSERT INTO attendance (user_name, present) VALUES
+('Erzsi', '2019-01-01'),
+('Erzsi', '2019-01-02'),
+('Erzsi', '2019-01-03'),
+('Erzsi', '2019-01-04'),
+('Erzsi', '2019-01-06'),
+('Jancsi', '2019-01-01'),
+('Jancsi', '2019-01-02'),
+('Jancsi', '2019-01-03'),
+('Jancsi', '2019-01-04'),
+('Jancsi', '2019-04-10'),
+('Ludovikusz', '2019-01-01'),
+('Ludovikusz', '2019-01-02'),
+('Ludovikusz', '2019-01-06'),
+('Ludovikusz', '2019-01-08'),
+('Ludovikusz', '2019-01-10'),
+('Ludovikusz', '2019-01-21')
+;
 /*
 
 insert into solutions (user_name, answer_id) values ('Jancsi', 0);

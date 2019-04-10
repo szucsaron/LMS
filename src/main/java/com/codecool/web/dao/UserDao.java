@@ -6,8 +6,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Formatter;
 import java.util.List;
+import java.util.logging.SimpleFormatter;
 
 public class UserDao extends AbstractDao {
     public UserDao(Connection connection) {
@@ -25,7 +31,6 @@ public class UserDao extends AbstractDao {
             } else {
                 return null;
             }
-
         }
     }
 
@@ -40,7 +45,6 @@ public class UserDao extends AbstractDao {
                 users.add(fetchUser(rs));
             }
             return users.toArray(new User[users.size()]);
-
         }
     }
 
@@ -61,23 +65,41 @@ public class UserDao extends AbstractDao {
     public void addUser(User user) throws SQLException {
         String sql = "INSERT INTO users (user_name, passwd, email, role_id, progress) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            int roleId;
-            switch (user.getRole()) {
-                case "STUDENT":
-                    roleId = 1;
-                    break;
-                case "MENTOR":
-                    roleId = 2;
-                    break;
-                default:
-                    roleId = 0;
-            }
+            int roleId = fetchRoleId(user.getRole());
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
             statement.setString(3, user.getEmail());
             statement.setInt(4, roleId);
             statement.setInt(5, user.getProgress());
             statement.executeUpdate();
+        }
+    }
+
+    public void modifyUser(User user) throws SQLException {
+        String sql = "UPDATE users SET passwd = ?, email = ?, role_id = ?, progress = ? WHERE user_name = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, user.getPassword());
+            statement.setString(2, user.getEmail());
+            statement.setInt(3, fetchRoleId(user.getRole()));
+            statement.setInt(4, user.getProgress());
+            statement.setString(5, user.getUsername());
+            statement.executeUpdate();
+        }
+    }
+
+    public boolean hasAttended(User user, Date date) throws SQLException{
+        String sql = "SELECT user_name FROM attendance WHERE user_name=? and present=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            DateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+            String dateStr = f.format(date);
+            statement.setString(1, user.getUsername());
+            statement.setString(2, dateStr);
+            statement.execute();
+            ResultSet rs = statement.getResultSet();
+            if (rs.next()) {
+                return true;
+            }
+            return false;
         }
     }
 
@@ -102,5 +124,16 @@ public class UserDao extends AbstractDao {
         User user = new User(name, password, email, role);
         user.setProgress(progress);
         return user;
+    }
+
+    private int fetchRoleId(String role) {
+        switch (role) {
+            case "STUDENT":
+                return 1;
+            case "MENTOR":
+                return 2;
+            default:
+                return 0;
+        }
     }
 }

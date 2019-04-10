@@ -56,19 +56,15 @@ public class ProfileServlet extends AbstractServlet {
             String un = req.getParameter("username");
             String pw = req.getParameter("password");
 
-            if (!actualUser.getUsername().equals(un)) {
-                if (service.validateUniqueUsername(un)) {
-                    actualUser.setUsername(un);
-                } else {
-                    req.setAttribute("error", "User name '" + un + "' is already taken!");
-                    req.setAttribute("user", actualUser);
-                    req.getRequestDispatcher("profile.jsp").forward(req, resp);
-                }
-            } else {
-                actualUser.setPassword(pw);
+            actualUser.setPassword(pw);
+
+            if (!service.modifyUser(actualUser)) {
+                req.setAttribute("error", "User name '" + un + "' is already taken!");
+                req.setAttribute("user", actualUser);
+                req.getRequestDispatcher("profile.jsp").forward(req, resp);
             }
 
-            resp.sendRedirect("content");
+            resp.sendRedirect("login");
         } catch (SQLException e) {
             handleError(e, req, resp);
         }

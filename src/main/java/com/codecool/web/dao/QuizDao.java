@@ -3,10 +3,7 @@ package com.codecool.web.dao;
 import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -103,12 +100,22 @@ public class QuizDao extends AbstractDao {
             } else {
                 throw new SQLException("Something happened!");
             }
-
         }
     }
 
-    public List<Quiz> getAllQuizzes() {
-        return new ArrayList<>();
+    public List<Quiz> getQuizzes() throws SQLException {
+        String sql = "SELECT * FROM quizzes";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            return fetchQuizzes(statement);
+        }
+    }
+
+    public List<Quiz> getQuizzesWithLvlLimit(int level) throws SQLException{
+        String sql = "SELECT quizzes.*, articles.lvl FROM quizzes LEFT JOIN articles on quizzes.id = articles.quiz_id WHERE lvl <= ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, level);
+            return fetchQuizzes(statement);
+        }
     }
 
     public List<Integer> getQuizIdsByLevel(int lvl) {
@@ -237,5 +244,16 @@ public class QuizDao extends AbstractDao {
         }
     }
 
-
+    private List<Quiz> fetchQuizzes(PreparedStatement statement) throws SQLException{
+        List<Quiz> quizList = new ArrayList<>();
+        statement.execute();
+        ResultSet rs = statement.getResultSet();
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String title = rs.getString("title");
+            Quiz quiz = new Quiz(id, title, 0);
+            quizList.add(quiz);
+        }
+        return quizList;
+    }
 }
