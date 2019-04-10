@@ -6,6 +6,4 @@ public class Solution extends Quiz {
     public Solution(int quizId, String description) {
         super(quizId, description, 0);
     }
-
-
 }

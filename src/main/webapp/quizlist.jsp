@@ -54,20 +54,18 @@
                     <% } %>
             <% } else if (role.equals("MENTOR")) { %>
                 <p>To check:</p>
-                    <form action="evaluate" method="GET">
                     <% for (String student : toCheck.keySet()) { %>
                         <% if (toCheck.get(student).size() > 0) { %>
                             <i><%= student %></i><br>
                             <hr>
+                            <li>
                             <% for (Integer id : toCheck.get(student)) { %>
-                                <input type="hidden" value="<%= student %>" name="student">
-                                <input type="hidden" value="<%= id %>" name="id">
-                                <p><input type="submit" value="<%= allQuiz.get(id)%>"></p>
+                                  <a href="evaluate?student=<%= student%>&id=<%= id %>"> <%= allQuiz.get(id) %> </a>
                             <% } %>
+                            </li>
                             <hr>
                         <% } %>
                     <% } %>
-                    </form>
             <% } %>
             <br><a class="button" href="content">BACK</a><br>
         </div>

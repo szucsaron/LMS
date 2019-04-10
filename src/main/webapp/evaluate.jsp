@@ -3,6 +3,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.codecool.web.model.quiz.Solution" %>
 <%@ page import="com.codecool.web.model.User" %>
+<%@ page import="com.codecool.web.model.quiz.Question" %>
+<%@ page import="com.codecool.web.model.quiz.Answer" %>
+<%@ page import="com.codecool.web.model.quiz.Quiz" %>
 
 <%
     // Java init
@@ -25,8 +28,8 @@
         <div class="login">
             <h3><%= studentName %><h3>
             <p><%= solution.getDescription() %></p>
-            <% while (solution.iterator().hasNext()) { %>
-                <p><%=solution.iterator().next() %></p>
+            <% for (Question q : solution) { %>
+                <p><%= q.toString() %></p>
             <% } %>
             <form action="evaluate" method="POST">
                 <input type="submit" value="PASSED" name="OK">
