@@ -20,7 +20,6 @@ public class EvaluationServlet extends AbstractServlet {
 
             String studentName = req.getParameter("student");
             int quizID = Integer.parseInt(req.getParameter("id"));
-
             Solution solution = quizDao.getSolution(studentName, quizID);
 
             req.setAttribute("student", studentName);
