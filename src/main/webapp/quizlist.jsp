@@ -61,7 +61,7 @@
                             <hr>
                             <% for (Integer id : toCheck.get(student)) { %>
                                 <input type="hidden" value="<%= student %>" name="student">
-                                <input type="hidden" value="<%= id %>" name ="id">
+                                <input type="hidden" value="<%= id %>" name="id">
                                 <p><input type="submit" value="<%= allQuiz.get(id)%>"></p>
                             <% } %>
                             <hr>
