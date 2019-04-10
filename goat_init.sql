@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS users;
 
 
 CREATE TABLE users (
-	email VARCHAR(100),
+	email VARCHAR(100) UNIQUE,
 	user_name VARCHAR(100) primary key,
 	passwd VARCHAR(50),
 	role_id INT,

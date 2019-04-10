@@ -88,6 +88,14 @@ public final class UserService {
         }
     }
 
+    public boolean modifyUser(User user) throws SQLException{
+        if (!validateUniqueEmail(user.getEmail())) {
+            return false;
+        }
+        userDao.modifyUser(user);
+        return true;
+    }
+
     private User getGuest() {
         User guest = new User("guest", "", "", "GUEST");
         guest.setProgress(0);

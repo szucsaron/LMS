@@ -1,10 +1,13 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.dao.QuizDao;
+import com.codecool.web.dao.UserDao;
+import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
 import com.codecool.web.model.quiz.QuizEvaluation;
 import com.codecool.web.model.quiz.Solution;
+import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,15 +24,17 @@ public class SqlTestServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try (QuizDao quizDao= new QuizDao(getConnection(req.getServletContext()))) {
-           List<Quiz> quizzes = quizDao.getQuizzesWithLvlLimit(4);
-           StringBuilder sb = new StringBuilder();
-           for (Quiz quiz : quizzes) {
-               sb.append(String.format("%s <br>", quiz));
-           }
-           req.setAttribute("msg", sb.toString());
+        try (UserDao userDao = new UserDao(getConnection(req.getServletContext()))) {
+            User user = new User("Jancsi", "anyádNemFilozófus", "hehe@codecool.com", "STUDENT");
+            user.setProgress(5);
+            UserService userService = new UserService(userDao);
+            if (userService.modifyUser(user)) {
+                req.setAttribute("msg", user.toString());
+            } else {
+                req.setAttribute("msg", "A manóba!");
+            }
 
-           req.getRequestDispatcher("sql_test.jsp").forward(req, resp);
+            req.getRequestDispatcher("sql_test.jsp").forward(req, resp);
 
         } catch (SQLException e) {
             handleError(e, req, resp);

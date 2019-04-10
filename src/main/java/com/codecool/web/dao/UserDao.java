@@ -26,7 +26,6 @@ public class UserDao extends AbstractDao {
             } else {
                 return null;
             }
-
         }
     }
 
@@ -41,7 +40,6 @@ public class UserDao extends AbstractDao {
                 users.add(fetchUser(rs));
             }
             return users.toArray(new User[users.size()]);
-
         }
     }
 
@@ -62,17 +60,7 @@ public class UserDao extends AbstractDao {
     public void addUser(User user) throws SQLException {
         String sql = "INSERT INTO users (user_name, passwd, email, role_id, progress) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            int roleId;
-            switch (user.getRole()) {
-                case "STUDENT":
-                    roleId = 1;
-                    break;
-                case "MENTOR":
-                    roleId = 2;
-                    break;
-                default:
-                    roleId = 0;
-            }
+            int roleId = fetchRoleId(user.getRole());
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
             statement.setString(3, user.getEmail());
@@ -82,13 +70,23 @@ public class UserDao extends AbstractDao {
         }
     }
 
+    public void modifyUser(User user) throws SQLException {
+        String sql = "UPDATE users SET passwd = ?, email = ?, role_id = ?, progress = ? WHERE user_name = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, user.getPassword());
+            statement.setString(2, user.getEmail());
+            statement.setInt(3, fetchRoleId(user.getRole()));
+            statement.setInt(4, user.getProgress());
+            statement.setString(5, user.getUsername());
+            statement.executeUpdate();
+        }
+    }
+
     public boolean hasAttended(User user, Date date) throws SQLException{
+        // TODO
         String sql = "SELECT user_name FROM attendance WHERE user_name=? and present=?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, user.getUsername());
-
-
-
         }
         return true;
     }
@@ -116,7 +114,14 @@ public class UserDao extends AbstractDao {
         return user;
     }
 
-
-
-
+    private int fetchRoleId(String role) {
+        switch (role) {
+            case "STUDENT":
+                return 1;
+            case "MENTOR":
+                return 2;
+            default:
+                return 0;
+        }
+    }
 }
