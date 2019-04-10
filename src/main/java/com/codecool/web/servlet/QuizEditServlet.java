@@ -22,18 +22,24 @@ public class QuizEditServlet extends AbstractServlet {
     private User user;
     private UserService userServce;
     private QuizService quizService;
+    private HttpServletRequest req;
+    private HttpServletResponse resp;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        handle(req, resp);
+        this.req = req;
+        this.resp = resp;
+        handle();
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        handle(req, resp);
+        this.req = req;
+        this.resp = resp;
+        handle();
     }
 
-    private void handle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void handle() throws ServletException, IOException {
         try (QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()));
              UserDao userDao = new UserDao(getConnection(req.getServletContext()))
         ) {
@@ -41,7 +47,7 @@ public class QuizEditServlet extends AbstractServlet {
             quizService = new QuizService(userDao, quizDao);
             user = userServce.getCurrentUser(req);
             if (user.getRole() == "MENTOR") {
-                provideAccess(req, resp);
+                provideAccess();
                 req.getRequestDispatcher("quiz_edit.jsp").forward(req, resp);
             } else {
                 resp.sendRedirect("restricted.jsp");
@@ -51,10 +57,11 @@ public class QuizEditServlet extends AbstractServlet {
         }
     }
 
-    private void provideAccess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
+    private void provideAccess() throws ServletException, IOException, SQLException {
         int quizId = Integer.parseInt(req.getParameter("quizId"));
         int questionIndex = getQuestionIndex(req);
         String submit = req.getParameter("submit");
+        int prevQuestionIndex = questionIndex;
         if (submit != null) {
             switch (submit) {
                 case "NEXT":
@@ -64,11 +71,15 @@ public class QuizEditServlet extends AbstractServlet {
                     questionIndex--;
                     break;
                 case "SAVE":
-                    editQuestion(req, resp, quizId, questionIndex);
+                    editQuestion(quizId, questionIndex);
                     break;
             }
         }
         Question question = quizService.getQuestion(quizId, questionIndex);
+        if (question == null) {
+            questionIndex = prevQuestionIndex;
+            question = quizService.getQuestion(quizId, questionIndex);
+        }
         req.setAttribute("question", question);
         req.setAttribute("questionIndex", questionIndex);
     }
@@ -82,7 +93,11 @@ public class QuizEditServlet extends AbstractServlet {
         }
     }
 
-    private void editQuestion(HttpServletRequest req, HttpServletResponse resp, int quizId, int questionIndex) throws SQLException{
+    private void handleNext(int questionIndex) {
+
+    }
+
+    private void editQuestion(int quizId, int questionIndex) throws SQLException{
         String questionText = req.getParameter("questionText");
         Question question = quizService.getQuestion(quizId, questionIndex);
         question.setDescription(questionText);

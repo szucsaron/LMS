@@ -27,8 +27,12 @@ public class QuizService {
         return true;
     }
 
-    public Question getQuestion(int quizId, int questionIndex) throws SQLException {
-        return quizDao.getQuestionByQuizAndIndex(quizId, questionIndex);
+    public Question getQuestion(int quizId, int questionIndex){
+        try {
+            return quizDao.getQuestionByQuizAndIndex(quizId, questionIndex);
+        } catch (SQLException e) {
+            return null;
+        }
     }
 
     public void passAnswer(String userName, int userId) throws SQLException {
