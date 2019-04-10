@@ -126,7 +126,34 @@ public class QuizService {
         return getAllQuizzesFailed().get(userName);
     }
 
+
     public void modifyQuestion(Question question) {
+
+    }
+
+
+    public Map<Integer, String> getQuizNamesWithLvlLimit(int limit) throws SQLException {
+        Map<Integer, String> result = new HashMap<>();
+        List<Quiz> list = quizDao.getQuizzesWithLvlLimit(limit);
+        for (Quiz q : list) {
+            result.put(q.getId(), q.getDescription());
+        }
+        return result;
+    }
+
+    public List<Integer> getAvailableQuizzes(User user) throws SQLException {
+        String currentUsername = user.getUsername();
+        List<Integer> temp = new ArrayList<>(getQuizNamesWithLvlLimit(user.getProgress()).keySet());
+        List<Integer> result = new ArrayList<>();
+        List<Integer> passed = getQuizzesPassed(currentUsername) != null ? getQuizzesPassed(currentUsername) : new ArrayList<>();
+        List<Integer> committed = getQuizzesWaitingForEval(currentUsername) != null ? getQuizzesWaitingForEval(currentUsername) : new ArrayList<>();
+
+        for (Integer i : temp) {
+            if (!passed.contains(i) && !committed.contains(i)) {
+                result.add(i);
+            }
+        }
+        return result;
 
     }
 }

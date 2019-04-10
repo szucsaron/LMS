@@ -94,7 +94,7 @@ public class QuizEditServlet extends AbstractServlet {
             String text = req.getParameter(String.format("ans%d", id));
             answer.setText(text);
         }
-        
+
     }
 
 

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.codecool.web.model.Solution" %>
+<%@ page import="com.codecool.web.model.quiz.Solution" %>
 <%@ page import="com.codecool.web.model.User" %>
 
 <%
     // Java init
-    User user = (User) request.getAttribute("user");
-    Solution solutions = (Solution) request.getAttribute("solutions");
+    String studentName = (String) request.getAttribute("student");
+    Solution solution = (Solution) request.getAttribute("solution");
 %>
 
 <html class="bg-1" lang="en">
@@ -23,15 +23,14 @@
 <body>
     <div class="wrapper">
         <div class="login">
-            <h3><%= user.getUsername() %><h3>
-            <p><%= solutions.get(0).getTitle() %></p>
-            <% for (Solution s : solutions) { %>
-                <p><%=s.getQuestion() %></p>
-                <p><%=s.getAnswer() %></p>
+            <h3><%= studentName %><h3>
+            <p><%= solution.getDescription() %></p>
+            <% while (solution.iterator().hasNext()) { %>
+                <p><%=solution.iterator().next() %></p>
             <% } %>
             <form action="evaluate" method="POST">
-                <input type="submit" value="passed" name="OK">
-                <input type="submit" value="failed" name="RETRY">
+                <input type="submit" value="PASSED" name="OK">
+                <input type="submit" value="FAILED" name="RETRY">
             </form>
         </div>
     </div>

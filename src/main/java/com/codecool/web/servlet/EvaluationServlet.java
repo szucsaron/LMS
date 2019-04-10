@@ -17,11 +17,13 @@ public class EvaluationServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()))) {
-            String userName = req.getParameter("student");
 
-            int quizID = (int) req.getAttribute("id");
-            Solution solution = quizDao.getSolution(userName, quizID);
+            String studentName = req.getParameter("student");
+            int quizID = Integer.parseInt(req.getParameter("id"));
 
+            Solution solution = quizDao.getSolution(studentName, quizID);
+
+            req.setAttribute("student", studentName);
             req.setAttribute("solution", solution);
 
             req.getRequestDispatcher("evaluate.jsp").forward(req, resp);

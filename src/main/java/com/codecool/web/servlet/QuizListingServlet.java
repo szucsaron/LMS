@@ -3,9 +3,6 @@ package com.codecool.web.servlet;
 import com.codecool.web.dao.QuizDao;
 import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
-import com.codecool.web.dao.Database;
-import com.codecool.web.dao.MockDatabase;
-import com.codecool.web.model.quiz.QuizEvaluation;
 import com.codecool.web.service.QuizService;
 import com.codecool.web.service.UserService;
 
@@ -22,7 +19,6 @@ import java.util.Map;
 @WebServlet("/quizlist")
 public class QuizListingServlet extends AbstractServlet {
 
-    private Database database = MockDatabase.getInstance();
     private UserService us;
     private QuizService qs;
 
@@ -36,14 +32,14 @@ public class QuizListingServlet extends AbstractServlet {
             User currentUser = us.getCurrentUser(req);
             String currentUserName = currentUser.getUsername();
             String role = currentUser.getRole();
-            Map<Integer, String> quizList = database.getArticleIds();
+            Map<Integer, String> quizList = qs.getQuizNamesWithLvlLimit(currentUser.getProgress());
 
             if (role.equals("MENTOR")) {
                 Map<String, List<Integer>> toCheck = qs.getAllQuizzesWaitingForEval();
                 req.setAttribute("check", toCheck);
 
             } else if (role.equals("STUDENT")) {
-                List<Integer> availableQuiz = database.getQuizIdsByLevel(currentUser.getProgress());
+                List<Integer> availableQuiz = qs.getAvailableQuizzes(currentUser);
                 List<Integer> committed = qs.getQuizzesWaitingForEval(currentUserName);
                 List<Integer> passed = qs.getQuizzesPassed(currentUserName);
 

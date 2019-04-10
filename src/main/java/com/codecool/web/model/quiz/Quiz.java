@@ -4,21 +4,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Quiz implements Iterable<Question>{
+public class Quiz implements Iterable<Question> {
+
     private List<Question> questions = new ArrayList<>();
-
     private String description;
-    private int size = 0;
-
-    public int getId() {
-        return id;
-    }
-
+    private int size;
     private int id;
 
-    public String getDescription() {
-        return description;
-    }
 
     public Quiz(int id, String description, int questionSize) {
         this.description = description;
@@ -26,22 +18,29 @@ public class Quiz implements Iterable<Question>{
         this.size = questionSize;
     }
 
-    public void addQuestion(Question question) {
-        this.questions.add(question);
-        size++;
+    public int getId() {
+        return id;
     }
 
-    public Iterator<Question> iterator () {
+    public int size() {
+        return size;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Iterator<Question> iterator() {
         return new QuestionIterator(questions);
     }
-
 
     public Question getQuestion(int index) {
             return questions.get(index);
     }
 
-    public int size() {
-        return size;
+    public void addQuestion(Question question) {
+        this.questions.add(question);
+        size++;
     }
 
     public String toString () {
