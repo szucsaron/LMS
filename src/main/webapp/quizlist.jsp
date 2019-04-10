@@ -37,17 +37,21 @@
                           <% } %>
                       <% } %>
                 <p>Waiting for evaluation:</p>
+                    <% if (committed != null) { %>
                       <% for (Integer id : allQuiz.keySet()) { %>
                           <% if (committed.contains(id)) { %>
                               <%= allQuiz.get(id) %><br>
                           <% } %>
                       <% } %>
+                    <% } %>
                 <p>Successful assignments:</p>
+                    <% if (passed != null) { %>
                       <% for (Integer id : allQuiz.keySet()) { %>
                           <% if (passed.contains(id)) { %>
                               <%= allQuiz.get(id) %><br>
                           <% } %>
                       <% } %>
+                    <% } %>
             <% } else if (role.equals("MENTOR")) { %>
                 <p>To check:</p>
                     <form action="evaluate" method="GET">
