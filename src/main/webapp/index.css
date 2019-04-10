@@ -102,6 +102,7 @@ input[type=submit], input[type = text],input[type = number], input[type = passwo
 .quizzes {
     overflow-y: scroll;
     text-align: left;
+    height: 100%;
 }
 
 .scroll {
@@ -124,6 +125,7 @@ input[type=submit], input[type = text],input[type = number], input[type = passwo
     padding: 8px;
     border: 2px #996633 solid;
     border-radius: 4px;
+    text-align: left;
 }
 
 .leftbar {

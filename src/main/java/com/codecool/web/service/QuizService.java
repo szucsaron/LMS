@@ -9,6 +9,9 @@ import com.codecool.web.model.quiz.Quiz;
 import com.codecool.web.model.quiz.QuizEvaluation;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class QuizService {
     private final UserDao userDao;
@@ -43,6 +46,10 @@ public class QuizService {
 
     public void markQuizForStart(Quiz quiz, User user) throws SQLException {
         quizDao.setQuizEvaluation(user.getUsername(), quiz.getId(), QuizEvaluation.STARTED);
+    }
+
+    public Map<Integer, QuizEvaluation> getEvaluationForAllQuizzes(String userName) throws SQLException {
+        return quizDao.getEvaluationForAllQuizzes(userName);
     }
 
 }
