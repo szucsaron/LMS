@@ -6,9 +6,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Formatter;
 import java.util.List;
+import java.util.logging.SimpleFormatter;
 
 public class UserDao extends AbstractDao {
     public UserDao(Connection connection) {
@@ -83,12 +88,19 @@ public class UserDao extends AbstractDao {
     }
 
     public boolean hasAttended(User user, Date date) throws SQLException{
-        // TODO
         String sql = "SELECT user_name FROM attendance WHERE user_name=? and present=?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            DateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+            String dateStr = f.format(date);
             statement.setString(1, user.getUsername());
+            statement.setString(2, dateStr);
+            statement.execute();
+            ResultSet rs = statement.getResultSet();
+            if (rs.next()) {
+                return true;
+            }
+            return false;
         }
-        return true;
     }
 
     private User fetchUser (ResultSet rs) throws SQLException{
