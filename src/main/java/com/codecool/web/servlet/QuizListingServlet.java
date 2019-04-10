@@ -1,9 +1,12 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.dao.QuizDao;
 import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
 import com.codecool.web.dao.Database;
 import com.codecool.web.dao.MockDatabase;
+import com.codecool.web.model.quiz.QuizEvaluation;
+import com.codecool.web.service.QuizService;
 import com.codecool.web.service.UserService;
 
 import javax.servlet.RequestDispatcher;
@@ -21,26 +24,28 @@ public class QuizListingServlet extends AbstractServlet {
 
     private Database database = MockDatabase.getInstance();
     private UserService us;
+    private QuizService qs;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try (UserDao userDao = new UserDao(getConnection(req.getServletContext()))) {
+        try (UserDao userDao = new UserDao(getConnection(req.getServletContext()));
+             QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()))) {
             us = new UserService(userDao);
+            qs = new QuizService(userDao,quizDao);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("quizlist.jsp");
 
             User currentUser = us.getCurrentUser(req);
-
+            String currentUserName = currentUser.getUsername();
             String role = currentUser.getRole();
             Map<Integer, String> quizList = database.getArticleIds();
 
             if (role.equals("MENTOR")) {
-                Map<String, List<Integer>> toCheck = us.getCommittedTests();
-
+                Map<String, List<Integer>> toCheck = qs.getAllQuizzesWaitingForEval();
                 req.setAttribute("check", toCheck);
 
             } else if (role.equals("STUDENT")) {
                 List<Integer> availableQuiz = database.getQuizIdsByLevel(currentUser.getProgress());
-                List<Integer> committed = currentUser.getFilledTests();
-                List<Integer> passed = currentUser.getOkTests();
+                List<Integer> committed = qs.getQuizzesWaitingForEval(currentUserName);
+                List<Integer> passed = qs.getQuizzesPassed(currentUserName);
 
                 req.setAttribute("available", availableQuiz);
                 req.setAttribute("committed", committed);

@@ -9,6 +9,10 @@ import com.codecool.web.model.quiz.Quiz;
 import com.codecool.web.model.quiz.QuizEvaluation;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class QuizService {
     private final UserDao userDao;
@@ -45,4 +49,80 @@ public class QuizService {
         quizDao.setQuizEvaluation(user.getUsername(), quiz.getId(), QuizEvaluation.STARTED);
     }
 
+    private Map<Integer, QuizEvaluation> getEvaluationForAllQuizzes(String userName) throws SQLException {
+        return quizDao.getEvaluationForAllQuizzes(userName);
+    }
+
+    public Map<String, Map<Integer, QuizEvaluation>> getCommittedTests() throws SQLException {
+        Map<String, Map<Integer, QuizEvaluation>> committedTests = new HashMap<>();
+        for (User u : userDao.getUsers()) {
+            if (u.getRole().equals("STUDENT")) {
+                String currentUserName = u.getUsername();
+                committedTests.put(currentUserName, getEvaluationForAllQuizzes(currentUserName));
+            }
+        }
+        return committedTests;
+    }
+
+    public Map<String, List<Integer>> getAllQuizzesWaitingForEval() throws SQLException {
+        Map<String, Map<Integer, QuizEvaluation>> all = getCommittedTests();
+        Map<String, List<Integer>> result = new HashMap<>();
+        for (String userName : all.keySet()) {
+            List<Integer> temp = new ArrayList<>();
+            for (Integer quizID : all.get(userName).keySet()) {
+                if (all.get(userName).get(quizID).equals(QuizEvaluation.FINISHED)) {
+                    temp.add(quizID);
+                }
+            }
+            if (temp.size() > 0) {
+                result.put(userName, temp);
+            }
+        }
+        return result;
+    }
+
+    public List<Integer> getQuizzesWaitingForEval(String userName) throws SQLException {
+        return getAllQuizzesWaitingForEval().get(userName);
+    }
+
+    public Map<String, List<Integer>> getAllQuizzesPassed() throws SQLException {
+        Map<String, Map<Integer, QuizEvaluation>> all = getCommittedTests();
+        Map<String, List<Integer>> result = new HashMap<>();
+        for (String userName : all.keySet()) {
+            List<Integer> temp = new ArrayList<>();
+            for (Integer quizID : all.get(userName).keySet()) {
+                if (all.get(userName).get(quizID).equals(QuizEvaluation.PASSED)) {
+                    temp.add(quizID);
+                }
+            }
+            if (temp.size() > 0) {
+                result.put(userName, temp);
+            }
+        }
+        return result;
+    }
+
+    public List<Integer> getQuizzesPassed(String userName) throws SQLException {
+        return getAllQuizzesPassed().get(userName);
+    }
+
+    public Map<String, List<Integer>> getAllQuizzesFailed() throws SQLException {
+        Map<String, Map<Integer, QuizEvaluation>> all = getCommittedTests();
+        Map<String, List<Integer>> result = new HashMap<>();
+        for (String userName : all.keySet()) {
+            List<Integer> temp = new ArrayList<>();
+            for (Integer quizID : all.get(userName).keySet()) {
+                if (all.get(userName).get(quizID).equals(QuizEvaluation.FAILED)) {
+                    temp.add(quizID);
+                }
+            }
+            if (temp.size() > 0) {
+                result.put(userName, temp);
+            }
+        }
+        return result;
+    }
+    public List<Integer> getQuizzesFailed(String userName) throws SQLException {
+        return getAllQuizzesFailed().get(userName);
+    }
 }
