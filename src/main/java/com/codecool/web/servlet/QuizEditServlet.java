@@ -71,8 +71,6 @@ public class QuizEditServlet extends AbstractServlet {
         Question question = quizService.getQuestion(quizId, questionIndex);
         req.setAttribute("question", question);
         req.setAttribute("questionIndex", questionIndex);
-
-
     }
 
     private int getQuestionIndex(HttpServletRequest req) {
@@ -82,7 +80,6 @@ public class QuizEditServlet extends AbstractServlet {
         } catch (NullPointerException | NumberFormatException e) {
             return 0;
         }
-
     }
 
     private void editQuestion(HttpServletRequest req, HttpServletResponse resp, int quizId, int questionIndex) throws SQLException{
@@ -95,8 +92,5 @@ public class QuizEditServlet extends AbstractServlet {
             answer.setText(text);
         }
         quizService.modifyQuestion(question);
-
     }
-
-
 }

@@ -205,10 +205,11 @@ public class QuizDao extends AbstractDao {
     }
 
     public void modifyQuestion(Question question) throws SQLException{
-        String sql = "UPDATE question SET title = ? WHERE id = ?";
+        String sql = "UPDATE questions SET title = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, question.getDescription());
             statement.setInt(2, question.getId());
+            statement.executeUpdate();
         }
 
         modifyAnswers(question);
