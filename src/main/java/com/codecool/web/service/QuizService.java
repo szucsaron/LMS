@@ -127,8 +127,8 @@ public class QuizService {
     }
 
 
-    public void modifyQuestion(Question question) {
-
+    public void modifyQuestion(Question question) throws SQLException {
+        quizDao.modifyQuestion(question);
     }
 
 

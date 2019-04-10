@@ -205,9 +205,32 @@ public class QuizDao extends AbstractDao {
     }
 
     public void modifyQuestion(Question question) throws SQLException{
-        String sql = "";
+        String sql = "UPDATE question SET title = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, question.getDescription());
+            statement.setInt(2, question.getId());
+        }
 
+        modifyAnswers(question);
+
+    }
+
+    public void modifyAnswers(Question question) throws SQLException{
+        StringBuilder sb = new StringBuilder();
+
+        for (Answer answer : question) {
+            String correct;
+            if (answer.validate()) {
+                correct = "1";
+            } else {
+                correct = "0";
+            }
+            String sql = String.format("UPDATE answers SET answer='%s', correct='%s' WHERE id=%d;", answer.getText(), correct, answer.getId());
+            sb.append(sql);
+        }
+
+        try (PreparedStatement statement = connection.prepareStatement(sb.toString())) {
+            statement.executeUpdate();
         }
     }
 
@@ -250,6 +273,7 @@ public class QuizDao extends AbstractDao {
                 throw new IllegalArgumentException();
         }
     }
+
 
     private List<Quiz> fetchQuizzes(PreparedStatement statement) throws SQLException{
         List<Quiz> quizList = new ArrayList<>();
