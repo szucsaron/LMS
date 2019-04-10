@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class UserDao extends AbstractDao {
@@ -81,6 +82,17 @@ public class UserDao extends AbstractDao {
         }
     }
 
+    public boolean hasAttended(User user, Date date) throws SQLException{
+        String sql = "SELECT user_name FROM attendance WHERE user_name=? and present=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, user.getUsername());
+
+
+
+        }
+        return true;
+    }
+
     private User fetchUser (ResultSet rs) throws SQLException{
         String password = rs.getString("passwd");
         String name = rs.getString("user_name");
@@ -103,4 +115,8 @@ public class UserDao extends AbstractDao {
         user.setProgress(progress);
         return user;
     }
+
+
+
+
 }

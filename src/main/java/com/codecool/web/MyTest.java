@@ -6,14 +6,16 @@ import com.codecool.web.dao.DatabaseLoader;
 import com.codecool.web.dao.SqlGenerator;
 
 import java.io.*;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Clock;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class MyTest {
-    public static void main(String[] args) throws IOException{
-        DatabaseLoader databaseLoader = new DatabaseLoader();
-
-        Content content = databaseLoader.loadContent("src/main/webapp/articles.xml", "src/main/webapp/quizzes.xml");
-        SqlGenerator sqlGenerator = new SqlGenerator(content);
-        sqlGenerator.generate();
+    public static void main(String[] args) throws IOException, ParseException {
 
 
 
