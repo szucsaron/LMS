@@ -13,4 +13,5 @@ Back-end:
     - Quiz editor back-end - EXTRA FEATURE
 
 Complete REFACTOR of servlets and exceptions.
+Unit tests for business logic.
 

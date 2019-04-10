@@ -19,18 +19,26 @@
 <body>
 
     <script>
+         var pickedDate = '${chosenString}';
          $(function() {
-            $('#datepicker').datepicker().datepicker('setDate', new Date());
-            $('#datepicker').datepicker( "option", "maxDate", new Date());
+            $('#datepicker').datepicker().datepicker("setDate", pickedDate);
+            $('#datepicker').datepicker("option", "maxDate", new Date());
             $('#datepicker').attr("autocomplete", "off");
          });
+
+         var date;
+         function setCookieAndRefresh(name, value){
+           date = value;
+           document.cookie = name + "=" + value;
+           location.reload();
+         }
     </script>
 
     <div class="wrapper">
         <h2>Attendance</h2>
         <div class="scroll">
             <form class="attendance" action="attendance" method="POST">
-                <input type="text" id="datepicker" name="date" ></input><br><br>
+                <input type="select" id="datepicker" onchange="setCookieAndRefresh('picked', this.value)"  name="date" ></input><br><br>
                 <c:forEach var="u" items="${users}">
                     <c:set var="chosen" scope="session" value="${chosen}"/>
                     <c:choose>
