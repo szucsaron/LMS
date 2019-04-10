@@ -1,1 +1,1 @@
-select 
+UPDATE answers SET answer='Billy', correct='0' WHERE id=0;

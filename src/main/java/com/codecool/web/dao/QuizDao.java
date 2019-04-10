@@ -122,6 +122,15 @@ public class QuizDao extends AbstractDao {
         return new ArrayList<>();
     }
 
+    public void createEmptyQuestion (int quizId) throws SQLException{
+        String sql = "INSERT INTO questions (quiz_id, title) VALUES (?, 'Empty Title')";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, quizId);
+        }
+
+
+    }
+
     public int countQuestions(int quizId) throws SQLException {
         String sql = "select count(id) from questions where quiz_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {

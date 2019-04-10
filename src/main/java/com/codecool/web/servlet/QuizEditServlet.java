@@ -73,6 +73,9 @@ public class QuizEditServlet extends AbstractServlet {
                 case "SAVE":
                     editQuestion(quizId, questionIndex);
                     break;
+                case "NEW QUESTION":
+
+                    break;
             }
         }
         Question question = quizService.getQuestion(quizId, questionIndex);
@@ -93,7 +96,7 @@ public class QuizEditServlet extends AbstractServlet {
         }
     }
 
-    private void handleNext(int questionIndex) {
+    private void createQuestion() {
 
     }
 

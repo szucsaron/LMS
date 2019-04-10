@@ -33,14 +33,10 @@
          Question:<br>
          <input type="text" name="questionText" value="${question.getDescription()}"><br>
          Answers:<br>
-         <input type="text" name="ans<%=answers.get(0).getId()%>" value="<%=answers.get(0).getText()%>"><br>
-             <input type="radio" name="correct" value="0">
-         <input type="text" name="ans<%=answers.get(1).getId()%>" value="<%=answers.get(1).getText()%>"><br>
-             <input type="radio" name="correct" value="1">
-         <input type="text" name="ans<%=answers.get(2).getId()%>" value="<%=answers.get(2).getText()%>"><br>
-             <input type="radio" name="correct" value="2">
-         <input type="text" name="ans<%=answers.get(3).getId()%>" value="<%=answers.get(3).getText()%>"><br>
-             <input type="radio" name="correct" value="3">
+         <% for (Answer answer : question) { %>
+             <input type="text" name="ans<%=answer.getId()%>" value="<%=answer.getText()%>"><br>
+             <input type="radio" name="correct" value="answer.getId()"><br>
+         <% } %>
 
         <input type="hidden" name="quizId" value="${quizId}">
         <input type="hidden" name="questionIndex" value="${questionIndex}">
@@ -48,6 +44,7 @@
         <input type="submit" name="submit" value="NEXT"><br>
         <input type="submit" name="submit" value="PREVIOUS"><br>
         <input type="submit" name="submit" value="SAVE"><br>
+        <input type="submit" name="submit" value="NEW QUESTION"><br>
         ${questionIndex}
     </form>
 
