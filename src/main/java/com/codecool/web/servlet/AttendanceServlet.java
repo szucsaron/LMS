@@ -6,6 +6,7 @@ import com.codecool.web.dao.MockDatabase;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -27,11 +28,17 @@ public class AttendanceServlet extends AbstractServlet {
         try {
             Database database = MockDatabase.getInstance();
             users = database.getUsersArray();
+            Cookie[] cookies = req.getCookies();
             DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
             Date chosen = formatter.parse(formatter.format(new Date()));
-            /*if (req.getSession(false).getAttribute("date") != null) {
-                chosen = formatter.parse(formatter.format(req.getSession(false).getAttribute("date")));
-            }*/
+            String chosenString = "";
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("picked")) {
+                    chosen = formatter.parse(cookie.getValue());
+                    chosenString = cookie.getValue();
+                }
+            }
+            req.setAttribute("chosenString", chosenString);
             req.setAttribute("chosen", chosen);
             req.setAttribute("users", users);
             req.getRequestDispatcher("attendance.jsp").forward(req, resp);
@@ -50,7 +57,6 @@ public class AttendanceServlet extends AbstractServlet {
 
         try {
             Date date = df.parse(dateString);
-            //req.getSession(false).setAttribute("date", date);
             for (User u : users) {
                 String name = u.getUsername();
                 boolean attendance = Boolean.valueOf(req.getParameter(name));

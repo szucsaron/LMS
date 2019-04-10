@@ -53,7 +53,7 @@ h2 {
     background-size: 100%
 }
 
-input[type=submit], input[type = text],input[type = number], input[type = password], textarea, select {
+input[type=submit], input[type = text],input[type = number], input[type = password], input[type = select], textarea, select {
     color: white;
     text-align: center;
     position: relative;

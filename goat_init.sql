@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS users;
 
 
 CREATE TABLE users (
-	email VARCHAR(100),
+	email VARCHAR(100) UNIQUE,
 	user_name VARCHAR(100) primary key,
 	passwd VARCHAR(50),
 	role_id INT,
@@ -17,7 +17,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE attendance (
-	present date,
+	present VARCHAR(10),
 	user_name VARCHAR(100) REFERENCES users(user_name),
 	PRIMARY KEY (user_name, present)
 );
@@ -195,7 +195,7 @@ INSERT INTO attendance (user_name, present) VALUES
 ('Jancsi', '2019-01-02'),
 ('Jancsi', '2019-01-03'),
 ('Jancsi', '2019-01-04'),
-('Jancsi', '2019-01-07'),
+('Jancsi', '2019-04-10'),
 ('Ludovikusz', '2019-01-01'),
 ('Ludovikusz', '2019-01-02'),
 ('Ludovikusz', '2019-01-06'),

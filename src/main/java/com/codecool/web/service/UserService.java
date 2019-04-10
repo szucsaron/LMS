@@ -12,6 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.geom.QuadCurve2D;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,12 +30,11 @@ public final class UserService {
     }
 
 
-
     public void addUser(User user) throws SQLException {
         userDao.addUser(user);
     }
 
-    public boolean validateLogIn(String username, String password) throws SQLException{
+    public boolean validateLogIn(String username, String password) throws SQLException {
         User u = userDao.getUserByName(username);
         if (u != null && u.getPassword().equals(password)) {
             return true;
@@ -80,6 +80,15 @@ public final class UserService {
         } else {
             return getGuest();
         }
+    }
+
+    public boolean modifyUser(User user) throws SQLException {
+        userDao.modifyUser(user);
+        return true;
+    }
+
+    public boolean hasAttended(User user, Date date) throws SQLException {
+        return userDao.hasAttended(user, date);
     }
 
     private User getGuest() {

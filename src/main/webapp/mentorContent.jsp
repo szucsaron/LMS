@@ -12,6 +12,7 @@
     Article article = (Article) request.getAttribute("article");
     Map<Integer, String> titles = (Map<Integer, String>) request.getAttribute("sidebar");
     int articleId = (int) request.getAttribute("articleId");
+    Integer quizId = (Integer) article.getQuizId();
 %>
 
 <html class="bg-2" lang="en">
@@ -32,6 +33,7 @@
         <a class="button" href="edit_article?articleId=new">ADD ARTICLE</a>
         <a class="button" href="quizlist">ASSIGNMENTS</a>
         <a class="button" href="attendance">ATTENDANCE</a>
+        <a class="button" href="quiz_edit?quizId=<%=quizId%>&questionIndex=0">EDIT QUIZ</a>
         <a class="button" href="logout">LOGOUT</a>
     </nav>
     <div class="leftbar">
