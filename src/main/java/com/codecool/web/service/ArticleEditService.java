@@ -17,8 +17,15 @@ public class ArticleEditService {
     }
 
     public void addArticle(Article article) throws SQLException {
-        int quizId = quizDao.createEmptyQuiz();
+        int quizId = quizDao.createEmptyQuiz(article.getTitle());
         article.setQuizId(quizId);
         articleDao.addArticle(article);
+        quizDao.createEmptyQuestion(quizId, 4);
     }
+
+    public void modifyArticle(Article article) throws SQLException {
+        articleDao.modifyArticle(article);
+    }
+
+
 }

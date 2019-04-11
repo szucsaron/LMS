@@ -1,8 +1,10 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.dao.ArticleDao;
+import com.codecool.web.dao.QuizDao;
 import com.codecool.web.model.Article;
 import com.codecool.web.dao.Database;
+import com.codecool.web.service.ArticleEditService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +19,9 @@ public class EditArticleServlet extends AbstractServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try (ArticleDao articleDao = new ArticleDao(getConnection(req.getServletContext()))) {
+        try (ArticleDao articleDao = new ArticleDao(getConnection(req.getServletContext()));
+             QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()))) {
+            ArticleEditService articleEditService = new ArticleEditService(articleDao, quizDao);
             String title = req.getParameter("title");
             String content = req.getParameter("content");
             String articleIdParam = req.getParameter("articleId");
@@ -25,14 +29,14 @@ public class EditArticleServlet extends AbstractServlet {
             if (articleIdParam.equals("new")) {
                 Article article = new Article(title, content);
                 article.setLevel(level);
-                articleDao.addArticle(article);
+                articleEditService.addArticle(article);
             } else {
                 int articleId = Integer.parseInt(articleIdParam);
                 Article article = articleDao.getArticle(articleId);
                 article.setLevel(level);
                 article.setTitle(title);
                 article.setText(content);
-                articleDao.modifyArticle(article);
+                articleEditService.modifyArticle(article);
             }
             resp.sendRedirect("content");
         } catch (SQLException e) {

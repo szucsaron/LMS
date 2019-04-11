@@ -145,9 +145,10 @@ public class QuizDao extends AbstractDao {
         }
     }
 
-    public int createEmptyQuiz() throws SQLException{
-        String sql = "INSERT INTO quiz (title) VALUES ('EMPTY')";
+    public int createEmptyQuiz(String quizTitle) throws SQLException{
+        String sql = "INSERT INTO quizzes (title) VALUES (?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, quizTitle);
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) {
@@ -156,7 +157,6 @@ public class QuizDao extends AbstractDao {
                 throw new SQLException();
             }
         }
-
     }
 
     public int countQuestions(int quizId) throws SQLException {
