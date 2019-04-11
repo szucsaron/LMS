@@ -145,7 +145,7 @@ public class QuizDao extends AbstractDao {
         }
     }
 
-    public void deleteQuestion(int questionId) throws SQLException{
+    public void deleteQuestion(int questionId) throws SQLException {
         String sql = "DELETE FROM solutions  \n" +
                 "WHERE answer_id IN   \n" +
                 "(SELECT id   \n" +
