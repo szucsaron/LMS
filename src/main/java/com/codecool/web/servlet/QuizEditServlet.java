@@ -86,7 +86,11 @@ public class QuizEditServlet extends AbstractServlet {
         }
         Question question = quizService.getQuestion(quizId, questionIndex);
         if (question == null) {
-            questionIndex = prevQuestionIndex;
+            if (questionIndex > 0) {
+                questionIndex--;
+            } else {
+                questionIndex = 0;
+            }
             question = quizService.getQuestion(quizId, questionIndex);
         }
         req.setAttribute("question", question);
@@ -122,7 +126,7 @@ public class QuizEditServlet extends AbstractServlet {
 
     private void deleteQuestion(int quizId, int questionIndex) throws SQLException{
         Question question = quizService.getQuestion(quizId, questionIndex);
-        quizService.deleteQuestion(question.getId());
+        quizService.deleteQuestion(quizId, question.getId());
     }
 
 

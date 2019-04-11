@@ -38,8 +38,10 @@ public class QuizService {
         quizDao.createEmptyQuestion(quizId, 4);
     }
 
-    public void deleteQuestion(int questionId) throws SQLException{
-        quizDao.deleteQuestion(questionId);
+    public void deleteQuestion(int quizId, int questionId) throws SQLException{
+        if (quizDao.countQuestions(quizId) > 1) {
+            quizDao.deleteQuestion(questionId);
+        }
     }
 
     public void passAnswer(String userName, int userId) throws SQLException {
