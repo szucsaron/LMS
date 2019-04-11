@@ -15,7 +15,7 @@ a {
 a.button {
     margin-left: 5px;
     background-color: rgba(0,0,0,.4);
-    padding: 6px;
+    padding: 8px;
     border: 2px #996633 solid;
     border-radius: 4px;
     font-size: 12pt;
@@ -196,6 +196,10 @@ nav p {
     font-weight: bold;
     position: relative;
     display: inline;
+}
+
+nav a.button {
+    padding: 6.5px;
 }
 
 input:-webkit-autofill,
