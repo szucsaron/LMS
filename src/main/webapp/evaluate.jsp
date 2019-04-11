@@ -13,6 +13,15 @@
     Solution solution = (Solution) request.getAttribute("solution");
 %>
 
+<script>
+    function onlyOne(checkbox) {
+        var checkboxes = document.getElementsByName('check')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+</script>
+
 <html class="bg-1" lang="en">
 
 <head>
@@ -32,8 +41,11 @@
                 <p><%= q.toString() %></p>
             <% } %>
             <form action="evaluate" method="POST">
-                <input type="submit" value="PASSED" name="OK">
-                <input type="submit" value="FAILED" name="RETRY">
+                <input type="hidden" value="<%= studentName %>" name="student">
+                <input type="hidden" value="<%= solution.getId() %>" name="quizId">
+                <input type="checkbox" value="PASSED" name="check" onclick="onlyOne(this)">
+                <input type="checkbox" value="FAILED" name="check" onclick="onlyOne(this)">
+                <input type="submit" value="Submit">
             </form>
         </div>
     </div>

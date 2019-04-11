@@ -2,6 +2,7 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.dao.QuizDao;
 
+import com.codecool.web.model.quiz.QuizEvaluation;
 import com.codecool.web.model.quiz.Solution;
 
 import javax.servlet.ServletException;
@@ -34,6 +35,20 @@ public class EvaluationServlet extends AbstractServlet {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try (QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()))) {
 
+            String cucc = req.getParameter("check");
+            QuizEvaluation eval = QuizEvaluation.valueOf(cucc);
+            String studentName = req.getParameter("student");
+            int id = Integer.parseInt(req.getParameter("quizId"));
+
+            quizDao.setQuizEvaluation(studentName, id, eval);
+
+            req.getRequestDispatcher("quizlist.jsp").forward(req, resp);
+
+        } catch (SQLException se) {
+            req.setAttribute("error", "SQL Error occured!");
+            req.getRequestDispatcher("content.jsp").forward(req, resp);
+        }
     }
 }
