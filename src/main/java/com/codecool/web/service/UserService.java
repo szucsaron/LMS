@@ -85,6 +85,10 @@ public final class UserService {
         userDao.setAttendance(user, date, wasThere);
     }
 
+    public User getUserByName(String userName) throws SQLException {
+        return userDao.getUserByName(userName);
+    }
+
     private User getGuest() {
         User guest = new User("guest", "", "", "GUEST");
         guest.setProgress(0);

@@ -2,8 +2,11 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.dao.QuizDao;
 
+import com.codecool.web.dao.UserDao;
+import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.QuizEvaluation;
 import com.codecool.web.model.quiz.Solution;
+import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,12 +38,17 @@ public class EvaluationServlet extends AbstractServlet {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try (QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()))) {
-            String cucc = req.getParameter("check");
-            QuizEvaluation eval = QuizEvaluation.valueOf(cucc);
+        try (QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()));
+             UserDao userDao = new UserDao(getConnection(req.getServletContext()))) {
+
+            UserService us = new UserService(userDao);
+
+            QuizEvaluation eval = QuizEvaluation.valueOf(req.getParameter("check"));
             String studentName = req.getParameter("student");
             int id = Integer.parseInt(req.getParameter("quizId"));
+            User student = us.getUserByName(studentName);
 
+            
             quizDao.setQuizEvaluation(studentName, id, eval);
 
             resp.sendRedirect("quizlist");
