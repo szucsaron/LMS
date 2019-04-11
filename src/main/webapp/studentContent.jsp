@@ -48,7 +48,7 @@
     <form action="content" method="GET">
         <input type="text" name="search">
         <input type="submit" value=" ">
-        <a class="button" href="logout">...</a>
+        <a class="button" href="logout"</a>
     </form>
         <% for (Integer key : titles.keySet()) { %>
             <br><a href="content?pageID=<%=key%>"><%= titles.get(key).toUpperCase() %><br></a>

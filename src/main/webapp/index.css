@@ -158,6 +158,7 @@ input[type=submit], input[type = text],input[type = number], input[type = passwo
 }
 
 .leftbar a.button {
+    padding: 0px;
     width: 35px;
     height: 35px;
     position: absolute;
