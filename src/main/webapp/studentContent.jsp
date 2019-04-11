@@ -33,7 +33,6 @@
         <a class="button" href="users">USERS</a>
         <a class="button" href="profile">EDIT PROFILE</a>
         <a class="button" href="quizlist">MY ASSIGNMENTS</a>
-        <a class="button" href="logout">LOGOUT</a>
         <% if (quizEval == QuizEvaluation.PASSED) { %>
             <p> Quiz passed </p>
         <% } else if (quizEval == QuizEvaluation.FINISHED) { %>
@@ -49,6 +48,7 @@
     <form action="content" method="GET">
         <input type="text" name="search">
         <input type="submit" value=" ">
+        <a class="button" href="logout">...</a>
     </form>
         <% for (Integer key : titles.keySet()) { %>
             <br><a href="content?pageID=<%=key%>"><%= titles.get(key).toUpperCase() %><br></a>

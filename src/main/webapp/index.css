@@ -157,6 +157,16 @@ input[type=submit], input[type = text],input[type = number], input[type = passwo
     size: 16px;
 }
 
+.leftbar a.button {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    bottom: 3%;
+    left: 19%;
+    background-image: utl(search.png);
+    background-size: 100%;
+}
+
 .rightbar {
     width: 40%;
     height: 80vh;
