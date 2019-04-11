@@ -55,6 +55,7 @@ public class QuizDao extends AbstractDao {
     }
 
     public Solution getSolution(String userName, int quizId) throws SQLException {
+        Quiz quiz = getQuizById(quizId);
         String sql = "SELECT title, answer, question_id, answer_id, correct FROM solutions\n" +
             "LEFT JOIN answers ON solutions.answer_id = answers.id\n" +
             "LEFT JOIN questions ON answers.question_id = questions.id\n" +
@@ -64,7 +65,7 @@ public class QuizDao extends AbstractDao {
             statement.setInt(2, quizId);
             statement.execute();
             ResultSet rs = statement.getResultSet();
-            Solution solution = new Solution(quizId, "Sample Quiz Name (Work in progress)");
+            Solution solution = new Solution(quizId, quiz.getDescription());
             while (rs.next()) {
                 String title = rs.getString("title");
                 String answer = rs.getString("answer");
