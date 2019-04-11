@@ -103,6 +103,28 @@ public class UserDao extends AbstractDao {
         }
     }
 
+    public void setAttendance(User user, Date date, boolean wasThere) throws SQLException {
+        if (wasThere) {
+            String sql = "INSERT INTO attendance (present, user_name) VALUES (?, ?)";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                DateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+                String dateStr = f.format(date);
+                statement.setString(1, dateStr);
+                statement.setString(2, user.getUsername());
+                statement.executeUpdate();
+            }
+        } else {
+            String sql = "DELETE FROM attendance WHERE present = ? and user_name = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                DateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+                String dateStr = f.format(date);
+                statement.setString(1, dateStr);
+                statement.setString(2, user.getUsername());
+                statement.execute();
+            }
+        }
+    }
+
     private User fetchUser (ResultSet rs) throws SQLException{
         String password = rs.getString("passwd");
         String name = rs.getString("user_name");

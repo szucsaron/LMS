@@ -1,21 +1,11 @@
 package com.codecool.web.service;
 
 import com.codecool.web.dao.UserDao;
-import com.codecool.web.model.NoSuchUserException;
 import com.codecool.web.model.User;
-import com.codecool.web.dao.Database;
-import com.codecool.web.dao.MockDatabase;
-import com.codecool.web.model.quiz.QuizEvaluation;
-
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.awt.geom.QuadCurve2D;
 import java.sql.SQLException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public final class UserService {
 
@@ -89,6 +79,10 @@ public final class UserService {
 
     public boolean hasAttended(User user, Date date) throws SQLException {
         return userDao.hasAttended(user, date);
+    }
+
+    public void setAttendance(User user, Date date, boolean wasThere) throws SQLException {
+        userDao.setAttendance(user, date, wasThere);
     }
 
     private User getGuest() {

@@ -4,11 +4,6 @@ Front-end:
     - UI for a quiz editor system - EXTRA FEATURE
 
 Back-end:
-    - Completing the quiz system
-        - evaluation, submitting etc
-    - Completing the attendance service and servlet
-        - removing students once they've been marked absent or present
-        - give the servlet the correct user list
     - Implement a database
     - Quiz editor back-end - EXTRA FEATURE
 
