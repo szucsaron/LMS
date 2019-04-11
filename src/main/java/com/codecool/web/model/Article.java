@@ -79,6 +79,10 @@ public class Article {
         this.quizId = quiz.getId();
     }
 
+    public void setQuizId(Integer quizId) {
+        this.quizId = quizId;
+    }
+
     public boolean hasQuiz() {
         return quizId != null;
     }

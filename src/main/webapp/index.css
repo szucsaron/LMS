@@ -128,6 +128,10 @@ input[type=submit], input[type = text],input[type = number], input[type = passwo
     text-align: left;
 }
 
+.content p {
+    text-align: left;
+}
+
 .leftbar {
     width: 22%;
     height: 100vh;
@@ -159,8 +163,8 @@ input[type=submit], input[type = text],input[type = number], input[type = passwo
 
 .leftbar a.button {
     padding: 0px;
-    width: 31px;
-    height: 31px;
+    width: 31.5px;
+    height: 31.5px;
     position: absolute;
     bottom: 3%;
     left: 19%;
@@ -192,6 +196,10 @@ nav p {
     font-weight: bold;
     position: relative;
     display: inline;
+}
+
+nav a.button {
+    padding: 6.5px;
 }
 
 input:-webkit-autofill,

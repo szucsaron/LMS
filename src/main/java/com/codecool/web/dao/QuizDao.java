@@ -3,6 +3,7 @@ package com.codecool.web.dao;
 import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.*;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -110,7 +111,7 @@ public class QuizDao extends AbstractDao {
         }
     }
 
-    public List<Quiz> getQuizzesWithLvlLimit(int level) throws SQLException{
+    public List<Quiz> getQuizzesWithLvlLimit(int level) throws SQLException {
         String sql = "SELECT quizzes.*, articles.lvl FROM quizzes LEFT JOIN articles on quizzes.id = articles.quiz_id WHERE lvl <= ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, level);
@@ -122,12 +123,39 @@ public class QuizDao extends AbstractDao {
         return new ArrayList<>();
     }
 
-    public void createEmptyQuestion (int quizId) throws SQLException{
+    public void createEmptyQuestion(int quizId, int answerNumber) throws SQLException {
         String sql = "INSERT INTO questions (quiz_id, title) VALUES (?, 'Empty Title')";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        int questionId;
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, quizId);
+            statement.executeUpdate();
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                questionId = rs.getInt(1);
+            } else {
+                throw new SQLException();
+            }
         }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < answerNumber; i++) {
+            sb.append(String.format("INSERT INTO answers (question_id, answer, correct) VALUES (%d, 'Empty', '0');", questionId));
+        }
+        try (PreparedStatement statement = connection.prepareStatement(sb.toString())) {
+            statement.executeUpdate();
+        }
+    }
 
+    public int createEmptyQuiz() throws SQLException{
+        String sql = "INSERT INTO quiz (title) VALUES ('EMPTY')";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.executeUpdate();
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else {
+                throw new SQLException();
+            }
+        }
 
     }
 
@@ -213,7 +241,7 @@ public class QuizDao extends AbstractDao {
         }
     }
 
-    public void modifyQuestion(Question question) throws SQLException{
+    public void modifyQuestion(Question question) throws SQLException {
         String sql = "UPDATE questions SET title = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, question.getDescription());
@@ -225,7 +253,7 @@ public class QuizDao extends AbstractDao {
 
     }
 
-    public void modifyAnswers(Question question) throws SQLException{
+    public void modifyAnswers(Question question) throws SQLException {
         StringBuilder sb = new StringBuilder();
 
         for (Answer answer : question) {
@@ -285,7 +313,7 @@ public class QuizDao extends AbstractDao {
     }
 
 
-    private List<Quiz> fetchQuizzes(PreparedStatement statement) throws SQLException{
+    private List<Quiz> fetchQuizzes(PreparedStatement statement) throws SQLException {
         List<Quiz> quizList = new ArrayList<>();
         statement.execute();
         ResultSet rs = statement.getResultSet();
