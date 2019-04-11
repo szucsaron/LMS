@@ -145,6 +145,23 @@ public class QuizDao extends AbstractDao {
         }
     }
 
+    public void deleteQuestion(int questionId) throws SQLException{
+        String sql = "DELETE FROM solutions  \n" +
+                "WHERE answer_id IN   \n" +
+                "(SELECT id   \n" +
+                "FROM answers  \n" +
+                "WHERE question_id = ?);" +
+                "DELETE FROM answers WHERE question_id = ?;" +
+                "DELETE FROM questions WHERE id = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, questionId);
+            statement.setInt(2, questionId);
+            statement.setInt(3, questionId);
+
+            statement.executeUpdate();
+        }
+    }
+
     public int createEmptyQuiz(String quizTitle) throws SQLException{
         String sql = "INSERT INTO quizzes (title) VALUES (?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -273,7 +290,7 @@ public class QuizDao extends AbstractDao {
         }
     }
 
-    public void deleteAnswersByQuiz(int quizId) throws SQLException{
+    public void deleteSolutionsByQuiz(int quizId) throws SQLException{
         String sql = "DELETE FROM solutions  \n" +
             "WHERE answer_id IN   \n" +
             "    (SELECT answers.id   \n" +
