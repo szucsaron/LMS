@@ -163,7 +163,7 @@ input[type=submit], input[type = text],input[type = number], input[type = passwo
     position: absolute;
     bottom: 3%;
     left: 19%;
-    background-image: utl(search.png);
+    background-image: url(search.png);
     background-size: 100%;
 }
 
