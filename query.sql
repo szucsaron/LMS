@@ -1,1 +1,6 @@
-UPDATE answers SET answer='Billy', correct='0' WHERE id=0;
+ 
+DELETE FROM solutions  
+WHERE answer_id IN   
+    (SELECT id   
+     FROM answers  
+     WHERE question_id = 1);
