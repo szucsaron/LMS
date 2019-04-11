@@ -23,13 +23,7 @@
 <body>
     <div class="wrapper">
         <p>
-            <%
-                if (success) {
-                    out.println("Quiz successfully completed");
-                } else {
-                    out.println("Quiz failed.");
-                }
-            %>
+            Quiz finished. Please, wait for evaluation.
         </p>
         <a href="content">BACK</a>
     </div>
