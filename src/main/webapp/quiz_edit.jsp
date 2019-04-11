@@ -41,10 +41,12 @@
         <input type="hidden" name="quizId" value="${quizId}">
         <input type="hidden" name="questionIndex" value="${questionIndex}">
         <input type="hidden" name="questionId" value="${question.getId()}">
+        <input type="hidden" name="pageId" value="${pageId}">
         <input type="submit" name="submit" value="NEXT"><br>
         <input type="submit" name="submit" value="PREVIOUS"><br>
         <input type="submit" name="submit" value="SAVE"><br>
         <input type="submit" name="submit" value="NEW QUESTION"><br>
+        <input type="submit" name="submit" value="BACK TO ARTICLE"><br>
         ${questionIndex}
     </form>
 

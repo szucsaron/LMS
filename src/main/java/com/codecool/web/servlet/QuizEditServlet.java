@@ -76,6 +76,9 @@ public class QuizEditServlet extends AbstractServlet {
                 case "NEW QUESTION":
                     quizService.createEmptyQuestion(quizId);
                     break;
+                case "BACK TO ARTICLE":
+                    backToArticle();
+                    break;
             }
         }
         Question question = quizService.getQuestion(quizId, questionIndex);
@@ -106,5 +109,10 @@ public class QuizEditServlet extends AbstractServlet {
             answer.setText(text);
         }
         quizService.modifyQuestion(question);
+    }
+
+    private void backToArticle() throws ServletException, IOException, SQLException {
+        ContentServlet contentServlet = new ContentServlet();
+        contentServlet.doGet(req, resp);
     }
 }
