@@ -27,12 +27,16 @@ public class QuizService {
         return true;
     }
 
-    public Question getQuestion(int quizId, int questionIndex){
+    public Question getQuestion(int quizId, int questionIndex) {
         try {
             return quizDao.getQuestionByQuizAndIndex(quizId, questionIndex);
         } catch (SQLException e) {
             return null;
         }
+    }
+
+    public void createEmptyQuestion(int quizId) throws SQLException{
+        quizDao.createEmptyQuestion(quizId, 4);
     }
 
     public void passAnswer(String userName, int userId) throws SQLException {
@@ -126,6 +130,7 @@ public class QuizService {
         }
         return result;
     }
+
     public List<Integer> getQuizzesFailed(String userName) throws SQLException {
         return getAllQuizzesFailed().get(userName);
     }
@@ -160,4 +165,6 @@ public class QuizService {
         return result;
 
     }
+
+
 }

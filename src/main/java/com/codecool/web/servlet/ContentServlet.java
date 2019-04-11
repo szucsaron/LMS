@@ -42,7 +42,7 @@ public class ContentServlet extends AbstractServlet {
         try {
             id = Integer.parseInt(req.getParameter("pageID"));
         } catch (NumberFormatException e) {
-            id = 0;
+            id = 1;
         }
 
         Article article = articleDao.getArticle(id);

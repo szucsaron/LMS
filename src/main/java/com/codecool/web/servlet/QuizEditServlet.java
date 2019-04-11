@@ -74,7 +74,7 @@ public class QuizEditServlet extends AbstractServlet {
                     editQuestion(quizId, questionIndex);
                     break;
                 case "NEW QUESTION":
-
+                    quizService.createEmptyQuestion(quizId);
                     break;
             }
         }
@@ -96,11 +96,7 @@ public class QuizEditServlet extends AbstractServlet {
         }
     }
 
-    private void createQuestion() {
-
-    }
-
-    private void editQuestion(int quizId, int questionIndex) throws SQLException{
+    private void editQuestion(int quizId, int questionIndex) throws SQLException {
         String questionText = req.getParameter("questionText");
         Question question = quizService.getQuestion(quizId, questionIndex);
         question.setDescription(questionText);
