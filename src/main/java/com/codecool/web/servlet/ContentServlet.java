@@ -52,7 +52,7 @@ public class ContentServlet extends AbstractServlet {
         } else {
             req.setAttribute("articleId", id);
             req.setAttribute("article", new Article("Restricted material", "Your progress is too low to view this article. Please, practice more \n" +
-                "or have a bigger wallet/penis."));
+                "or have a bigger wallet."));
         }
 
         Map<Integer, String> sidebar;
