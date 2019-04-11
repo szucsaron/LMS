@@ -37,11 +37,13 @@ public class ArticleDao extends AbstractDao {
     }
 
     public int addArticle(Article article) throws SQLException {
-        String sql = "INSERT INTO articles (title, textcontent, lvl) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO articles (title, textcontent, lvl, quiz_id) VALUES (?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, article.getTitle());
             statement.setString(2, article.getText());
             statement.setInt(3, article.getLevel());
+            statement.setInt(4, article.getQuizId());
+
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) {
