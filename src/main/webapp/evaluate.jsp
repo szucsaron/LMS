@@ -43,9 +43,11 @@
             <form action="evaluate" method="POST">
                 <input type="hidden" value="<%= studentName %>" name="student">
                 <input type="hidden" value="<%= solution.getId() %>" name="quizId">
-                <input type="checkbox" value="PASSED" name="check" onclick="onlyOne(this)">
-                <input type="checkbox" value="FAILED" name="check" onclick="onlyOne(this)">
-                <input type="submit" value="Submit">
+                <p> OK
+                <input type="checkbox" value="PASSED" name="check" onclick="onlyOne(this)"></p>
+                <p> RETRY
+                <input type="checkbox" value="FAILED" name="check" onclick="onlyOne(this)"></p>
+                <br><input type="submit" value="Submit">
             </form>
         </div>
     </div>

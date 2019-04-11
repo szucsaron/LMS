@@ -30,22 +30,24 @@
         <div class="quizzes">
             <h2>Quizzes</h2>
             <% if (role.equals("STUDENT")) { %>
-                <p>To do: </p>
+            <h3>To do: </h3>
                       <% for (Integer id : allQuiz.keySet()) { %>
                           <% if (availableQuiz.contains(id)) { %>
                               <a href="quiz?quizId=<%=id%>"><%= allQuiz.get(id) %></a><br>
                           <% } %>
                       <% } %>
-                <p>Waiting for evaluation:</p>
+                <hr>
                     <% if (committed != null) { %>
+                    <h3>Waiting for evaluation:</h3>
                       <% for (Integer id : allQuiz.keySet()) { %>
                           <% if (committed.contains(id)) { %>
                               <%= allQuiz.get(id) %><br>
                           <% } %>
                       <% } %>
+                      <hr>
                     <% } %>
-                <p>Successful assignments:</p>
                     <% if (passed != null) { %>
+                    <h3>Successful assignments:</h3>
                       <% for (Integer id : allQuiz.keySet()) { %>
                           <% if (passed.contains(id)) { %>
                               <%= allQuiz.get(id) %><br>
@@ -53,7 +55,7 @@
                       <% } %>
                     <% } %>
             <% } else if (role.equals("MENTOR")) { %>
-                <p>To check:</p>
+                <h3>To check:</h3>
                     <% for (String student : toCheck.keySet()) { %>
                         <% if (toCheck.get(student).size() > 0) { %>
                             <i><%= student %></i><br>
