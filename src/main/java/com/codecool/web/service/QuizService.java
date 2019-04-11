@@ -54,6 +54,7 @@ public class QuizService {
     }
 
     public void markQuizForStart(Quiz quiz, User user) throws SQLException {
+        quizDao.deleteAnswersByQuiz(quiz.getId());
         quizDao.setQuizEvaluation(user.getUsername(), quiz.getId(), QuizEvaluation.STARTED);
     }
 

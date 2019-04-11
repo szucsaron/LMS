@@ -35,7 +35,13 @@
          Answers:<br>
          <% for (Answer answer : question) { %>
              <input type="text" name="ans<%=answer.getId()%>" value="<%=answer.getText()%>"><br>
-             <input type="radio" name="correct" value="answer.getId()"><br>
+             <input type="radio" name="correct" value="<%=answer.getId()%>"
+
+             <% if (answer.validate()) { %>
+                 checked
+             <%}%>
+
+             ><br>
          <% } %>
 
         <input type="hidden" name="quizId" value="${quizId}">

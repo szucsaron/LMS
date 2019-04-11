@@ -75,7 +75,7 @@ INSERT INTO quizzes (title) VALUES
 ('Goats and moral nihilism'),
 ('Goats and refactoring'),
 ('Goats and needs'),
-('Public');
+('Dealing with public');
 
 INSERT INTO questions (quiz_id, title) VALUES
 (1,'Which on is the perfect name for a goat?'),
@@ -185,6 +185,14 @@ insert into evaluations (user_name, quiz_id, status) values
 ('Erzsi', 4, 2),
 ('Erzsi', 5, -1),
 ('Erzsi', 6, 1);
+
+INSERT INTO solutions (user_name, answer_id) VALUES
+('Erzsi', 47),
+('Erzsi', 49),
+('Erzsi', 54),
+('Erzsi', 60),
+('Erzsi', 64),
+('Erzsi', 65);
 
 INSERT INTO attendance (user_name, present) VALUES
 ('Erzsi', '2019-01-01'),

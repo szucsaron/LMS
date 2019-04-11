@@ -101,11 +101,18 @@ public class QuizEditServlet extends AbstractServlet {
 
     private void editQuestion(int quizId, int questionIndex) throws SQLException {
         String questionText = req.getParameter("questionText");
+
         Question question = quizService.getQuestion(quizId, questionIndex);
+        int correct = Integer.parseInt(req.getParameter("correct"));
         question.setDescription(questionText);
         for (Answer answer : question) {
             int id = answer.getId();
             String text = req.getParameter(String.format("ans%d", id));
+            if (correct == id) {
+                answer.setValidity(true);
+            } else {
+                answer.setValidity(false);
+            }
             answer.setText(text);
         }
         quizService.modifyQuestion(question);

@@ -27,5 +27,9 @@ public class Answer {
         return correct;
     }
 
+    public void setValidity(boolean correct) {
+        this.correct = correct;
+    }
+
 
 }

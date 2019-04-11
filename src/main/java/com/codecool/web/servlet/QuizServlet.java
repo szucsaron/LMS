@@ -5,8 +5,6 @@ import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.Question;
 import com.codecool.web.model.quiz.Quiz;
-import com.codecool.web.dao.Database;
-import com.codecool.web.dao.MockDatabase;
 import com.codecool.web.service.QuizService;
 import com.codecool.web.service.UserService;
 
@@ -32,20 +30,22 @@ public class QuizServlet extends AbstractServlet {
         try (QuizDao quizDao = new QuizDao(getConnection(req.getServletContext()));
              UserDao userDao = new UserDao(getConnection(req.getServletContext()))
         ) {
+
             userService = new UserService(userDao);
             quizService = new QuizService(userDao, quizDao);
             user = userService.getCurrentUser(req);
             int quizId = Integer.parseInt(req.getParameter("quizId"));
             req.setAttribute("quizId", quizId);
             int questionIndex;
+            quiz = quizDao.getQuizById(quizId);
             try {
                 questionIndex = Integer.parseInt(req.getParameter("questionIndex"));
             } catch (NumberFormatException e) {
                 questionIndex = 0;
+                quizService.markQuizForStart(quiz, user);
             }
 
             Question question = quizDao.getQuestionByQuizAndIndex(quizId, questionIndex);
-            quiz = quizDao.getQuizById(quizId);
             if (quizService.validateQuiz(user, quizId)) { // User validation
                 handleQuestion(req, resp, question, questionIndex, quiz.size());
             } else {
@@ -71,7 +71,7 @@ public class QuizServlet extends AbstractServlet {
                 question = quizService.getQuestion(quiz.getId(), questionIndex);
                 handleRequest(req, resp, question, questionIndex);
             } else {
-                handleQuizEnd(req, resp);
+                endQuiz(req, resp);
             }
         } catch (NumberFormatException e) {
             handleRequest(req, resp, question, questionIndex);
@@ -90,7 +90,8 @@ public class QuizServlet extends AbstractServlet {
 
     }
 
-    private void handleQuizEnd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
+
+    private void endQuiz(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
         req.setAttribute("result", true);
         quizService.markQuizForEvaluation(quiz, user);
         req.getRequestDispatcher("quizresult.jsp").forward(req, resp);

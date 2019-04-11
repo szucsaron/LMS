@@ -29,8 +29,7 @@ public class QuizDao extends AbstractDao {
             question = new Question(title, questionId);
         }
 
-
-        sql = "select answers.id, answer, correct from answers left join questions on question_id = questions.id  where question_id = ?";
+        sql = "SELECT answers.id, answer, correct FROM answers LEFT JOIN questions ON question_id = questions.id  WHERE question_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, question.getId());
             statement.execute();
@@ -263,13 +262,29 @@ public class QuizDao extends AbstractDao {
             } else {
                 correct = "0";
             }
-            String sql = String.format("UPDATE answers SET answer='%s', correct='%s' WHERE id=%d;", answer.getText(), correct, answer.getId());
+            String sql = String.format("UPDATE answers SET answer='%s', correct='%s' WHERE id=%d;",
+                answer.getText().replace("'", "''"), correct, answer.getId());
             sb.append(sql);
         }
 
         try (PreparedStatement statement = connection.prepareStatement(sb.toString())) {
             statement.executeUpdate();
         }
+    }
+
+    public void deleteAnswersByQuiz(int quizId) throws SQLException{
+        String sql = "DELETE FROM solutions  \n" +
+            "WHERE answer_id IN   \n" +
+            "    (SELECT answers.id   \n" +
+            "     FROM answers  \n" +
+            "     LEFT JOIN questions\n" +
+            "     ON question_id = questions.id\n" +
+            "     WHERE \tquiz_id = ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, quizId);
+            statement.executeUpdate();
+        }
+
     }
 
     private void updateQuizEvaluation(String userName, int quizId, QuizEvaluation quizEvaluation) throws SQLException {
