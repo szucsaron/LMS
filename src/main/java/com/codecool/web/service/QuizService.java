@@ -1,7 +1,6 @@
 package com.codecool.web.service;
 
 import com.codecool.web.dao.QuizDao;
-import com.codecool.web.dao.SqlGenerator;
 import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.Question;
@@ -39,6 +38,10 @@ public class QuizService {
         quizDao.createEmptyQuestion(quizId, 4);
     }
 
+    public void deleteQuestion(int questionId) throws SQLException{
+        quizDao.deleteQuestion(questionId);
+    }
+
     public void passAnswer(String userName, int userId) throws SQLException {
         quizDao.passAnswer(userName, userId);
     }
@@ -54,7 +57,7 @@ public class QuizService {
     }
 
     public void markQuizForStart(Quiz quiz, User user) throws SQLException {
-        quizDao.deleteAnswersByQuiz(quiz.getId());
+        quizDao.deleteSolutionsByQuiz(quiz.getId());
         quizDao.setQuizEvaluation(user.getUsername(), quiz.getId(), QuizEvaluation.STARTED);
     }
 

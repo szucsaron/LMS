@@ -79,6 +79,9 @@ public class QuizEditServlet extends AbstractServlet {
                 case "BACK TO ARTICLE":
                     backToArticle();
                     break;
+                case "DELETE QUESTION":
+                    deleteQuestion(quizId, questionIndex);
+                    break;
             }
         }
         Question question = quizService.getQuestion(quizId, questionIndex);
@@ -101,9 +104,8 @@ public class QuizEditServlet extends AbstractServlet {
 
     private void editQuestion(int quizId, int questionIndex) throws SQLException {
         String questionText = req.getParameter("questionText");
-
-        Question question = quizService.getQuestion(quizId, questionIndex);
         int correct = Integer.parseInt(req.getParameter("correct"));
+        Question question = quizService.getQuestion(quizId, questionIndex);
         question.setDescription(questionText);
         for (Answer answer : question) {
             int id = answer.getId();
@@ -117,6 +119,12 @@ public class QuizEditServlet extends AbstractServlet {
         }
         quizService.modifyQuestion(question);
     }
+
+    private void deleteQuestion(int quizId, int questionIndex) throws SQLException{
+        Question question = quizService.getQuestion(quizId, questionIndex);
+        quizService.deleteQuestion(question.getId());
+    }
+
 
     private void backToArticle() throws ServletException, IOException, SQLException {
         ContentServlet contentServlet = new ContentServlet();

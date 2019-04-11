@@ -52,6 +52,7 @@
         <input type="submit" name="submit" value="PREVIOUS"><br>
         <input type="submit" name="submit" value="SAVE"><br>
         <input type="submit" name="submit" value="NEW QUESTION"><br>
+        <input type="submit" name="submit" value="DELETE QUESTION"><br>
         <input type="submit" name="submit" value="BACK TO ARTICLE"><br>
         ${questionIndex}
     </form>
