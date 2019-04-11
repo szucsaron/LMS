@@ -43,12 +43,22 @@ public class EvaluationServlet extends AbstractServlet {
 
             UserService us = new UserService(userDao);
 
-            QuizEvaluation eval = QuizEvaluation.valueOf(req.getParameter("check"));
+            String check = req.getParameter("check");
+            if (check ==  null) {
+                resp.sendRedirect("quizlist");
+                return;
+            }
+
+            QuizEvaluation eval = QuizEvaluation.valueOf(check);
             String studentName = req.getParameter("student");
             int id = Integer.parseInt(req.getParameter("quizId"));
             User student = us.getUserByName(studentName);
 
-            
+            if (eval.equals(QuizEvaluation.PASSED)) {
+                student.incrementProgress();
+                userDao.modifyUser(student);
+            }
+
             quizDao.setQuizEvaluation(studentName, id, eval);
 
             resp.sendRedirect("quizlist");

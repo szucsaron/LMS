@@ -40,14 +40,14 @@ public class Question implements Iterable<Answer>{
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(id).append(" ").append(description).append( "\n");
+        sb.append("(" + id + ")").append(" ").append(description).append( "<br>");
         int id = 0;
         for (int answerId : answers.keySet()) {
             sb  .append("    ")
-                .append(answers.get(answerId).getId())
+                .append("(" + answers.get(answerId).getId() + ")")
                 .append( " ")
                 .append(answers.get(answerId).getText())
-                .append("\n");
+                .append("<br>");
             id++;
         }
         return sb.toString();
