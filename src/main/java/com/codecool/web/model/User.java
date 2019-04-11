@@ -82,8 +82,8 @@ public final class User {
         this.progress = progress;
     }
 
-    public void incrementScore() {
-        score += 1;
+    public void incrementProgress() {
+        this.progress++;
     }
 
     public void setAttendance(Date date, Boolean wasHere) {
