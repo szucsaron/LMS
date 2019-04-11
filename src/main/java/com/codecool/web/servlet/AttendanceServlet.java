@@ -1,8 +1,8 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.dao.Database;
+import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
-import com.codecool.web.dao.MockDatabase;
+import com.codecool.web.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,10 +25,10 @@ public class AttendanceServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            Database database = MockDatabase.getInstance();
-            users = database.getUsersArray();
+        try (UserDao userDao = new UserDao(getConnection(req.getServletContext()))) {
+            UserService us = new UserService(userDao);
             Cookie[] cookies = req.getCookies();
+            users = us.getUsers();
             DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
             Date chosen = formatter.parse(formatter.format(new Date()));
             String chosenString = "";
@@ -37,6 +37,9 @@ public class AttendanceServlet extends AbstractServlet {
                     chosen = formatter.parse(cookie.getValue());
                     chosenString = cookie.getValue();
                 }
+            }
+            for (User u : users) {
+                u.setAttendance(chosen, us.hasAttended(u, chosen));
             }
             req.setAttribute("chosenString", chosenString);
             req.setAttribute("chosen", chosen);
@@ -51,21 +54,24 @@ public class AttendanceServlet extends AbstractServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String dateString = req.getParameter("date");
-
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-
-        try {
-            Date date = df.parse(dateString);
-            for (User u : users) {
-                String name = u.getUsername();
-                boolean attendance = Boolean.valueOf(req.getParameter(name));
-                u.setAttendance(date, attendance);
+        try (UserDao userDao = new UserDao(getConnection(req.getServletContext()))) {
+            UserService us = new UserService(userDao);
+            String dateString = req.getParameter("date");
+            DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+            try {
+                Date date = df.parse(dateString);
+                for (User u : users) {
+                    String name = u.getUsername();
+                    boolean attendance = Boolean.valueOf(req.getParameter(name));
+                    us.setAttendance(u, date, attendance);
+                }
+            } catch (ParseException e) {
+                req.setAttribute("error", "Invalid date!");
+                resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             }
-        } catch (ParseException e) {
-            req.setAttribute("error", "Invalid date!");
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.sendRedirect("content");
+        } catch (SQLException e) {
+            handleError(e, req, resp);
         }
-        resp.sendRedirect("content");
     }
 }
