@@ -159,12 +159,12 @@ input[type=submit], input[type = text],input[type = number], input[type = passwo
 
 .leftbar a.button {
     padding: 0px;
-    width: 35px;
-    height: 35px;
+    width: 31px;
+    height: 31px;
     position: absolute;
     bottom: 3%;
     left: 19%;
-    background-image: url(search.png);
+    background-image: url(exit.png);
     background-size: 100%;
 }
 
