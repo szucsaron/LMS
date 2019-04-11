@@ -38,7 +38,7 @@
         <% } else if (quizEval == QuizEvaluation.FINISHED) { %>
             <p> Quiz under evaluation </p>
         <% } else if (quizEval == QuizEvaluation.FAILED) { %>
-            <div class="quizStatus" > Quiz failed </div>
+            <p> Quiz failed </p>
             <a class="button" href="quiz?quizId=<%=quizId%>">RETAKE QUIZ</a>
         <% } else { %>
             <a class="button" href="quiz?quizId=<%=quizId%>">TAKE QUIZ</a>
