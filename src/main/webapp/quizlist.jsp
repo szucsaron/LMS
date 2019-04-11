@@ -62,7 +62,7 @@
                             <hr>
                             <li>
                             <% for (Integer id : toCheck.get(student)) { %>
-                                  <a href="evaluate?student=<%= student%>&id=<%= id %>"> <%= allQuiz.get(id) %> </a>
+                                  <a href="evaluate?student=<%= student%>&id=<%= id %>"> <%= allQuiz.get(id) %> </a><br>
                             <% } %>
                             </li>
                             <hr>
