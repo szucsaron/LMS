@@ -2,10 +2,7 @@ package com.codecool.web.dao;
 
 import com.codecool.web.model.Article;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,13 +36,19 @@ public class ArticleDao extends AbstractDao {
         return getArticleIdsBySearch("");
     }
 
-    public void addArticle(Article article) throws SQLException {
+    public int addArticle(Article article) throws SQLException {
         String sql = "INSERT INTO articles (title, textcontent, lvl) VALUES (?, ?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, article.getTitle());
             statement.setString(2, article.getText());
             statement.setInt(3, article.getLevel());
             statement.executeUpdate();
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else {
+                throw new SQLException("No article key returned!");
+            }
         }
     }
 

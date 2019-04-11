@@ -3,6 +3,7 @@ package com.codecool.web.dao;
 import com.codecool.web.model.User;
 import com.codecool.web.model.quiz.*;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -142,6 +143,20 @@ public class QuizDao extends AbstractDao {
         try (PreparedStatement statement = connection.prepareStatement(sb.toString())) {
             statement.executeUpdate();
         }
+    }
+
+    public int createEmptyQuiz() throws SQLException{
+        String sql = "INSERT INTO quiz (title) VALUES ('EMPTY')";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.executeUpdate();
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else {
+                throw new SQLException();
+            }
+        }
+
     }
 
     public int countQuestions(int quizId) throws SQLException {
