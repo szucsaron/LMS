@@ -32,11 +32,12 @@
         }
     %>
     <form method="post">
-         Question # ${questionIndex}:<br>
-         <input type="text" name="questionText" value="${question.getDescription()}"><br>
-         Answers:<br>
+         Question # ${questionIndex + 1}:<br>
+         <input type="text"  style="width:70%;" name="questionText" value="${question.getDescription()}"><br>
+         Answers:
+         <p>
          <% for (Answer answer : question) { %>
-             <input type="text" name="ans<%=answer.getId()%>" value="<%=answer.getText()%>"><br>
+             <input type="text" style="width:70%;" name="ans<%=answer.getId()%>" value="<%=answer.getText()%>">
              <input type="radio" name="correct" value="<%=answer.getId()%>"
 
              <% if (answer.validate()) { %>
@@ -45,6 +46,7 @@
 
              ><br>
          <% } %>
+        </p>
 
         <input type="hidden" name="quizId" value="${quizId}">
         <input type="hidden" name="questionIndex" value="${questionIndex}">
