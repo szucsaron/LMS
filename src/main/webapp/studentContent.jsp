@@ -33,16 +33,18 @@
         <a class="button" href="users">USERS</a>
         <a class="button" href="profile">EDIT PROFILE</a>
         <a class="button" href="quizlist">MY ASSIGNMENTS</a>
-        <% if (quizEval == QuizEvaluation.PASSED) { %>
-            <p> Quiz passed </p>
-        <% } else if (quizEval == QuizEvaluation.FINISHED) { %>
-            <p> Quiz under evaluation </p>
-        <% } else if (quizEval == QuizEvaluation.FAILED) { %>
-            <p> Quiz failed </p>
-            <a class="button" href="quiz?quizId=<%=quizId%>">RETAKE QUIZ</a>
-        <% } else { %>
-            <a class="button" href="quiz?quizId=<%=quizId%>">TAKE QUIZ</a>
-        <% } %>
+        <% if (article.hasQuiz()) { %> 
+            <% if (quizEval == QuizEvaluation.PASSED) { %>
+                <p> Quiz passed </p>
+            <% } else if (quizEval == QuizEvaluation.FINISHED) { %>
+                <p> Quiz under evaluation </p>
+            <% } else if (quizEval == QuizEvaluation.FAILED) { %>
+                <p> Quiz failed </p>
+                <a class="button" href="quiz?quizId=<%=quizId%>">RETAKE QUIZ</a>
+            <% } else { %>
+                <a class="button" href="quiz?quizId=<%=quizId%>">TAKE QUIZ</a>
+            <% }
+        }%>
     </nav>
     <div class="leftbar">
     <form action="content" method="GET">
