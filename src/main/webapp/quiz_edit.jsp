@@ -52,12 +52,18 @@
         <input type="hidden" name="questionIndex" value="${questionIndex}">
         <input type="hidden" name="questionId" value="${question.getId()}">
         <input type="hidden" name="pageId" value="${pageId}">
-        <input type="submit" name="submit" value="NEXT" class="button"><br>
-        <input type="submit" name="submit" value="PREVIOUS" class="button"><br>
-        <input type="submit" name="submit" value="SAVE" class="button"><br>
-        <input type="submit" name="submit" value="NEW QUESTION" class="button"><br>
-        <input type="submit" name="submit" value="DELETE QUESTION" class="button"><br>
-        <input type="submit" name="submit" value="BACK TO ARTICLE" class="button"><br>
+        <p>
+            <input type="submit" name="submit" value="NEXT" class="button">
+            <input type="submit" name="submit" value="PREVIOUS" class="button">
+        </p>
+        <p>
+            <input type="submit" name="submit" value="SAVE" class="button">
+            <input type="submit" name="submit" value="NEW QUESTION" class="button">
+            <input type="submit" name="submit" value="DELETE QUESTION" class="button">
+        </p>
+        <p>
+            <input type="submit" name="submit" value="BACK TO ARTICLE" class="button">
+        </p>
     </form>
 </div>
 </div>
